@@ -4,5 +4,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('repairs', views.repairs_main_screen)
+    path('repairs', views.repairs_main_screen),
+    path('repairs/<id>', views.single_repair)
 ]

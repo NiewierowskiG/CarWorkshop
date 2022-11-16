@@ -1,3 +1,4 @@
+from django.utils.timezone import now
 from django.db import models
 from django.conf import settings
 
@@ -30,12 +31,6 @@ class Worker(models.Model):
     salary = models.DecimalField(max_digits=10, decimal_places=2)
 
 
-class HoursWorked(models.Model):
-    worker = models.ForeignKey(Worker, on_delete=models.CASCADE)
-    hours = models.DecimalField(max_digits=4, decimal_places=2)
-    date = models.DateField()
-
-
 class CarBrand(models.Model):
     name = models.CharField(max_length=100)
 
@@ -61,10 +56,20 @@ class Repair(models.Model):
     create_time = models.DateTimeField()
     end_time = models.DateField()
     done = models.BooleanField(default=False)
+    during = models.BooleanField(default=False)
     def get_start_time(self):
         return self.create_time
     def get_car(self):
         return self.car.model.brand.name + ' ' + self.car.model.name + ' ' + self.car.color
+
+
+class HoursWorked(models.Model):
+    worker = models.ForeignKey(Worker, on_delete=models.CASCADE)
+    hours = models.DecimalField(max_digits=4, decimal_places=2, blank=True, null=True)
+    start_time = models.TimeField(default=now)
+    end_time = models.TimeField(null=True, blank=True)
+    date = models.DateField(default=now)
+    repair = models.ForeignKey(Repair, on_delete=models.DO_NOTHING, default=None)
     def get_worker(self):
         return self.worker.person.user
     def get_end_time(self):
