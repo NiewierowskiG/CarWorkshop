@@ -60,4 +60,8 @@ class Repair(models.Model):
     car = models.ForeignKey(Car, on_delete=models.SET_NULL, null=True)
     create_time = models.DateTimeField()
     end_time = models.DateField()
-
+    done = models.BooleanField(default=False)
+    def get_start_time(self):
+        return self.create_time
+    def get_car(self):
+        return self.car.model.brand.name + ' ' + self.car.model.name + ' ' + self.car.color

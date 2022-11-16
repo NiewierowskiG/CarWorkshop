@@ -6,7 +6,27 @@
 </head>
 <body>
     {% for repair in repairs %}
-        <h1>{{ repair }}</h1>
+            <table>
+            <thead>
+                <tr>
+                    <th>imię nazwisko</th>
+                    <th>numer tel</th>
+                    <th>samochod</th>
+                    <th>czas odebrania</th>
+                    <th>dead</th>
+                    <th>mechanik</th>
+                </tr>
+            </thead>
+            <tr *ngFor="let note of noteList" [class.selected] ="note ===selectedNote">
+
+                    <td ><span>xd</span></td>
+                    <td> <span>ds</span></td>
+                    <td>{{ repair.get_car }}</td>
+                    <td><span>{{ repair.get_start_time }}</span></td>
+                    <td><span>gd</span></td>
+                    <td><span>asd</span></td>
+            </tr>
+    </table>
     {% endfor %}
 </body>
 </html>
