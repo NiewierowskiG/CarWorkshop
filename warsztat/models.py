@@ -65,3 +65,9 @@ class Repair(models.Model):
         return self.create_time
     def get_car(self):
         return self.car.model.brand.name + ' ' + self.car.model.name + ' ' + self.car.color
+    def get_worker(self):
+        return self.worker.person.user
+    def get_end_time(self):
+        return self.end_time
+    def get_tel(self):
+        return self.client.person.tel_nr
