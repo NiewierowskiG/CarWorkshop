@@ -1,9 +1,6 @@
-CarWorkshop
+$ CarWorkshop
 
-uruchumienie dockera
-
+#uruchumienie dockera
 docker-compose up -d --build
-
-stworzenie admina
-
+#stworzenie admina
 docker-compose exec web python manage.py createsuperuser
