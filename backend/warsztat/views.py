@@ -38,7 +38,7 @@ def single_repair(request, id):
 
 @api_view(['GET', 'POST'])
 def person_list(request):
-    if request.method == 'Get':
+    if request.method == 'GET':
         queryset = Person.objects.all()
         serializer_class = PersonSerializer(queryset, many=True)
         return JsonResponse({'persons': serializer_class.data})
@@ -51,7 +51,7 @@ def person_list(request):
 
 @api_view(['GET', 'POST'])
 def client_list(request):
-    if request.method == 'Get':
+    if request.method == 'GET':
         queryset = Client.objects.all()
         serializer_class = ClientSerializer(queryset, many=True)
         return JsonResponse({'clients': serializer_class.data})
@@ -64,7 +64,7 @@ def client_list(request):
 
 @api_view(['GET', 'POST'])
 def position_list(request):
-    if request.method == 'Get':
+    if request.method == 'GET':
         queryset = Position.objects.all()
         serializer_class = PositionSerializer(queryset, many=True)
         return JsonResponse({'positions': serializer_class.data})
@@ -77,7 +77,7 @@ def position_list(request):
 
 @api_view(['GET', 'POST'])
 def worker_list(request):
-    if request.method == 'Get':
+    if request.method == 'GET':
         queryset = Worker.objects.all()
         serializer_class = WorkerSerializer(queryset, many=True)
         return JsonResponse({'workers': serializer_class.data})
@@ -90,7 +90,7 @@ def worker_list(request):
 
 @api_view(['GET', 'POST'])
 def car_brand_list(request):
-    if request.method == 'Get':
+    if request.method == 'GET':
         queryset = CarBrand.objects.all()
         serializer_class = CarBrandSerializer(queryset, many=True)
         return JsonResponse({'car_brands': serializer_class.data})
@@ -103,7 +103,7 @@ def car_brand_list(request):
 
 @api_view(['GET', 'POST'])
 def car_model_list(request):
-    if request.method == 'Get':
+    if request.method == 'GET':
         queryset = CarModel.objects.all()
         serializer_class = CarModelSerializer(queryset, many=True)
         return JsonResponse({'car_models': serializer_class.data})
@@ -116,7 +116,7 @@ def car_model_list(request):
 
 @api_view(['GET', 'POST'])
 def repair_list(request):
-    if request.method == 'Get':
+    if request.method == 'GET':
         queryset = Repair.objects.all()
         serializer_class = RepairSerializer(queryset, many=True)
         return JsonResponse({'repairs': serializer_class.data})
@@ -129,7 +129,7 @@ def repair_list(request):
 
 @api_view(['GET', 'POST'])
 def car_list(request):
-    if request.method == 'Get':
+    if request.method == 'GET':
         queryset = Car.objects.all()
         serializer_class = CarSerializer(queryset, many=True)
         return JsonResponse({'cars': serializer_class.data})
@@ -142,7 +142,7 @@ def car_list(request):
 
 @api_view(['GET', 'POST'])
 def hours_worked_list(request):
-    if request.method == 'Get':
+    if request.method == 'GET':
         queryset = HoursWorked.objects.all()
         serializer_class = HoursWorkedSerializer(queryset, many=True)
         return JsonResponse({'hours_worked': serializer_class.data})
