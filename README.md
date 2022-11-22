@@ -7,4 +7,5 @@ uruchumienie dockera
 
 stworzenie admina
 
-  docker-compose exec web python manage.py createsuperuser
+  
+docker-compose exec backend python manage.py createsuperuser
