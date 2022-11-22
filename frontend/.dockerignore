@@ -1,0 +1,6 @@
+my-app/node_modules
+my-app/.vscode
+my-app/.angular
+.gitignore
+Dockerfile
+.dockerignore
