@@ -37,7 +37,7 @@ def single_repair(request, id):
 
 
 @api_view(['GET', 'POST'])
-def people_list(request):
+def people_list(request, format=None):
     if request.method == 'GET':
         queryset = Person.objects.all()
         serializer = PersonSerializer(queryset, many=True)
@@ -50,7 +50,7 @@ def people_list(request):
 
 
 @api_view(['GET', 'PUT', 'DELETE'])  # RUD from CRUD
-def person_detail(request):
+def person_detail(request, id, format=None):
     try:
         item = Person.objects.get(pk=id)
     except Person.DoesNotExist:
@@ -70,7 +70,7 @@ def person_detail(request):
 
 
 @api_view(['GET', 'POST'])
-def clients_list(request):
+def clients_list(request, format=None):
     if request.method == 'GET':
         queryset = Client.objects.all()
         serializer = ClientSerializer(queryset, many=True)
@@ -82,9 +82,28 @@ def clients_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
+@api_view(['GET', 'PUT', 'DELETE'])  # RUD from CRUD
+def client_detail(request, id, format=None):
+    try:
+        item = Client.objects.get(pk=id)
+    except Client.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    if request.method == 'GET':
+        serializer = ClientSerializer(item)
+        return Response(serializer.data)
+    elif request.method == 'PUT':
+        serializer = ClientSerializer(item, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'DELETE':
+        item.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 @api_view(['GET', 'POST'])
-def positions_list(request):
+def positions_list(request, format=None):
     if request.method == 'GET':
         queryset = Position.objects.all()
         serializer = PositionSerializer(queryset, many=True)
@@ -96,8 +115,28 @@ def positions_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
+@api_view(['GET', 'PUT', 'DELETE'])  # RUD from CRUD
+def position_detail(request, id, format=None):
+    try:
+        item = Position.objects.get(pk=id)
+    except Position.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    if request.method == 'GET':
+        serializer = PositionSerializer(item)
+        return Response(serializer.data)
+    elif request.method == 'PUT':
+        serializer = PositionSerializer(item, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'DELETE':
+        item.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
 @api_view(['GET', 'POST'])
-def workers_list(request):
+def workers_list(request, format=None):
     if request.method == 'GET':
         queryset = Worker.objects.all()
         serializer = WorkerSerializer(queryset, many=True)
@@ -109,8 +148,28 @@ def workers_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
+@api_view(['GET', 'PUT', 'DELETE'])  # RUD from CRUD
+def worker_detail(request, id, format=None):
+    try:
+        item = Worker.objects.get(pk=id)
+    except Worker.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    if request.method == 'GET':
+        serializer = WorkerSerializer(item)
+        return Response(serializer.data)
+    elif request.method == 'PUT':
+        serializer = WorkerSerializer(item, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'DELETE':
+        item.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
 @api_view(['GET', 'POST'])
-def car_brands_list(request):
+def car_brands_list(request, format=None):
     if request.method == 'GET':
         queryset = CarBrand.objects.all()
         serializer = CarBrandSerializer(queryset, many=True)
@@ -122,8 +181,28 @@ def car_brands_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
+@api_view(['GET', 'PUT', 'DELETE'])  # RUD from CRUD
+def car_brand_detail(request, id, format=None):
+    try:
+        item = CarBrand.objects.get(pk=id)
+    except CarBrand.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    if request.method == 'GET':
+        serializer = CarBrandSerializer(item)
+        return Response(serializer.data)
+    elif request.method == 'PUT':
+        serializer = CarBrandSerializer(item, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'DELETE':
+        item.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
 @api_view(['GET', 'POST'])
-def car_models_list(request):
+def car_models_list(request, format=None):
     if request.method == 'GET':
         queryset = CarModel.objects.all()
         serializer = CarModelSerializer(queryset, many=True)
@@ -135,8 +214,28 @@ def car_models_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
+@api_view(['GET', 'PUT', 'DELETE'])  # RUD from CRUD
+def car_model_detail(request, id, format=None):
+    try:
+        item = CarModel.objects.get(pk=id)
+    except CarModel.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    if request.method == 'GET':
+        serializer = CarModelSerializer(item)
+        return Response(serializer.data)
+    elif request.method == 'PUT':
+        serializer = CarModelSerializer(item, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'DELETE':
+        item.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
 @api_view(['GET', 'POST'])
-def repairs_list(request):
+def repairs_list(request, format=None):
     if request.method == 'GET':
         queryset = Repair.objects.all()
         serializer = RepairSerializer(queryset, many=True)
@@ -148,8 +247,28 @@ def repairs_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
+@api_view(['GET', 'PUT', 'DELETE'])  # RUD from CRUD
+def repair_detail(request, id, format=None):
+    try:
+        item = Repair.objects.get(pk=id)
+    except Repair.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    if request.method == 'GET':
+        serializer = RepairSerializer(item)
+        return Response(serializer.data)
+    elif request.method == 'PUT':
+        serializer = RepairSerializer(item, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'DELETE':
+        item.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
 @api_view(['GET', 'POST'])
-def cars_list(request):
+def cars_list(request, format=None):
     if request.method == 'GET':
         queryset = Car.objects.all()
         serializer = CarSerializer(queryset, many=True)
@@ -161,8 +280,28 @@ def cars_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
+@api_view(['GET', 'PUT', 'DELETE'])  # RUD from CRUD
+def car_detail(request, id, format=None):
+    try:
+        item = Car.objects.get(pk=id)
+    except Car.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    if request.method == 'GET':
+        serializer = CarSerializer(item)
+        return Response(serializer.data)
+    elif request.method == 'PUT':
+        serializer = CarSerializer(item, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'DELETE':
+        item.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
 @api_view(['GET', 'POST'])
-def hours_worked_list(request):
+def hours_worked_list(request, format=None):
     if request.method == 'GET':
         queryset = HoursWorked.objects.all()
         serializer = HoursWorkedSerializer(queryset, many=True)
@@ -172,3 +311,23 @@ def hours_worked_list(request):
         if serializer.is_valid():
             serializer.save();
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])  # RUD from CRUD
+def hours_worked_detail(request, id, format=None):
+    try:
+        item = HoursWorked.objects.get(pk=id)
+    except HoursWorked.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    if request.method == 'GET':
+        serializer = HoursWorkedSerializer(item)
+        return Response(serializer.data)
+    elif request.method == 'PUT':
+        serializer = HoursWorkedSerializer(item, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'DELETE':
+        item.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
