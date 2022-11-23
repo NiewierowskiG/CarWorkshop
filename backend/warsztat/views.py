@@ -37,11 +37,11 @@ def single_repair(request, id):
 
 
 @api_view(['GET', 'POST'])
-def person_list(request):
+def people_list(request):
     if request.method == 'GET':
         queryset = Person.objects.all()
-        serializer_class = PersonSerializer(queryset, many=True)
-        return JsonResponse({'persons': serializer_class.data})
+        serializer = PersonSerializer(queryset, many=True)
+        return Response(serializer.data)
     if request.method == 'POST':
         serializer = PersonSerializer(data=request.data)
         if serializer.is_valid():
@@ -49,12 +49,32 @@ def person_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
+@api_view(['GET', 'PUT', 'DELETE'])  # RUD from CRUD
+def person_detail(request):
+    try:
+        item = Person.objects.get(pk=id)
+    except Person.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    if request.method == 'GET':
+        serializer = PersonSerializer(item)
+        return Response(serializer.data)
+    elif request.method == 'PUT':
+        serializer = PersonSerializer(item, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'DELETE':
+        item.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
 @api_view(['GET', 'POST'])
-def client_list(request):
+def clients_list(request):
     if request.method == 'GET':
         queryset = Client.objects.all()
-        serializer_class = ClientSerializer(queryset, many=True)
-        return JsonResponse({'clients': serializer_class.data})
+        serializer = ClientSerializer(queryset, many=True)
+        return Response(serializer.data)
     if request.method == 'POST':
         serializer = ClientSerializer(data=request.data)
         if serializer.is_valid():
@@ -62,12 +82,13 @@ def client_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
+
 @api_view(['GET', 'POST'])
-def position_list(request):
+def positions_list(request):
     if request.method == 'GET':
         queryset = Position.objects.all()
-        serializer_class = PositionSerializer(queryset, many=True)
-        return JsonResponse({'positions': serializer_class.data})
+        serializer = PositionSerializer(queryset, many=True)
+        return Response(serializer.data)
     if request.method == 'POST':
         serializer = PositionSerializer(data=request.data)
         if serializer.is_valid():
@@ -76,11 +97,11 @@ def position_list(request):
 
 
 @api_view(['GET', 'POST'])
-def worker_list(request):
+def workers_list(request):
     if request.method == 'GET':
         queryset = Worker.objects.all()
-        serializer_class = WorkerSerializer(queryset, many=True)
-        return JsonResponse({'workers': serializer_class.data})
+        serializer = WorkerSerializer(queryset, many=True)
+        return Response(serializer.data)
     if request.method == 'POST':
         serializer = WorkerSerializer(data=request.data)
         if serializer.is_valid():
@@ -89,11 +110,11 @@ def worker_list(request):
 
 
 @api_view(['GET', 'POST'])
-def car_brand_list(request):
+def car_brands_list(request):
     if request.method == 'GET':
         queryset = CarBrand.objects.all()
-        serializer_class = CarBrandSerializer(queryset, many=True)
-        return JsonResponse({'car_brands': serializer_class.data})
+        serializer = CarBrandSerializer(queryset, many=True)
+        return Response(serializer.data)
     if request.method == 'POST':
         serializer = CarBrandSerializer(data=request.data)
         if serializer.is_valid():
@@ -102,11 +123,11 @@ def car_brand_list(request):
 
 
 @api_view(['GET', 'POST'])
-def car_model_list(request):
+def car_models_list(request):
     if request.method == 'GET':
         queryset = CarModel.objects.all()
-        serializer_class = CarModelSerializer(queryset, many=True)
-        return JsonResponse({'car_models': serializer_class.data})
+        serializer = CarModelSerializer(queryset, many=True)
+        return Response(serializer.data)
     if request.method == 'POST':
         serializer = CarModelSerializer(data=request.data)
         if serializer.is_valid():
@@ -115,11 +136,11 @@ def car_model_list(request):
 
 
 @api_view(['GET', 'POST'])
-def repair_list(request):
+def repairs_list(request):
     if request.method == 'GET':
         queryset = Repair.objects.all()
-        serializer_class = RepairSerializer(queryset, many=True)
-        return JsonResponse({'repairs': serializer_class.data})
+        serializer = RepairSerializer(queryset, many=True)
+        return Response(serializer.data)
     if request.method == 'POST':
         serializer = RepairSerializer(data=request.data)
         if serializer.is_valid():
@@ -128,11 +149,11 @@ def repair_list(request):
 
 
 @api_view(['GET', 'POST'])
-def car_list(request):
+def cars_list(request):
     if request.method == 'GET':
         queryset = Car.objects.all()
-        serializer_class = CarSerializer(queryset, many=True)
-        return JsonResponse({'cars': serializer_class.data})
+        serializer = CarSerializer(queryset, many=True)
+        return Response(serializer.data)
     if request.method == 'POST':
         serializer = CarSerializer(data=request.data)
         if serializer.is_valid():
@@ -144,8 +165,8 @@ def car_list(request):
 def hours_worked_list(request):
     if request.method == 'GET':
         queryset = HoursWorked.objects.all()
-        serializer_class = HoursWorkedSerializer(queryset, many=True)
-        return JsonResponse({'hours_worked': serializer_class.data})
+        serializer = HoursWorkedSerializer(queryset, many=True)
+        return Response(serializer.data)
     if request.method == 'POST':
         serializer = HoursWorkedSerializer(data=request.data)
         if serializer.is_valid():
