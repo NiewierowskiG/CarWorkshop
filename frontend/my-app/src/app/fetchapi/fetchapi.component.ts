@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ApicallService} from "../services/apicall.service";
+import {Car} from "../models/Car";
 
 @Component({
   selector: 'app-fetchapi',
@@ -7,11 +8,13 @@ import {ApicallService} from "../services/apicall.service";
   styleUrls: ['./fetchapi.component.css']
 })
 export class FetchapiComponent implements OnInit {
-  cars: any;
+  cars?: Car[];
   constructor(private appService: ApicallService) { }
 
   ngOnInit(): void {
-    this.cars = this.appService.getData()
+    this.getColor()
   }
-
+  getColor(){
+    this.appService.getColor().subscribe(cars => {this.cars = cars})
+  }
 }
