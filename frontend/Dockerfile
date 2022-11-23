@@ -10,6 +10,7 @@ COPY my-app/package.json my-app/package-lock.json /app/my-app/
 
 # Install app dependencies.
 RUN npm install npm@latest -g #update npm
+RUN npm install -g typescript
 RUN npm install --prefix my-app
 
 # Copy app files.
