@@ -16,4 +16,3 @@ python manage.py makemigrations warsztat
 python manage.py migrate
 
 exec "$@"
-
