@@ -9,7 +9,7 @@ class Person(models.Model):
         on_delete=models.CASCADE,
     )
     tel_nr = models.IntegerField()
-
+    #emial
 
 class Client(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
@@ -76,3 +76,45 @@ class HoursWorked(models.Model):
         return self.end_time
     def get_tel(self):
         return self.client.person.tel_nr
+
+class Opinion(models.Model):
+    pass
+    #clinet id
+    #date
+    #rating
+    #content
+
+class OpinionWorker(models.Model):
+    pass
+    # opinion id
+    # worker id
+
+class OpinionRepair(models.Model):
+    pass
+    # opinion id
+    # repair id
+
+class PerformanceReview(models.Model):
+    pass
+    # provider : worker id
+    # worker id
+    # content
+    # date
+
+
+class Notifications(models.Model):
+    pass
+    # content
+    # clinet id
+    # sender : worker id
+
+class SubstituteCar(models.Model):
+    pass
+    # car
+    # price per day
+
+class RentCar(models.Model):
+    pass
+    # substituteCar id
+    # start date
+    # end date
