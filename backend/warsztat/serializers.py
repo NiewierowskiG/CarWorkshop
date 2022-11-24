@@ -21,9 +21,12 @@ class PositionSerializer(serializers.ModelSerializer):
 
 
 class WorkerSerializer(serializers.ModelSerializer):
+    wfname = serializers.CharField(source="person.fname")
+    wlname = serializers.CharField(source="person.lname")
+    pos = serializers.CharField(source="position.name")
     class Meta:
         model = Worker
-        fields = ('id', 'person', 'position', 'salary')
+        fields = ('id', 'person', 'position', 'salary', 'wfname', 'wlname','pos')
 
 
 class CarBrandSerializer(serializers.ModelSerializer):
@@ -46,9 +49,17 @@ class CarSerializer(serializers.ModelSerializer):
 
 
 class RepairSerializer(serializers.ModelSerializer):
+    cfname = serializers.CharField(source="client.person.fname")
+    clname = serializers.CharField(source="client.person.lname")
+    wfname = serializers.CharField(source="worker.person.fname")
+    wlname = serializers.CharField(source="worker.person.lname")
+    carvin = serializers.CharField(source="car.vin")
+    carcolor = serializers.CharField(source="car.color")
+    carbrand = serializers.CharField(source="car.model.brand.name")
+    carmodel = serializers.CharField(source="car.model.name")
     class Meta:
         model = Repair
-        fields = ('id', 'client', 'worker', 'car', 'create_time', 'end_time', 'done', 'during')
+        fields = ('id', 'client', 'worker', 'car', 'create_time', 'end_time', 'done', 'during', 'cfname', 'clname','wfname','wlname','price', 'carvin','carcolor','carbrand','carmodel')
 
 
 class HoursWorkedSerializer(serializers.ModelSerializer):
