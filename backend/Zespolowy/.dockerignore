@@ -1,0 +1,4 @@
+Zespolowy/migrations/*
+.gitignore
+Dockerfile
+.dockerignore
