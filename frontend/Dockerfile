@@ -9,7 +9,9 @@ WORKDIR /app
 COPY my-app/package.json my-app/package-lock.json /app/my-app/
 
 # Install app dependencies.
+EXPOSE 8080
 RUN npm install npm@latest -g #update npm
+RUN npm install -g @angular/cli
 RUN npm install -g typescript
 RUN npm install --prefix my-app
 
