@@ -4,7 +4,7 @@ export class Car{
     public id: number,
     public model: string,
     public color: string,
-    public prodyear: number,
+    public prod_year: number,
     public vin: number
   ) {}
 }

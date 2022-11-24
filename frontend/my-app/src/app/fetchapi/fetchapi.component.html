@@ -1,5 +1,19 @@
-<ul>
-  <li *ngFor="let car of cars | async">
+
+<ul  *ngFor="let car of cars">
+  <li>
+    {{car.id}}
+  </li>
+  <li>
     {{car.color}}
   </li>
-</ul>
+  <li>
+    {{car.vin}}
+  </li>
+  <li>
+    {{car.prod_year}}
+  </li>
+  <li>
+    {{car.model}}
+  </li>
+</ul> 
+<h2> ANGULAR TY KURWO</h2>
