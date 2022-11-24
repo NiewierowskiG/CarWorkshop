@@ -69,7 +69,7 @@ class HoursWorked(models.Model):
     start_time = models.TimeField(default=now)
     end_time = models.TimeField(null=True, blank=True)
     date = models.DateField(default=now)
-    repair = models.ForeignKey(Repair, on_delete=models.DO_NOTHING, default=None)
+    repair = models.ForeignKey(Repair, on_delete=models.DO_NOTHING, default=None, null=True)
     def get_worker(self):
         return self.worker.person.user
     def get_end_time(self):
@@ -79,31 +79,31 @@ class HoursWorked(models.Model):
 
 
 class ClientNotification(models.Model):    # repair id
-    content = models.CharField(max_length=500)
-    date = models.DateTimeField()
-    repair = models.ForeignKey(Repair, on_delete=models.CASCADE)
+    content = models.CharField(max_length=500, null=True)
+    date = models.DateTimeField(null=True)
+    repair = models.ForeignKey(Repair, on_delete=models.CASCADE, null=True)
 
 
 class PerformanceReview(models.Model):
-    employer = models.ForeignKey(Worker, on_delete=models.DO_NOTHING)
-    employee = models.ForeignKey(Worker, related_name='%(class)s_requests_created', on_delete=models.CASCADE)
-    content = models.CharField(max_length=500)
-    date = models.DateTimeField()
+    employer = models.ForeignKey(Worker, on_delete=models.DO_NOTHING, null=True)
+    employee = models.ForeignKey(Worker, related_name='%(class)s_requests_created', on_delete=models.CASCADE, null=True)
+    content = models.CharField(max_length=500, null=True)
+    date = models.DateTimeField(null=True)
 
 
 class Notifications(models.Model):
-    sender = models.ForeignKey(Worker, on_delete=models.DO_NOTHING, blank=True)
-    receiver = models.ForeignKey(Client, on_delete=models.CASCADE, blank=True)
-    content = models.CharField(max_length=500, blank=True)
+    sender = models.ForeignKey(Worker, on_delete=models.DO_NOTHING, null=True)
+    receiver = models.ForeignKey(Client, on_delete=models.CASCADE, null=True)
+    content = models.CharField(max_length=500, null=True)
 
 
 class SubstituteCar(models.Model):
-    car = models.ForeignKey(Car, on_delete=models.CASCADE, blank=True)
-    price = models.DecimalField(max_digits=7, decimal_places=2, blank=True)
+    car = models.ForeignKey(Car, on_delete=models.CASCADE, null=True)
+    price = models.DecimalField(max_digits=7, decimal_places=2, null=True)
     is_rented = models.BooleanField(default=False)
 
 
 class RentCar(models.Model):
-    car = models.ForeignKey(SubstituteCar, on_delete=models.CASCADE, blank=True)
+    car = models.ForeignKey(SubstituteCar, on_delete=models.CASCADE, null=True, default=None)
     start_date = models.DateField(default=now)
-    end_date = models.DateField(blank=True)
+    end_date = models.DateField(blank=True, null=True, default=None)
