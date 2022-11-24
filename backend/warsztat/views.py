@@ -45,7 +45,7 @@ def people_list(request, format=None):
     if request.method == 'POST':
         serializer = PersonSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save();
+            serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
@@ -78,7 +78,7 @@ def clients_list(request, format=None):
     if request.method == 'POST':
         serializer = ClientSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save();
+            serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
@@ -111,7 +111,7 @@ def positions_list(request, format=None):
     if request.method == 'POST':
         serializer = PositionSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save();
+            serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
@@ -144,7 +144,7 @@ def workers_list(request, format=None):
     if request.method == 'POST':
         serializer = WorkerSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save();
+            serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
@@ -177,7 +177,7 @@ def car_brands_list(request, format=None):
     if request.method == 'POST':
         serializer = CarBrandSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save();
+            serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
@@ -210,7 +210,7 @@ def car_models_list(request, format=None):
     if request.method == 'POST':
         serializer = CarModelSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save();
+            serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
@@ -243,7 +243,7 @@ def repairs_list(request, format=None):
     if request.method == 'POST':
         serializer = RepairSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save();
+            serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
@@ -276,7 +276,7 @@ def cars_list(request, format=None):
     if request.method == 'POST':
         serializer = CarSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save();
+            serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
@@ -309,7 +309,7 @@ def hours_worked_list(request, format=None):
     if request.method == 'POST':
         serializer = HoursWorkedSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save();
+            serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
