@@ -1,6 +1,7 @@
-my-app/node_modules
 my-app/.vscode
-my-app/.angular
+my-app/lib/
+my-app/node_modules/
+my-app/.angular/
 .gitignore
 Dockerfile
 .dockerignore

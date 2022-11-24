@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.9'
 
 services:
   db:
@@ -24,8 +24,13 @@ services:
     restart: always
   frontend:
     build: ./frontend
+    environment: 
+      PORT: 4200
+    command: "ng serve --host 0.0.0.0 --poll=2000 --port 4200 --disable-host-check"
+    volumes:
+      - ./frontend/my-app/:/app/
+      - /app/node_modules
     ports:
-      - "8080:8000"
-    restart: always
+      - "80:4200"
 volumes:
   postgres_data:
