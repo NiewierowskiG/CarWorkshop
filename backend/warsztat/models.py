@@ -86,7 +86,7 @@ class ClientNotification(models.Model):    # repair id
 
 class PerformanceReview(models.Model):
     employer = models.ForeignKey(Worker, on_delete=models.DO_NOTHING)
-    employee = models.ForeignKey(Worker, on_delete=models.CASCADE)
+    employee = models.ForeignKey(Worker, related_name='%(class)s_requests_created', on_delete=models.CASCADE)
     content = models.CharField(max_length=500)
     date = models.DateTimeField()
 
