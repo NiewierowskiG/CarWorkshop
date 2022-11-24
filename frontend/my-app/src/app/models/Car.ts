@@ -5,6 +5,7 @@ export class Car{
     public model: string,
     public color: string,
     public prod_year: number,
-    public vin: number
+    public vin: number,
+    public carbrand: string
   ) {}
 }

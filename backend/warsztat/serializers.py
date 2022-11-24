@@ -39,22 +39,16 @@ class CarModelSerializer(serializers.ModelSerializer):
 
 
 class CarSerializer(serializers.ModelSerializer):
+    carbrand = serializers.CharField(source="model.name")
     class Meta:
         model = Car
-        fields = ('id', 'model', 'color', 'prod_year', 'vin')
+        fields = ('id', 'model', 'color', 'prod_year', 'vin','carbrand')
 
 
 class RepairSerializer(serializers.ModelSerializer):
     class Meta:
         model = Repair
         fields = ('id', 'client', 'worker', 'car', 'create_time', 'end_time', 'done', 'during')
-
-
-class CarSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Car
-        fields = ('id', 'model', 'color', 'prod_year', 'vin')
-
 
 
 class HoursWorkedSerializer(serializers.ModelSerializer):

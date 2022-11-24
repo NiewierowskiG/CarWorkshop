@@ -6,9 +6,11 @@ import { RouterLink } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FetchapiComponent } from './fetchapi/fetchapi.component';
+import { FetchapiComponent } from './components/fetchapi/fetchapi.component';
 import { RepairListComponent } from './repair-list/repair-list.component';
 import { ClientListComponent } from './client-list/client-list.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
@@ -17,6 +19,8 @@ import { ClientListComponent } from './client-list/client-list.component';
     FetchapiComponent,
     RepairListComponent,
     ClientListComponent,
+    NavbarComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
