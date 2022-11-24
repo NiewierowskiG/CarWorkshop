@@ -39,6 +39,7 @@ FROM node:18.10
 RUN mkdir /app
 WORKDIR /app
 RUN npm install -g @angular/cli
+RUN npm install -g tslib
 COPY ./my-app/package*.json /app 
 RUN npm install
 EXPOSE 4200
