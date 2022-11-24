@@ -92,18 +92,18 @@ class PerformanceReview(models.Model):
 
 
 class Notifications(models.Model):
-    sender = models.ForeignKey(Worker, on_delete=models.DO_NOTHING)
-    receiver = models.ForeignKey(Client, on_delete=models.CASCADE)
-    content = models.CharField(max_length=500)
+    sender = models.ForeignKey(Worker, on_delete=models.DO_NOTHING, blank=True)
+    receiver = models.ForeignKey(Client, on_delete=models.CASCADE, blank=True)
+    content = models.CharField(max_length=500, blank=True)
 
 
 class SubstituteCar(models.Model):
-    car = models.ForeignKey(Car, on_delete=models.CASCADE)
-    price = models.DecimalField(max_digits=7, decimal_places=2)
+    car = models.ForeignKey(Car, on_delete=models.CASCADE, blank=True)
+    price = models.DecimalField(max_digits=7, decimal_places=2, blank=True)
     is_rented = models.BooleanField(default=False)
 
 
 class RentCar(models.Model):
-    car = models.ForeignKey(SubstituteCar, on_delete=models.CASCADE)
+    car = models.ForeignKey(SubstituteCar, on_delete=models.CASCADE, blank=True)
     start_date = models.DateField(default=now)
     end_date = models.DateField(blank=True)
