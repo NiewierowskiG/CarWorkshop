@@ -17,6 +17,7 @@ RUN npm install --prefix my-app
 
 # Copy app files.
 COPY . /app
+VOLUME /app
 
 # Build app
 RUN npm run build --prefix my-app -- --output-path=./dist/out
