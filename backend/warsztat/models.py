@@ -56,7 +56,7 @@ class Repair(models.Model):
     end_time = models.DateField()
     done = models.BooleanField(default=False)
     during = models.BooleanField(default=False)
-    price = models.DecimalField(decimal_places=2)
+    price = models.DecimalField(max_digits=7, decimal_places=2)
     def get_start_time(self):
         return self.create_time
     def get_car(self):
@@ -99,7 +99,7 @@ class Notifications(models.Model):
 
 class SubstituteCar(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
-    price = models.DecimalField(max_digits=5, decimal_places=2)
+    price = models.DecimalField(max_digits=7, decimal_places=2)
     is_rented = models.BooleanField(default=False)
 
 
