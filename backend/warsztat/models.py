@@ -4,17 +4,15 @@ from django.conf import settings
 
 
 class Person(models.Model):
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-    )
+    fname = models.CharField(max_length=100)
+    lname = models.CharField(max_length=100)
     tel_nr = models.IntegerField()
-    # email
+    email = models.EmailField(max_length=254)
 
 
 class Client(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
-    nip = models.IntegerField(null=True)
+    nip = models.IntegerField(null=True, blank=True)
 
 
 class Position(models.Model):
@@ -58,6 +56,7 @@ class Repair(models.Model):
     end_time = models.DateField()
     done = models.BooleanField(default=False)
     during = models.BooleanField(default=False)
+    price = models.DecimalField(decimal_places=2)
     def get_start_time(self):
         return self.create_time
     def get_car(self):
