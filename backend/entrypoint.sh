@@ -13,9 +13,9 @@ fi
 
 
 #python manage.py flush --no-input #clean database
-python manage.py makemigrations warsztat
-python manage.py migrate
 
+python manage.py migrate
+python manage.py makemigrations warsztat
 
 exec "$@"
-
+ 
