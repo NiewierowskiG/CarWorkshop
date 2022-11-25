@@ -66,3 +66,33 @@ class HoursWorkedSerializer(serializers.ModelSerializer):
     class Meta:
         model = HoursWorked
         fields = ('id', 'worker', 'hours', 'start_time', 'end_time', 'date', 'repair')
+
+
+class ClientNotificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ClientNotification
+        fields = '__all__'
+
+
+class PerformanceReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PerformanceReview
+        fields = '__all__'
+
+
+class NotificationsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notifications
+        fields = '__all__'
+
+
+class SubstituteCarSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SubstituteCar
+        fields = '__all__'
+
+
+class RentCarSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RentCar
+        fields = '__all__'

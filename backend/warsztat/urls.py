@@ -23,6 +23,16 @@ urlpatterns = [
     path('repairs/<int:id>', views.repair_detail),
     path('hoursworkeds/', views.hours_worked_list),
     path('hoursworkeds/<int:id>', views.hours_worked_detail),
+    path('clientnotification/', views.client_notification_list),
+    path('clientnotification/<int:id>', views.client_notification_detail),
+    path('performancereview/', views.performance_review_list),
+    path('performancereview/<int:id>', views.performance_review_detail),
+    path('notifications/', views.notifications_list),
+    path('notifications/<int:id>', views.notifications_detail),
+    path('substitutecar/', views.substitute_car_list),
+    path('substitutecar/<int:id>', views.substitute_car_detail),
+    path('rentcar/', views.rent_car_list),
+    path('rentcar/', views.rent_car_detail),
 ]
 
 

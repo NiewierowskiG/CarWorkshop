@@ -10,6 +10,12 @@ admin.site.register(HoursWorked)
 admin.site.register(CarBrand)
 admin.site.register(CarModel)
 admin.site.register(Car)
+admin.site.register(ClientNotification)
+admin.site.register(PerformanceReview)
+admin.site.register(Notifications)
+admin.site.register(SubstituteCar)
+admin.site.register(RentCar)
+
 
 
 
