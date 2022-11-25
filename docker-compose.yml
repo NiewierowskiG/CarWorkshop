@@ -26,7 +26,7 @@ services:
     build: ./frontend
     environment: 
       PORT: 4200
-    command: "ng serve --host 0.0.0.0 --poll=2000 --port 4200 --disable-host-check"
+    command: "ng serve --host 0.0.0.0 --poll=2000 --port 4200 --disable-host-check --hmr"
     volumes:
       - ./frontend/my-app/:/app/
       - /app/node_modules
