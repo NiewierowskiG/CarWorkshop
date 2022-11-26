@@ -49,7 +49,7 @@ def people_list(request, format=None):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-@api_view(['GET', 'PUT', 'DELETE'])  # RUD from CRUD
+@api_view(['GET', 'PUT', 'DELETE', 'PATCH'])  # RUD from CRUD
 def person_detail(request, id, format=None):
     try:
         item = Person.objects.get(pk=id)
@@ -60,6 +60,12 @@ def person_detail(request, id, format=None):
         return Response(serializer.data)
     elif request.method == 'PUT':
         serializer = PersonSerializer(item, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'PATCH':
+        serializer = PersonSerializer(item, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -82,7 +88,7 @@ def clients_list(request, format=None):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-@api_view(['GET', 'PUT', 'DELETE'])  # RUD from CRUD
+@api_view(['GET', 'PUT', 'DELETE', 'PATCH'])  # RUD from CRUD
 def client_detail(request, id, format=None):
     try:
         item = Client.objects.get(pk=id)
@@ -93,6 +99,12 @@ def client_detail(request, id, format=None):
         return Response(serializer.data)
     elif request.method == 'PUT':
         serializer = ClientSerializer(item, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'PATCH':
+        serializer = ClientSerializer(item, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -115,7 +127,7 @@ def positions_list(request, format=None):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-@api_view(['GET', 'PUT', 'DELETE'])  # RUD from CRUD
+@api_view(['GET', 'PUT', 'DELETE', 'PATCH'])  # RUD from CRUD
 def position_detail(request, id, format=None):
     try:
         item = Position.objects.get(pk=id)
@@ -126,6 +138,12 @@ def position_detail(request, id, format=None):
         return Response(serializer.data)
     elif request.method == 'PUT':
         serializer = PositionSerializer(item, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'PATCH':
+        serializer = PositionSerializer(item, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -148,7 +166,7 @@ def workers_list(request, format=None):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-@api_view(['GET', 'PUT', 'DELETE'])  # RUD from CRUD
+@api_view(['GET', 'PUT', 'DELETE', 'PATCH'])  # RUD from CRUD
 def worker_detail(request, id, format=None):
     try:
         item = Worker.objects.get(pk=id)
@@ -159,6 +177,12 @@ def worker_detail(request, id, format=None):
         return Response(serializer.data)
     elif request.method == 'PUT':
         serializer = WorkerSerializer(item, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'PATCH':
+        serializer = WorkerSerializer(item, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -181,7 +205,7 @@ def car_brands_list(request, format=None):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-@api_view(['GET', 'PUT', 'DELETE'])  # RUD from CRUD
+@api_view(['GET', 'PUT', 'DELETE', 'PATCH'])  # RUD from CRUD
 def car_brand_detail(request, id, format=None):
     try:
         item = CarBrand.objects.get(pk=id)
@@ -192,6 +216,12 @@ def car_brand_detail(request, id, format=None):
         return Response(serializer.data)
     elif request.method == 'PUT':
         serializer = CarBrandSerializer(item, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'PATCH':
+        serializer = CarBrandSerializer(item, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -214,7 +244,7 @@ def car_models_list(request, format=None):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-@api_view(['GET', 'PUT', 'DELETE'])  # RUD from CRUD
+@api_view(['GET', 'PUT', 'DELETE', 'PATCH'])  # RUD from CRUD
 def car_model_detail(request, id, format=None):
     try:
         item = CarModel.objects.get(pk=id)
@@ -225,6 +255,12 @@ def car_model_detail(request, id, format=None):
         return Response(serializer.data)
     elif request.method == 'PUT':
         serializer = CarModelSerializer(item, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'PATCH':
+        serializer = CarModelSerializer(item, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -247,7 +283,7 @@ def repairs_list(request, format=None):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-@api_view(['GET', 'PUT', 'DELETE'])  # RUD from CRUD
+@api_view(['GET', 'PUT', 'DELETE', 'PATCH'])  # RUD from CRUD
 def repair_detail(request, id, format=None):
     try:
         item = Repair.objects.get(pk=id)
@@ -258,6 +294,12 @@ def repair_detail(request, id, format=None):
         return Response(serializer.data)
     elif request.method == 'PUT':
         serializer = RepairSerializer(item, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'PATCH':
+        serializer = RepairSerializer(item, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -280,7 +322,7 @@ def cars_list(request, format=None):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-@api_view(['GET', 'PUT', 'DELETE'])  # RUD from CRUD
+@api_view(['GET', 'PUT', 'DELETE', 'PATCH'])  # RUD from CRUD
 def car_detail(request, id, format=None):
     try:
         item = Car.objects.get(pk=id)
@@ -291,6 +333,12 @@ def car_detail(request, id, format=None):
         return Response(serializer.data)
     elif request.method == 'PUT':
         serializer = CarSerializer(item, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'PATCH':
+        serializer = CarSerializer(item, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -313,7 +361,7 @@ def hours_worked_list(request, format=None):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-@api_view(['GET', 'PUT', 'DELETE'])  # RUD from CRUD
+@api_view(['GET', 'PUT', 'DELETE', 'PATCH'])  # RUD from CRUD
 def hours_worked_detail(request, id, format=None):
     try:
         item = HoursWorked.objects.get(pk=id)
@@ -324,6 +372,12 @@ def hours_worked_detail(request, id, format=None):
         return Response(serializer.data)
     elif request.method == 'PUT':
         serializer = HoursWorkedSerializer(item, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'PATCH':
+        serializer = HoursWorkedSerializer(item, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -345,7 +399,8 @@ def client_notification_list(request, format=None):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-@api_view(['GET', 'PUT', 'DELETE'])  # RUD from CRUD
+
+@api_view(['GET', 'PUT', 'PATCH', 'DELETE'])  # RUD from CRUD
 def client_notification_detail(request, id, format=None):
     try:
         item = ClientNotification.objects.get(pk=id)
@@ -355,7 +410,13 @@ def client_notification_detail(request, id, format=None):
         serializer = ClientNotificationSerializer(item)
         return Response(serializer.data)
     elif request.method == 'PUT':
-        serializer = ClientNotificationSerializer(item, data=request.data)
+        serializer = ClientNotificationSerializer(item, data=request.data, partial=False)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'PATCH':
+        serializer = ClientNotificationSerializer(item, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -378,7 +439,7 @@ def performance_review_list(request, format=None):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-@api_view(['GET', 'PUT', 'DELETE'])  # RUD from CRUD
+@api_view(['GET', 'PUT', 'DELETE', 'PATCH'])  # RUD from CRUD
 def performance_review_detail(request, id, format=None):
     try:
         item = PerformanceReview.objects.get(pk=id)
@@ -389,6 +450,12 @@ def performance_review_detail(request, id, format=None):
         return Response(serializer.data)
     elif request.method == 'PUT':
         serializer = PerformanceReviewSerializer(item, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'PATCH':
+        serializer = PerformanceReviewSerializer(item, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -411,7 +478,7 @@ def notifications_list(request, format=None):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-@api_view(['GET', 'PUT', 'DELETE'])  # RUD from CRUD
+@api_view(['GET', 'PUT', 'DELETE', 'PATCH'])  # RUD from CRUD
 def notifications_detail(request, id, format=None):
     try:
         item = Notifications.objects.get(pk=id)
@@ -422,6 +489,12 @@ def notifications_detail(request, id, format=None):
         return Response(serializer.data)
     elif request.method == 'PUT':
         serializer = NotificationsSerializer(item, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'PATCH':
+        serializer = NotificationsSerializer(item, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -444,7 +517,7 @@ def substitute_car_list(request, format=None):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-@api_view(['GET', 'PUT', 'DELETE'])  # RUD from CRUD
+@api_view(['GET', 'PUT', 'DELETE', 'PATCH'])  # RUD from CRUD
 def substitute_car_detail(request, id, format=None):
     try:
         item = SubstituteCar.objects.get(pk=id)
@@ -455,6 +528,12 @@ def substitute_car_detail(request, id, format=None):
         return Response(serializer.data)
     elif request.method == 'PUT':
         serializer = SubstituteCarSerializer(item, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'PATCH':
+        serializer = SubstituteCarSerializer(item, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -477,7 +556,7 @@ def rent_car_list(request, format=None):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-@api_view(['GET', 'PUT', 'DELETE'])  # RUD from CRUD
+@api_view(['GET', 'PUT', 'DELETE', 'PATCH'])  # RUD from CRUD
 def rent_car_detail(request, id, format=None):
     try:
         item = RentCar.objects.get(pk=id)
@@ -488,6 +567,12 @@ def rent_car_detail(request, id, format=None):
         return Response(serializer.data)
     elif request.method == 'PUT':
         serializer = RentCarSerializer(item, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'PATCH':
+        serializer = RentCarSerializer(item, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
