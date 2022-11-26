@@ -1,8 +1,8 @@
-import { Car } from './Car';
+import { SubstituteCar } from './SubstituteCar';
 export class RentCar{
   constructor(
-    private car:Car,
-    private startDate
-    private
+    private car: SubstituteCar,
+    private startDate:string,
+    private endtDate: string,
   ){}
 }
