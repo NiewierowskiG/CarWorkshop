@@ -11,7 +11,7 @@ class PersonSerializer(serializers.ModelSerializer):
 
 class ClientSerializer(serializers.ModelSerializer):
     name = serializers.CharField(source="person.name")
-    surname = serializers.CharField(source="person.name")
+    surname = serializers.CharField(source="person.surname")
     telNr = serializers.CharField(source="person.tel_nr")
     email = serializers.CharField(source="person.email")
 
@@ -31,7 +31,7 @@ class PositionSerializer(serializers.ModelSerializer):
 
 class WorkerSerializer(serializers.ModelSerializer):
     name = serializers.CharField(source="person.name")
-    surname = serializers.CharField(source="person.name")
+    surname = serializers.CharField(source="person.surname")
     telNr = serializers.CharField(source="person.tel_nr")
     email = serializers.CharField(source="person.email")
     salary = serializers.DecimalField(max_digits=10, decimal_places=2)
@@ -93,28 +93,31 @@ class HoursWorkedSerializer(serializers.ModelSerializer):
 class ClientNotificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = ClientNotification
-        fields = '__all__'
+        fields = ('content', 'date', 'repair')
 
 
 class PerformanceReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = PerformanceReview
-        fields = '__all__'
+        fields = ('employer', 'employee', 'content', 'date')
 
 
 class NotificationsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Notifications
-        fields = '__all__'
+        fields = ('sender', 'receiver', 'content')
 
 
 class SubstituteCarSerializer(serializers.ModelSerializer):
+    isRented = serializers.BooleanField(source='is_rented')
     class Meta:
         model = SubstituteCar
-        fields = '__all__'
+        fields = ('car', 'price', 'isRented')
 
 
 class RentCarSerializer(serializers.ModelSerializer):
+    startDate = serializers.DateField(source='start_date')
+    endDate = serializers.DateField(source='end_date')
     class Meta:
         model = RentCar
-        fields = '__all__'
+        fields = ('car', 'startDate', 'endDate')
