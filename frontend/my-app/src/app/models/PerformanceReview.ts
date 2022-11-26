@@ -6,6 +6,6 @@ export class PerformanceReview{
     private employer:Worker,
     private employee:Worker,
     private content:string,
-    private date:Timestamp<any>
+    private date:string
   ){}
 }

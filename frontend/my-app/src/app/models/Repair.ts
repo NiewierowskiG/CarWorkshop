@@ -3,12 +3,13 @@ import { Worker } from './Worker';
 import { Car } from './Car';
 import { Client } from './Client';
 export class Repair {
+
   constructor(
     private _client: Client,
     private _worker: Worker,
     private _car: Car,
-    private _createTime: Timestamp<any>,
-    private _endTime: Date,
+    private _createTime: String,
+    private _endTime: String,
     private _done: boolean,
     private _during: boolean,
     private _price: number
@@ -37,17 +38,11 @@ export class Repair {
   public set done(value: boolean) {
     this._done = value;
   }
-  public get endTime(): Date {
+  public get endTime(): String {
     return this._endTime;
   }
-  public set endTime(value: Date) {
+  public set endTime(value: String) {
     this._endTime = value;
-  }
-  public get createTime(): Timestamp<any> {
-    return this._createTime;
-  }
-  public set createTime(value: Timestamp<any>) {
-    this._createTime = value;
   }
   public get car(): Car {
     return this._car;
@@ -60,6 +55,12 @@ export class Repair {
   }
   public set worker(value: Worker) {
     this._worker = value;
+  }
+  public get createTime(): String {
+    return this._createTime;
+  }
+  public set createTime(value: String) {
+    this._createTime = value;
   }
 }
 

@@ -5,18 +5,18 @@ export class HoursWorked{
   constructor(
     private _worker: Worker,
     private _hours: number,
-    private _startTime: Timestamp<any>,
-    private _startEnd: Timestamp<any>,
-    private _addDate: Timestamp<any>
+    private _startTime: string,
+    private _startEnd: string,
+    private _addDate: string
   ) {}
-  public get addDate(): Timestamp<any> {
+  public get addDate(): string {
     return this._addDate;
   }
-  public get startEnd(): Timestamp<any> {
+  public get startEnd(): string {
     return this._startEnd;
   }
 
-  public get startTime(): Timestamp<any> {
+  public get startTime(): string {
     return this._startTime;
   }
 
