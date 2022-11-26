@@ -11,7 +11,7 @@ class PersonSerializer(serializers.ModelSerializer):
 
 class ClientSerializer(serializers.ModelSerializer):
     name = serializers.CharField(source="person.name")
-    surname = serializers.CharField(source="person.name")
+    surname = serializers.CharField(source="person.surname")
     telNr = serializers.CharField(source="person.tel_nr")
     email = serializers.CharField(source="person.email")
 
@@ -31,7 +31,7 @@ class PositionSerializer(serializers.ModelSerializer):
 
 class WorkerSerializer(serializers.ModelSerializer):
     name = serializers.CharField(source="person.name")
-    surname = serializers.CharField(source="person.name")
+    surname = serializers.CharField(source="person.surname")
     telNr = serializers.CharField(source="person.tel_nr")
     email = serializers.CharField(source="person.email")
     salary = serializers.DecimalField(max_digits=10, decimal_places=2)
@@ -51,11 +51,11 @@ class CarBrandSerializer(serializers.ModelSerializer):
 
 class CarModelSerializer(serializers.ModelSerializer):
     prodYearStart = serializers.IntegerField(source="prod_year_start")
-    prodYearEnd = serializers.IntegerField(source="prod_year_start")
+    prodYearEnd = serializers.IntegerField(source="prod_year_end")
 
     class Meta:
         model = CarModel
-        fields = ('id', 'name', 'brand', 'prodYearStart', 'prod_year_end')
+        fields = ('id', 'name', 'brand', 'prodYearStart', 'prodYearEnd')
 
 
 class CarSerializer(serializers.ModelSerializer):
