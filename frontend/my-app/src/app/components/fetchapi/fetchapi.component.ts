@@ -11,11 +11,11 @@ import {Repair} from "../../models/Repair";
 export class FetchapiComponent implements OnInit {
   repairs?: Repair[];
   constructor(private appService: ApicallService) { }
-
   ngOnInit(): void {
     this.getRepair()
   }
   getRepair(){
     this.appService.getRepair().subscribe(repairs => {this.repairs = repairs})
   }
+
 }

@@ -3,12 +3,14 @@ from rest_framework import serializers
 
 
 class PersonSerializer(serializers.ModelSerializer):
+    telNr = serializers.CharField(source = "tel_nr")
     class Meta:
         model = Person
-        fields = ('id', 'user', 'tel_nr')
+        fields = ('id', 'name', 'surname', 'telNr','email')
 
 
 class ClientSerializer(serializers.ModelSerializer):
+    person = PersonSerializer()
     class Meta:
         model = Client
         fields = ('id', 'person', 'nip')
@@ -21,12 +23,11 @@ class PositionSerializer(serializers.ModelSerializer):
 
 
 class WorkerSerializer(serializers.ModelSerializer):
-    wfname = serializers.CharField(source="person.fname")
-    wlname = serializers.CharField(source="person.lname")
-    pos = serializers.CharField(source="position.name")
+    person = PersonSerializer()
+    position = PositionSerializer()
     class Meta:
         model = Worker
-        fields = ('id', 'person', 'position', 'salary', 'wfname', 'wlname','pos')
+        fields = ('id', 'person', 'position', 'salary')
 
 
 class CarBrandSerializer(serializers.ModelSerializer):
@@ -42,24 +43,19 @@ class CarModelSerializer(serializers.ModelSerializer):
 
 
 class CarSerializer(serializers.ModelSerializer):
-    carbrand = serializers.CharField(source="model.name")
+    model = CarBrandSerializer()
     class Meta:
         model = Car
-        fields = ('id', 'model', 'color', 'prod_year', 'vin','carbrand')
+        fields = ('id', 'model', 'color', 'prod_year', 'vin')
 
 
 class RepairSerializer(serializers.ModelSerializer):
-    cfname = serializers.CharField(source="client.person.fname")
-    clname = serializers.CharField(source="client.person.lname")
-    wfname = serializers.CharField(source="worker.person.fname")
-    wlname = serializers.CharField(source="worker.person.lname")
-    carvin = serializers.CharField(source="car.vin")
-    carcolor = serializers.CharField(source="car.color")
-    carbrand = serializers.CharField(source="car.model.brand.name")
-    carmodel = serializers.CharField(source="car.model.name")
+    client = ClientSerializer()
+    worker = WorkerSerializer()
+    car = CarSerializer()
     class Meta:
         model = Repair
-        fields = ('id', 'client', 'worker', 'car', 'create_time', 'end_time', 'done', 'during', 'cfname', 'clname','wfname','wlname','price', 'carvin','carcolor','carbrand','carmodel')
+        fields = ('id', 'client', 'worker', 'car', 'create_time', 'end_time', 'done', 'during', 'price')
 
 
 class HoursWorkedSerializer(serializers.ModelSerializer):
