@@ -1,9 +1,14 @@
 export class CarBrand{
   constructor(
-    private _brandName: string
+    private _name: string
   ) {}
-  public get brandName(): string {
-    return this._brandName;
+  public get name(): string {
+    return this._name;
   }
 
+  toJSON() {
+    return {
+      name: this.name,
+    };
+  }
 }

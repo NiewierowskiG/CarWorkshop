@@ -2,14 +2,14 @@ import { CarBrand } from "./CarBrand";
 
 export class CarModel{
   constructor(
-    private _modelName: string,
-    private _brandName: CarBrand,
+    private _name: string,
+    private _brand: CarBrand,
     private _prodYearStart: number,
     private _prodYearEnd: number
   ) {
   }
   public get modelName(): string {
-    return this._modelName;
+    return this._name;
   }
 
   public get prodYearEnd(): number {
@@ -21,7 +21,7 @@ export class CarModel{
   }
 
   public get brandName(): CarBrand {
-    return this._brandName;
+    return this._brand;
   }
 
 
