@@ -1,15 +1,15 @@
 <h1>List napraw w zakładzie</h1>
 <ul  *ngFor="let repair of repairs">
   <li>
-   {{repair.wfname}} {{repair.wlname}}
+   {{repair.worker.name}} {{repair.worker.telNr}}
   </li>
   <li>
-    {{repair.cfname}} {{repair.clname}}
+    {{repair.client.nip}} {{repair.client.surname}}
   </li>
   <li>
-    {{repair.carvin}}
+    {{repair.car.vin}}
   </li>
   <li>
-    {{repair.carcolor}}
+    {{repair.car.color}}
   </li>
-</ul> 
+</ul>

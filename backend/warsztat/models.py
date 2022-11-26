@@ -4,8 +4,8 @@ from django.conf import settings
 
 
 class Person(models.Model):
-    fname = models.CharField(max_length=100)
-    lname = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
+    surname = models.CharField(max_length=100)
     tel_nr = models.IntegerField()
     email = models.EmailField(max_length=254)
 
