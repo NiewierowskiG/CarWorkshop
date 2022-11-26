@@ -52,14 +52,14 @@ class CarBrandSerializer(serializers.ModelSerializer):
 class CarModelSerializer(serializers.ModelSerializer):
     prodYearStart = serializers.IntegerField(source="prod_year_start")
     prodYearEnd = serializers.IntegerField(source="prod_year_end")
-
+    brand = CarBrandSerializer()
     class Meta:
         model = CarModel
         fields = ('id', 'name', 'brand', 'prodYearStart', 'prodYearEnd')
 
 
 class CarSerializer(serializers.ModelSerializer):
-    model = CarBrandSerializer()
+    model = CarModelSerializer()
     prodYear = serializers.IntegerField(source="prod_year")
 
     class Meta:
