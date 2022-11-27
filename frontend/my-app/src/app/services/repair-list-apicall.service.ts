@@ -6,7 +6,7 @@ import {Repair} from "../models/Repair";
 @Injectable({
   providedIn: 'root'
 })
-export class ApicallService {
+export class RepairListApicallService {
 
   constructor(private httpClient: HttpClient) { }
   getRepair = (): Observable<Repair[]> => this.httpClient.get<Repair[]>("http://localhost:8000/repairs.json")
