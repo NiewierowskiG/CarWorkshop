@@ -1,18 +1,31 @@
 <h1>List napraw w zakładzie</h1>
-<ul  *ngFor="let repair of repairs">
-  <li>
-   {{repair.worker.name}} {{repair.worker.telNr}}
-  </li>
-  <li>
-    {{repair.client.nip}} {{repair.client.surname}}
-  </li>
-  <li>
-    {{getStartDate(repair)}}
-  </li>
-  <li>
-    {{repair.car.vin}}
-  </li>
-  <li>
-    {{repair.car.color}}
-  </li>
-</ul>
+<table >
+  <tr>
+    <th>Imię i nazwisko klienta</th>
+    <th>imię i nazwisko pracownika</th>
+    <th>Samochód</th>
+    <th>Kontakt do klienta</th>
+    <th></th>
+  </tr>
+  <tr *ngFor="let repair of repairs">
+    <td>{{repair.client.name}} {{repair.client.surname}}</td>
+    <td>{{repair.worker.name}} {{repair.worker.surname}}</td>
+    <td>
+      <ul class="properties">
+        <li>model: {{repair.car.model.name}},</li>
+        <li>kolor: {{repair.car.color}},</li>
+        <li>vin: {{repair.car.vin}}</li>
+      </ul>
+    </td>
+    <td>
+      <ul class="properties">
+        <li>Numer telefonu: {{repair.client.telNr}},</li>
+        <li>E-mail: {{repair.client.email}}</li>
+      </ul>
+    </td>
+    <td class="action">
+      <button>Edytuj</button>
+      <button>Usuń</button>
+    </td>
+  </tr>
+</table>
