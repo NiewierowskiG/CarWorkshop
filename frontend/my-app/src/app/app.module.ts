@@ -11,6 +11,7 @@ import { RepairListComponent } from './repair-list/repair-list.component';
 import { ClientListComponent } from './client-list/client-list.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { CrudComponent } from './components/crud/crud.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { FooterComponent } from './components/footer/footer.component';
     ClientListComponent,
     NavbarComponent,
     FooterComponent,
+    CrudComponent,
   ],
   imports: [
     BrowserModule,
