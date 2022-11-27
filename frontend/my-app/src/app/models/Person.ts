@@ -1,10 +1,10 @@
-export class Person{
+export abstract class Person{
 
   constructor(
-    private _name: string,
-    private _surname: string,
-    private _telNr: string,
-    private _email: string
+    protected _name: string,
+    protected _surname: string,
+    protected _telNr: string,
+    protected _email: string
   ) {}
   public get email(): string {
     return this._email;

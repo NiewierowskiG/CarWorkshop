@@ -1,5 +1,6 @@
 from .models import *
 from rest_framework import serializers
+from drf_writable_nested import WritableNestedModelSerializer
 
 
 class PersonSerializer(serializers.ModelSerializer):
@@ -29,18 +30,19 @@ class PositionSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'canCreateClients', 'canCreateWorkers')
 
 
-class WorkerSerializer(serializers.ModelSerializer):
+class WorkerSerializer(WritableNestedModelSerializer,serializers.ModelSerializer):
     name = serializers.CharField(source="person.name")
     surname = serializers.CharField(source="person.surname")
     telNr = serializers.CharField(source="person.tel_nr")
     email = serializers.CharField(source="person.email")
     salary = serializers.DecimalField(max_digits=10, decimal_places=2)
+    person = PersonSerializer()
     position = PositionSerializer()
 
     class Meta:
         model = Worker
         fields = ('id', 'name', 'surname', 'telNr',
-                  'email', 'position', 'salary')
+                  'email', 'position', 'salary','person')
 
 
 class CarBrandSerializer(serializers.ModelSerializer):
@@ -49,7 +51,7 @@ class CarBrandSerializer(serializers.ModelSerializer):
         fields = ('id', 'name')
 
 
-class CarModelSerializer(serializers.ModelSerializer):
+class CarModelSerializer(WritableNestedModelSerializer,serializers.ModelSerializer):
     prodYearStart = serializers.IntegerField(source="prod_year_start")
     prodYearEnd = serializers.IntegerField(source="prod_year_end")
     brand = CarBrandSerializer()
