@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {ApicallService} from "../../services/apicall.service";
+import { RepairListApicallService } from 'src/app/services/repair-list-apicall.service';
 import {Repair} from "../../models/Repair";
 
-
 @Component({
-  selector: 'app-fetchapi',
-  templateUrl: './fetchapi.component.html',
-  styleUrls: ['./fetchapi.component.css']
+  selector: 'app-repair-list',
+  templateUrl: './repair-list.component.html',
+  styleUrls: ['./repair-list.component.css']
 })
-export class FetchapiComponent implements OnInit {
+export class RepairListComponent implements OnInit {
   repairs?: Repair[];
-  constructor(private appService: ApicallService) { }
+  constructor(private appService: RepairListApicallService) { }
   ngOnInit(): void {
     this.getRepair()
   }

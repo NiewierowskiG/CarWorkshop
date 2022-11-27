@@ -9,6 +9,7 @@ td, th {
     border: 1px solid black;
     text-align: center;
     margin: 0;
+    padding: 10px;
   }
 .properties{
     list-style-type:circle;
@@ -16,4 +17,7 @@ td, th {
   }
 button{
     margin-right: 20px;
+}
+.action{
+  width: 200px;
 }

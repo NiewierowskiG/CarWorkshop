@@ -1,0 +1,23 @@
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 70%;
+  border-spacing: 10px;
+  border-radius: 50px;
+}
+td, th {
+  border: 1px solid black;
+  text-align: center;
+  margin: 0;
+  padding: 10px;
+}
+.properties{
+  list-style-type:circle;
+  text-align: left;
+}
+button{
+  margin-right: 20px;
+}
+.action{
+  width: 200px;
+}
