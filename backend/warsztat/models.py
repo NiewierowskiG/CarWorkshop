@@ -95,6 +95,7 @@ class Notifications(models.Model):
     sender = models.ForeignKey(Worker, on_delete=models.DO_NOTHING, null=True)
     receiver = models.ForeignKey(Client, on_delete=models.CASCADE, null=True)
     content = models.CharField(max_length=500, null=True)
+    date = models.DateTimeField(null=True)
 
 
 class SubstituteCar(models.Model):
