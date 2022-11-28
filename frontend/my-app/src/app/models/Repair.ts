@@ -14,7 +14,18 @@ export class Repair {
     private _during: boolean,
     private _price: number
   ) { }
-
+  toJSON() {
+    return {
+      client:this.client,
+      worker:this.worker,
+      car:this.car,
+      createTime:this.createTime,
+      endTime: this.endTime,
+      done: this.done,
+      during: this.during,
+      price: this.price
+    };
+  }
   public get client(): Client {
     return this._client;
   }

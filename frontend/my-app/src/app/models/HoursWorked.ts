@@ -2,18 +2,31 @@ import { Timestamp } from 'rxjs';
 
 export class HoursWorked{
 
+
   constructor(
     private _worker: Worker,
     private _hours: number,
     private _startTime: string,
-    private _startEnd: string,
+    private _endTime: string,
     private _addDate: string
   ) {}
+  toJSON() {
+    return {
+      worker: this.worker,
+      hours: this.hours,
+      startTime: this.startTime,
+      endTime: this.endTime,
+      addDate: this.addDate
+      }
+    };
+    public get endTime(): string {
+      return this._endTime;
+    }
+    public set endTime(value: string) {
+      this._endTime = value;
+    }
   public get addDate(): string {
     return this._addDate;
-  }
-  public get startEnd(): string {
-    return this._startEnd;
   }
 
   public get startTime(): string {

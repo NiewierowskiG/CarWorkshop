@@ -7,6 +7,13 @@ export class ClientNotification {
     private _data: string,
     private _repair: Repair
   ) { }
+  toJSON() {
+    return {
+      content: this.content,
+      data: this.data,
+      repair: this.repair
+      }
+    };
   public get repair(): Repair {
     return this._repair;
   }

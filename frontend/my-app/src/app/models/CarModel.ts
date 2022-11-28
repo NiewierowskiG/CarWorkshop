@@ -6,8 +6,15 @@ export class CarModel{
     private _brand: CarBrand,
     private _prodYearStart: number,
     private _prodYearEnd: number
-  ) {
-  }
+  ) {}
+  toJSON() {
+    return {
+      name: this.name,
+      brand: this.brand,
+      prodYearStart: this.prodYearStart,
+      prodYearEnd: this.prodYearEnd,
+      }
+    };
   public get prodYearEnd(): number {
     return this._prodYearEnd;
   }

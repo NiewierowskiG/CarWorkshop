@@ -6,6 +6,14 @@ export abstract class Person{
     protected _telNr: string,
     protected _email: string
   ) {}
+  toJSON() {
+    return {
+      name:this.name,
+      surname:this.surname,
+      telNr:this.telNr,
+      email:this.email,
+    };
+  }
   public get email(): string {
     return this._email;
   }
