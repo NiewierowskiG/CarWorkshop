@@ -1,10 +1,7 @@
-import { RouterLink } from '@angular/router';
-import { ApiCudService } from './../../services/api-cud.service';
 import { Component, OnInit } from '@angular/core';
 import { ClientListApicallService } from '../../services/client-list-apicall.service';
 import { Client } from 'src/app/models/Client';
-import { SelectMultipleControlValueAccessor } from '@angular/forms';
-import { waitForAsync } from '@angular/core/testing';
+
 
 @Component({
   selector: 'app-client-list',
