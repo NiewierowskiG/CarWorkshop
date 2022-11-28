@@ -1,3 +1,4 @@
+import { JsonPipe } from '@angular/common';
 import { Person } from './Person';
 import { Position } from './Position';
 export class Worker extends Person {

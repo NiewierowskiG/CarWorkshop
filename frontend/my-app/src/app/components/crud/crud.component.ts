@@ -1,8 +1,9 @@
+import { ClientListApicallService } from 'src/app/services/client-list-apicall.service';
 import { CarBrand } from './../../models/CarBrand';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Position } from 'src/app/models/Position';
 import { Worker } from './../../models/Worker';
+import { Client } from 'src/app/models/Client';
 
 @Component({
   selector: 'app-crud',
@@ -11,14 +12,20 @@ import { Worker } from './../../models/Worker';
 })
 export class CrudComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private _clientService : ClientListApicallService) { }
 
-  object = new CarBrand('BMW');;
-  pos = new Position('szef',true,true);
-  object1 = new Worker(this.pos,2000,'mariusz','myk','505250123','email@sad.pl')
+
+
   ngOnInit(): void {
-    console.log(JSON.stringify(this.object1));
-    this.postWorker(this.object1);
+    let client = new Client('imie','nazwisko','4124444','szybki@mail.com',213123123);
+    console.log(JSON.stringify(client));
+    this._clientService.clientSource$.subscribe(
+      table => {
+        if (table[1] === 'POST'){
+          this.postClient(table);
+        }
+      }
+    )
 
   }
 
@@ -35,6 +42,14 @@ export class CrudComponent implements OnInit {
     this.http.post('http://localhost:8000/workers/', JSON.stringify(rep), {headers : header})
     .subscribe((res)=>{
       console.log(res);
+    })
+  }
+  postClient(rep : Client){
+    const header = new HttpHeaders({'Content-Type':'application/json'})
+    console.log(JSON.stringify(rep));
+    this.http.post('http://localhost:8000/clients/', JSON.stringify(rep), {headers : header})
+    .subscribe((res)=>{
+      console.log(rep);
     })
   }
 }

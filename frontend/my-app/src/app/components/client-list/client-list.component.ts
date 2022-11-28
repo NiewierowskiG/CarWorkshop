@@ -1,6 +1,7 @@
+import { ApiCudService } from './../../services/api-cud.service';
 import { Component, OnInit } from '@angular/core';
 import {ClientListApicallService} from '../../services/client-list-apicall.service';
-import {Client} from '../../models/Client';
+import { Client } from 'src/app/models/Client';
 
 @Component({
   selector: 'app-client-list',
@@ -17,5 +18,9 @@ export class ClientListComponent implements OnInit {
     this.clientService.getClient().subscribe(clients =>{
       this.clients = clients;
     })
+  }
+
+  sendClient(client : Client){
+    this.clientService.sendClient(new Client('imie','nazwisko','4124444','szybki@mail.com',213123123),'POST');
   }
 }

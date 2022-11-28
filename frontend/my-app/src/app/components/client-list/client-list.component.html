@@ -1,4 +1,8 @@
 <h1>Lista klientów</h1>
+<tr *ngFor="let client of clients">
+  <td>{{client.name}} {{client.email}}</td>
+  <td>{{client.nip}} {{client.surname}}</td>
+
 <table >
   <tr>
     <th>Imię i nazwisko klienta</th>

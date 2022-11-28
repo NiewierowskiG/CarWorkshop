@@ -10,15 +10,15 @@ class PersonSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'surname', 'telNr', 'email')
 
 
-class ClientSerializer(serializers.ModelSerializer):
+class ClientSerializer(WritableNestedModelSerializer,serializers.ModelSerializer):
     name = serializers.CharField(source="person.name")
     surname = serializers.CharField(source="person.surname")
     telNr = serializers.CharField(source="person.tel_nr")
     email = serializers.CharField(source="person.email")
-
+    person = PersonSerializer()
     class Meta:
         model = Client
-        fields = ('id', 'name', 'surname', 'telNr', 'email', 'nip')
+        fields = ('id', 'name', 'surname', 'telNr', 'email', 'nip','person')
 
 
 class PositionSerializer(serializers.ModelSerializer):

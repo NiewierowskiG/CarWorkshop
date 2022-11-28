@@ -12,7 +12,6 @@ export class Position{
       name: this.name,
       canCreateClients: this.canCreateClients,
       canCreateWorkers: this.canCreateWorkers,
-
     };
   }
 
