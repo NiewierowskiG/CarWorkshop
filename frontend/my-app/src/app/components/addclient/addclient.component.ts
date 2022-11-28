@@ -14,5 +14,7 @@ export class AddclientComponent implements OnInit {
   }
   sendClient(client : Client){
     this.clientService.sendClient(client,'POST');
+    
   }
+  
 }

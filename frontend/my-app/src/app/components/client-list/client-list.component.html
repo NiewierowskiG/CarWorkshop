@@ -2,6 +2,7 @@
 <input type="text" class="form-control search-field" placeholder="Wyszukaj" [(ngModel)]="searchText">
 <table >
   <tr>
+    <th>Id.</th>
     <th>Imię i nazwisko klienta</th>
     <th>Numer telefonu</th>
     <th>E-mail</th>
@@ -9,6 +10,7 @@
     <th></th>
   </tr>
   <tr *ngFor="let client of clients | searchFilter: searchText">
+    <td>{{client.id}}</td>
     <td>{{client.name}} {{client.surname}}</td>
     <td>{{client.telNr}}</td>
     <td>{{client.email}}</td>
@@ -19,5 +21,5 @@
     </td>
   </tr>
 </table>
-<button routerLink="/AddClient">Dodaj</button>
+<i class="fa fa-pen"></i>
 

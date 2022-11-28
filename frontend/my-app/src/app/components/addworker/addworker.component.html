@@ -1,12 +1,13 @@
-<form >
-    <label for="new-repair">Imie worker</label>
-    <input id="new-repair" type="text"  name="name"/>
-    <label for="new-repair">Imie </label>
-    <input id="new-repair" type="text"  name="name"/>
-    <label for="new-repair">Imie </label>
-    <input id="new-repair" type="text"  name="name"/>
-    <label for="new-repair">Imie </label>
-    <input id="new-repair" type="text"  name="name"/>
-    <label for="new-repair">Imie </label>
-    <input id="new-repair" type="text"  name="name"/>
+<form ><!--funkcja sendWorker(worker)-->
+    <label for="new-repair">Imie pracownika:</label>
+    <input id="new-repair" type="text"   name="name"/><!--[(ngModel)]="worker.name"-->
+    <label for="new-repair">Nazwisko pracownika:</label>
+    <input id="new-repair" type="text"   name="surname"/><!--[(ngModel)]="worker.surname"-->
+    <label for="new-repair">Numer telefonu:</label>
+    <input id="new-repair" type="text"  name="telNr" /> <!--[(ngModel)]="worker.telNr"-->
+    <label for="new-repair">Stanowisko: </label>
+    <input id="new-repair" type="text" name="position"/> <!--[(ngModel)]="worker.position.name" -->
+    <label for="new-repair">Pensja: </label>
+    <input if="new-repair" type="text"  name="salary"><!--[(ngModel)]="worker.salary"-->
+    <input class="submit" type="submit" value="Dodaj pracownika">
 </form>
