@@ -1,12 +1,13 @@
-<form >
-    <label for="new-repair">Imie client</label>
-    <input id="new-repair" type="text"  name="name"/>
-    <label for="new-repair">Imie </label>
-    <input id="new-repair" type="text"  name="name"/>
-    <label for="new-repair">Imie </label>
-    <input id="new-repair" type="text"  name="name"/>
-    <label for="new-repair">Imie </label>
-    <input id="new-repair" type="text"  name="name"/>
-    <label for="new-repair">Imie </label>
-    <input id="new-repair" type="text"  name="name"/>
+<form (ngSubmit)="sendClient(client)">
+    <label for="new-repair">Imie klienta:</label>
+    <input id="new-repair" type="text"  [(ngModel)]="client.name" name="name"/>
+    <label for="new-repair">Nazwisko klienta:</label>
+    <input id="new-repair" type="text"  [(ngModel)]="client.surname" name="surname"/>
+    <label for="new-repair">Numer telefonu:</label>
+    <input id="new-repair" type="text"  name="telNr" [(ngModel)]="client.telNr"/>
+    <label for="new-repair">E-mail:</label>
+    <input id="new-repair" type="text" [(ngModel)]="client.email" name="email"/>
+    <label for="new-repair">NIP (opcjonalnie):</label>
+    <input if="new-repair" type="text" [(ngModel)]="client.nip" name="nip">
+    <input type="submit" value="Send Client">
 </form>
