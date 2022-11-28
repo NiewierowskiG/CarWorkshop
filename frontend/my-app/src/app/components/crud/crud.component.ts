@@ -26,7 +26,6 @@ export class CrudComponent implements OnInit {
         }
       }
     )
-
   }
 
 

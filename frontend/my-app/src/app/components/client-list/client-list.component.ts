@@ -22,6 +22,6 @@ export class ClientListComponent implements OnInit {
   }
 
   sendClient(client : Client){
-    this.clientService.sendClient(new Client('imie','nazwisko','4124444','szybki@mail.com',213123123),'POST');
+    this.clientService.sendClient(client,"POST");
   }
 }

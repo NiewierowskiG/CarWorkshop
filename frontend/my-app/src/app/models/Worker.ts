@@ -13,7 +13,7 @@ export class Worker extends Person {
     super(name, surname, telNr, email);
   }
 
-   /*toJSON() {
+   override toJSON() {
     return {
       name:this.name,
       surname:this.surname,
@@ -27,8 +27,8 @@ export class Worker extends Person {
         telNr:this.telNr,
         email:this.email,
       }
-    };*/
-
+    };
+  }
   public get salary(): number {
     return this._salary;
   }
