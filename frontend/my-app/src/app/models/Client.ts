@@ -17,7 +17,7 @@ export class Client extends Person {
   ) {
     super(name, surname, telNr, email);
   }
-  public toJSON() {
+  public override toJSON() {
     return {
       name:this.name,
       surname:this.surname,
