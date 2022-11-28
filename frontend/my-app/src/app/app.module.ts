@@ -12,6 +12,10 @@ import { FooterComponent } from './components/footer/footer.component';
 import { CrudComponent } from './components/crud/crud.component';
 import { WorkerListComponent } from './components/worker-list/worker-list.component';
 import { RepairListComponent } from './components/repair-list/repair-list.component';
+import { MainPageComponent } from './components/main-page/main-page.component';
+import { AddclientComponent } from './components/addclient/addclient.component';
+import { AddworkerComponent } from './components/addworker/addworker.component';
+import { AddrepairComponent } from './components/addrepair/addrepair.component';
 
 
 @NgModule({
@@ -22,7 +26,11 @@ import { RepairListComponent } from './components/repair-list/repair-list.compon
     FooterComponent,
     CrudComponent,
     WorkerListComponent,
-    RepairListComponent
+    RepairListComponent,
+    MainPageComponent,
+    AddclientComponent,
+    AddworkerComponent,
+    AddrepairComponent
   ],
   imports: [
     BrowserModule,
