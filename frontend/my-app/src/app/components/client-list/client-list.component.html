@@ -1,8 +1,5 @@
 <h1>Lista klientów</h1>
-<tr *ngFor="let client of clients">
-  <td>{{client.name}} {{client.email}}</td>
-  <td>{{client.nip}} {{client.surname}}</td>
-
+<input type="text" class="form-control search-field" placeholder="Wyszukaj" [(ngModel)]="searchText">
 <table >
   <tr>
     <th>Imię i nazwisko klienta</th>
@@ -11,11 +8,11 @@
     <th>NIP (opcjonalnie)</th>
     <th></th>
   </tr>
-  <tr >
-    <td>dsa dsa</td>
-    <td>123456789</td>
-    <td>2@wp.pl</td>
-    <td>3123123123</td>
+  <tr *ngFor="let client of clients | searchFilter: searchText">
+    <td>{{client.name}} {{client.surname}}</td>
+    <td>{{client.telNr}}</td>
+    <td>{{client.email}}</td>
+    <td>{{client.nip}}</td>
     <td class="action">
       <button>Edytuj</button>
       <button>Usuń</button>

@@ -17,8 +17,8 @@ export class Client extends Person {
   ) {
     super(name, surname, telNr, email);
   }
-  public toJSON() {
-    return {
+    /* public toJSON() {
+ return {
       name:this.name,
       surname:this.surname,
       telNr:this.telNr,
@@ -30,8 +30,5 @@ export class Client extends Person {
         telNr:this.telNr,
         email:this.email
       }
-    };
+    };*/
   }
-
-
-}

@@ -1,4 +1,5 @@
 <h1>List napraw w zakładzie</h1>
+<input type="text" class="form-control search-field" placeholder="Wyszukaj" [(ngModel)]="searchText">
 <table >
   <tr>
     <th>Imię i nazwisko klienta</th>
@@ -7,7 +8,7 @@
     <th>Kontakt do klienta</th>
     <th></th>
   </tr>
-  <tr *ngFor="let repair of repairs">
+  <tr *ngFor="let repair of repairs | searchFilter: searchText">
     <td>{{repair.client.name}} {{repair.client.surname}}</td>
     <td>{{repair.worker.name}} {{repair.worker.surname}}</td>
     <td>

@@ -8,14 +8,14 @@ export class PerformanceReview{
     private _content: string,
     private _date: string
   ){}
-  toJSON() {
+  /*toJSON() {
     return {
       employer = this.employer,
       employee = this.employee,
       content = this.content,
       date = this.date
       }
-    }
+    }*/
     public get date(): string {
       return this._date;
     }
@@ -41,4 +41,3 @@ export class PerformanceReview{
       this._employer = value;
     }
   }
-}

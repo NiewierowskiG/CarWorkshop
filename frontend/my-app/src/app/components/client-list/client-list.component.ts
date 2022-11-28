@@ -10,6 +10,7 @@ import { Client } from 'src/app/models/Client';
 })
 export class ClientListComponent implements OnInit {
   clients?: Client[]
+  searchText?: string;
   constructor(private clientService: ClientListApicallService) { }
   ngOnInit(): void {
     this.getClient()
