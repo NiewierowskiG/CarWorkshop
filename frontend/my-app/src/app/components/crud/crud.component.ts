@@ -22,7 +22,7 @@ export class CrudComponent implements OnInit {
     this._clientService.clientSource$.subscribe(
       table => {
         if (table[1] === 'POST'){
-          this.postClient(table);
+          this.postClient(table[0]);
         }
       }
     )
