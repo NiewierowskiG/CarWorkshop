@@ -9,6 +9,7 @@ import { WorkerListServiceService } from 'src/app/services/worker-list-service.s
 })
 export class WorkerListComponent implements OnInit {
   workers?: Worker[]
+  searchText?: string;
   constructor(private workerService: WorkerListServiceService) { }
 
   ngOnInit(): void {
@@ -19,4 +20,5 @@ export class WorkerListComponent implements OnInit {
       this.workers = workers
     })
   }
+
 }

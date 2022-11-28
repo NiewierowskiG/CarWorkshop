@@ -1,4 +1,5 @@
 <h1>List pracowników</h1>
+<input type="text" class="form-control search-field" placeholder="Wyszukaj" [(ngModel)]="searchText">
 <table >
     <tr>
       <th>Imię i nazwisko pracownika</th>
@@ -9,14 +10,14 @@
       <th>Czy może tworzyć pracowników w bazie?</th>
       <th></th>
     </tr>
-    <tr *ngFor="let worker of workers">
+    <tr *ngFor="let worker of workers | searchFilter: searchText">
       <td>{{worker.name}} {{worker.surname}}</td>
       <td>{{worker.telNr}}</td>
       <td>{{worker.email}}</td>
       <td>{{worker.position.name}}</td>
-      <td *ngIf="worker.position.canCreateClients == true; else elseBlock">tak</td> 
+      <td *ngIf="worker.position.canCreateClients == true; else elseBlock">tak</td>
       <ng-template #elseBlock><td>nie</td></ng-template>
-      <td *ngIf="worker.position.canCreateWorkers == true; else elseBlock">tak</td> 
+      <td *ngIf="worker.position.canCreateWorkers == true; else elseBlock">tak</td>
       <ng-template #elseBlock><td>nie</td></ng-template>
       <td class="action">
         <button>Edytuj</button>
