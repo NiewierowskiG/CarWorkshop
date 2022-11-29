@@ -20,6 +20,6 @@ export class WorkerListComponent implements OnInit {
     })
   }
   getLink(salary:number,id:number){
-    return `/EditWorker/${btoa(JSON.stringify(salary))}`;
+    return `/EditWorker/`.concat(salary.toString(), '/', id.toString());
   }
 }

@@ -14,8 +14,11 @@ export class EditworkerComponent implements OnInit {
   constructor(private route: ActivatedRoute, private workerservice: WorkerListApicallService) { }
 
   ngOnInit(): void {
-    let data = this.route.snapshot.paramMap.get("worker");
-
+    this.id = Number(this.route.snapshot.paramMap.get("id"));
+    this.salary = Number(this.route.snapshot.paramMap.get("salary"));
+  }
+  putWorker(id: number, salary: number){
+    this.workerservice.putWorker()
   }
 }
 
