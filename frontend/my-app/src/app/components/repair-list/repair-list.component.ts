@@ -23,7 +23,7 @@ export class RepairListComponent implements OnInit {
   }
    delRepair(id: number): void {
     this.appService.delRepair(id);
-    setTimeout( (_:any)=>{this.repairs$ = this.appService.getRepair();} ,10) //time to be sure that client was deleted
+    setTimeout( (_:any)=>{ this.getRepair();} ,10) //time to be sure that client was deleted
   }
   getStartDate(rep?:Repair):Date{
     let date = new Date('0')

@@ -23,7 +23,7 @@ export class WorkerListComponent implements OnInit {
   }
   delWorker(id: number): void {
     this.workerService.delWorker(id);
-    setTimeout( (_:any)=>{this.workers$ = this.workerService.getWorker();} ,10) //time to be sure that client was deleted
+    setTimeout( (_:any)=>{ this.getWorker();} ,10) //time to be sure that client was deleted
   }
   getLink(salary:number,id:number){
     return `/EditWorker/`.concat(salary.toString(), '/', id.toString());
