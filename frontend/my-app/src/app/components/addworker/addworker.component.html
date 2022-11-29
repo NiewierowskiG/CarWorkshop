@@ -1,13 +1,78 @@
-<form ><!--funkcja sendWorker(worker)-->
+<form (ngSubmit)="postWorker(worker)">
     <label for="new-repair">Imie pracownika:</label>
-    <input id="new-repair" type="text"   name="name"/><!--[(ngModel)]="worker.name"-->
-    <label for="new-repair">Nazwisko pracownika:</label>
-    <input id="new-repair" type="text"   name="surname"/><!--[(ngModel)]="worker.surname"-->
+    <input id="new-repair" type="text"  [(ngModel)]="worker.name" name="name"
+           class="form-control" required pattern="^[A-Za-z]+-?[A-Za-z]+ ?[A-Za-z]+$" #name="ngModel">
+              <div *ngIf="  name.invalid && (name.dirty || name.touched)" class="alert" style="color:red">
+                    <div *ngIf="name.errors?.['required']">
+                      Imię jest wymagane.
+                    </div>
+                    <div *ngIf="name.errors?.['pattern']">
+                      Niepoprawne imię.
+                    </div>
+              </div>
+
+
+    <label for="new-repair">Nazwisko klienta:</label>
+    <input id="new-repair" type="text"  [(ngModel)]="worker.surname" name="surname"
+           class="form-control" required pattern="^[A-Za-z]+-?[A-Za-z]+$" #surname="ngModel">
+              <div *ngIf="  surname.invalid && (surname.dirty || surname.touched)" class="alert" style="color:red">
+                    <div *ngIf="surname.errors?.['required']">
+                      Nazwisko jest wymagane.
+                    </div>
+                    <div *ngIf="surname.errors?.['pattern']">
+                      Niepoprawne nazwisko.
+                    </div>
+              </div>
+
     <label for="new-repair">Numer telefonu:</label>
-    <input id="new-repair" type="text"  name="telNr" /> <!--[(ngModel)]="worker.telNr"-->
-    <label for="new-repair">Stanowisko: </label>
-    <input id="new-repair" type="text" name="position"/> <!--[(ngModel)]="worker.position.name" -->
-    <label for="new-repair">Pensja: </label>
-    <input if="new-repair" type="text"  name="salary"><!--[(ngModel)]="worker.salary"-->
-    <input class="submit" type="submit" value="Dodaj pracownika">
+    <input id="new-repair" type="text"  name="telNr" [(ngModel)]="worker.telNr"
+           class="form-control" required minlength="9" maxlength="9" pattern="^\d*$" #telNr="ngModel">
+              <div *ngIf="  telNr.invalid && (telNr.dirty || telNr.touched)" class="alert" style="color:red">
+                    <div *ngIf="telNr.errors?.['required']">
+                      Numer jest wymagany.
+                    </div>
+                    <div *ngIf="telNr.errors?.['minlength']">
+                      Numer jest zbyt krótki.
+                    </div>
+                    <div *ngIf="telNr.errors?.['maxlength']">
+                      Number is too long.
+                    </div>
+                    <div *ngIf="telNr.errors?.['pattern']">
+                      Niepoprawny numer.
+                    </div>
+              </div>
+
+    <label for="new-repair">E-mail:</label>
+    <input id="new-repair" type="email" name="email" class="form-control"
+           required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+           [(ngModel)]="worker.email" #email="ngModel">
+            <div *ngIf="  email.invalid && (email.dirty || email.touched)" class="alert" style="color:red">
+              <div *ngIf="email.errors?.['required']">
+                E-mail jest wymagany.
+              </div>
+              <div *ngIf="email.errors?.['pattern']">
+                Niepoprawny e-mail.
+              </div>
+            </div>
+
+    <label for="new-repair">Pensja:</label>
+    <input id="new-repair" type="text" [(ngModel)]="worker.salary" name="salary"
+           class="form-control" required pattern="^\d*(\.\d{1,2})?$" #salary="ngModel">
+            <div *ngIf="  salary.invalid && (salary.dirty || salary.touched)" class="alert" style="color:red">
+                  <div *ngIf="salary.errors?.['required']">
+                    Pensja jest wymagana.
+                  </div>
+                  <div *ngIf="salary.errors?.['pattern']">
+                    Niepoprawna pensja.
+                  </div>
+            </div>
+
+   <label for="new-repair">Pozycja:</label>
+    <select id="new-repair" [(ngModel)]="worker.position" name="position">
+      <option [ngValue]="null">Wybierz pozycję</option>
+      <option *ngFor="let position of positions" [ngValue]="position">{{position.canCreateClients}}</option>
+    </select>
+    {{worker.position.name}}
+    <input class="submit"  type="submit" value="Dodaj pracownika">
 </form>
+
