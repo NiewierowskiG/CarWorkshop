@@ -6,6 +6,7 @@
       <th>Numer telefonu</th>
       <th>E-mail</th>
       <th>Pozycja w zakładzie</th>
+      <th>Pensja</th>
       <th>Czy może tworzyć klientów w bazie?</th>
       <th>Czy może tworzyć pracowników w bazie?</th>
       <th></th>
@@ -15,12 +16,13 @@
       <td>{{worker.telNr}}</td>
       <td>{{worker.email}}</td>
       <td>{{worker.position.name}}</td>
+      <td>{{worker.salary}}</td>
       <td *ngIf="worker.position.canCreateClients == true; else elseBlock">tak</td>
       <ng-template #elseBlock><td>nie</td></ng-template>
       <td *ngIf="worker.position.canCreateWorkers == true; else elseBlock">tak</td>
       <ng-template #elseBlock><td>nie</td></ng-template>
       <td class="action">
-        <button [routerLink]="[getLink(worker.salary, worker.id)]">Edytuj</button>
+        <button [routerLink]="[getLink(worker.salary, worker.id)]">Edytuj pensje</button>
         <button (click)="delWorker(worker.id)">Usuń</button>
       </td>
     </tr>

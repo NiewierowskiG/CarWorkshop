@@ -1,23 +1,15 @@
 <h1>Lista klientów</h1>
-<<<<<<< HEAD
 <input type="text" class="form-control search-field" placeholder="Wyszukaj" [(ngModel)]="searchText" >
 <table >
-=======
-<input type="text" class="form-control search-field" placeholder="Wyszukaj" [(ngModel)]="searchText">
-<table>
->>>>>>> 47373a2ac7aa50a0cb5d19d274d19af121815e3c
   <tr>
-    <th>Id.</th>
     <th>Imię i nazwisko klienta</th>
     <th>Numer telefonu</th>
     <th>E-mail</th>
     <th>NIP (opcjonalnie)</th>
     <th></th>
   </tr>
-
   <ng-container *ngFor="let client of clients$ | async | searchFilter: searchText"> <!---  only one async needed--->
     <tr appZoomDirective>
-      <td>{{client.id}}</td>
       <td>{{client.name}} {{client.surname}}</td>
       <td>{{client.telNr}}</td>
       <td>{{client.email}}</td>
@@ -30,8 +22,4 @@
     </tr>
   </ng-container>
 </table>
-<<<<<<< HEAD
 <button routerLink="/AddClient">Dodaj</button>
-=======
-<button routerLink="/AddClient">Dodaj</button>
->>>>>>> 47373a2ac7aa50a0cb5d19d274d19af121815e3c

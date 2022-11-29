@@ -25,7 +25,7 @@
     <label for="new-repair">Samochód:</label>
     <select id="new-repair" [(ngModel)]="repair.car" name="car" required #car = "ngModel">
       <option [ngValue]="null">Wybierz pozycję</option>
-      <option *ngFor="let car of cars" [ngValue]="car">{{car.model.brand.name}} {{car.model.name}}</option>
+      <option *ngFor="let car of cars" [ngValue]="car">{{car.model.brand.name}} {{car.model.name}} {{car.color}}</option>
     </select>
     <div *ngIf="  car.invalid && (car.dirty || car.touched)" class="alert" style="color:red">
       <div *ngIf="car.errors?.['required']">

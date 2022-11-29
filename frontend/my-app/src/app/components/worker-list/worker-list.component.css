@@ -13,12 +13,17 @@ td, th {
   margin: 0;
   padding: 10px;
 }
+th{
+  background-color: cornflowerblue;
+  color: white
+}
 .properties{
   list-style-type:circle;
   text-align: left;
 }
 button{
   margin-right: 20px;
+  padding: 5px;
 }
 .action{
   width: 200px;
