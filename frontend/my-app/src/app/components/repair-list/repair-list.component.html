@@ -1,14 +1,12 @@
 <h1>List napraw w zakładzie</h1>
-<div>
 <input type="text" class="form-control search-field" placeholder="Wyszukaj" [(ngModel)]="searchText">
 <table >
   <tr>
     <th>Imię i nazwisko klienta</th>
     <th>imię i nazwisko pracownika</th>
-    <th>Samochód</th>
+    <th style="width: 250px">Samochód</th>
     <th>Kontakt do klienta</th>
     <th>Czy naprawa jest zakończona?</th>
-    <th>Planowana data zakończenia</th>
     <th></th>
   </tr>
   <tr appZoomDirective *ngFor="let repair of repairs | searchFilter: searchText">
@@ -31,9 +29,10 @@
     <ng-template #elseBlock><td>nie</td></ng-template>
     <td class="action">
      <!--- <button>Edytuj</button>--->
-      <button (click)="delRepair(repair.id)">Usuń</button>
+      <button class="add" (click)="delRepair(repair.id)">Usuń</button>
     </td>
   </tr>
 </table>
-<button routerLink="/AddRepair">Dodaj</button>
+<div>
+<button style="display: flex" class="add" routerLink="/AddRepair">Dodaj</button>
 </div>
