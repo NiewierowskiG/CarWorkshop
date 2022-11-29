@@ -9,7 +9,7 @@
     <th>NIP (opcjonalnie)</th>
     <th></th>
   </tr>
-  <tr *ngFor="let client of clients | searchFilter: searchText">
+  <tr appZoomDirective *ngFor="let client of clients | searchFilter: searchText">
     <td>{{client.id}}</td>
     <td>{{client.name}} {{client.surname}}</td>
     <td>{{client.telNr}}</td>
