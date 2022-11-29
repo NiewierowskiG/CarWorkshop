@@ -17,7 +17,7 @@ export class AddworkerComponent implements OnInit {
     this.getWorkerPosition()
   }
   getWorkerPosition() {
-       this.workerService.getWorkerPosition().subscribe(positions => {
+       this.workerService.getWorkerPositions().subscribe(positions => {
          this.positions = positions
        })
   }

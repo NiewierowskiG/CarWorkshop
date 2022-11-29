@@ -5,6 +5,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Worker } from './../../models/Worker';
 import { Client } from 'src/app/models/Client';
+import { Repair } from "../../models/Repair";
+import {RepairListApicallService} from "../../services/repair-list-apicall.service";
 
 
 @Component({
@@ -15,14 +17,14 @@ import { Client } from 'src/app/models/Client';
 export class CrudComponent implements OnInit {
 
 
-  constructor(private http: HttpClient, private _clientService : ClientListApicallService,private _workerService : WorkerListApicallService) { }
-
+  constructor(private http: HttpClient, private _clientService : ClientListApicallService,
+              private _workerService : WorkerListApicallService, private _repairService : RepairListApicallService) { }
 
 
   ngOnInit(): void {
     this._clientService.clientSource$.subscribe(
       table => {
-        if (table[1] === 'POST'){1
+        if (table[1] === 'POST'){
           this.postClient(table[0]);
         }
         else if (table[1] === 'DELETE'){
@@ -35,7 +37,7 @@ export class CrudComponent implements OnInit {
     )
     this._workerService.WorkerSource$.subscribe(
       table => {
-        if (table[1] === 'POST'){1
+        if (table[1] === 'POST'){
           this.postWorker(table[0]);
         }
         else if (table[1] === 'DELETE'){
@@ -43,6 +45,19 @@ export class CrudComponent implements OnInit {
         }
         else if(table[1]==='PUT'){
           this.putWorker(table[0],table[2]);
+        }
+      }
+    )
+    this._repairService.RepairSource$.subscribe(
+      table => {
+        if (table[1] === 'POST'){
+          this.postRepair(table[0]);
+        }
+        else if (table[1] === 'DELETE'){
+          this.deleteRepair(table[0]);
+        }
+        else if (table[1]==='PUT'){
+          this.putRepair(table[0], table[2]);
         }
       }
     )
@@ -80,10 +95,9 @@ export class CrudComponent implements OnInit {
 
   postWorker(rep : Worker):void{
     const header = new HttpHeaders({'Content-Type':'application/json'})
-
+    console.log(JSON.stringify(rep));
     this.http.post('http://localhost:8000/workers/', JSON.stringify(rep), {headers : header})
     .subscribe((res)=>{
-
       console.log(res);
     })
 
@@ -104,8 +118,45 @@ export class CrudComponent implements OnInit {
     .subscribe((res)=>{
 
     })
+  }
+
+  postRepair(rep : Repair):void{
+    const header = new HttpHeaders({'Content-Type':'application/json'})
+    console.log(JSON.stringify(rep));
+    this.http.post('http://localhost:8000/repairs/', JSON.stringify(rep), {headers : header})
+    .subscribe((res)=>{
+      console.log(res);
+    })
 
   }
+  putRepair(rep : number,id:number):void{
+    const header = new HttpHeaders({'Content-Type':'application/json'})
+    console.log(id);
+    this.http.patch('http://localhost:8000/repairs/'.concat(id.toString()), {'salary':rep}, {headers : header})
+    .subscribe((res)=>{
+
+      console.log(res);
+    })
+
+  }
+  deleteRepair(id : number):void{
+    const header = new HttpHeaders({'Content-Type':'application/json'})
+    this.http.delete('http://localhost:8000/repairs/'.concat(id.toString()), {headers : header})
+    .subscribe((res)=>{
+
+    })
+  }
+
+
+
+
+
+
+
+
+
+
+
   postCarBrand(rep : CarBrand):void{
     const header = new HttpHeaders({'Content-Type':'application/json'})
     this.http.post('http://localhost:8000/car_brands/', JSON.stringify(rep), {headers : header})

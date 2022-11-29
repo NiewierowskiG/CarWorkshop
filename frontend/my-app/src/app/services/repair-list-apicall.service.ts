@@ -8,8 +8,8 @@ import {Repair} from "../models/Repair";
 })
 export class RepairListApicallService {
 
-  constructor(private httpRepair: HttpClient) { }
-  getRepair = (): Observable<Repair[]> => this.httpRepair.get<Repair[]>("http://localhost:8000/repairs.json")
+  constructor(private http: HttpClient) { }
+  getRepair = (): Observable<Repair[]> => this.http.get<Repair[]>("http://localhost:8000/repairs.json")
 
   private _RepairSource = new Subject<any[3]>();
   RepairSource$ = this._RepairSource.asObservable();
