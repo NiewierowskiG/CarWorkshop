@@ -2,7 +2,6 @@ import { ApiCudService } from './../../services/api-cud.service';
 import { Component, OnInit } from '@angular/core';
 import {ClientListApicallService} from '../../services/client-list-apicall.service';
 import { Client } from 'src/app/models/Client';
-
 @Component({
   selector: 'app-client-list',
   templateUrl: './client-list.component.html',
@@ -20,7 +19,6 @@ export class ClientListComponent implements OnInit {
       this.clients = clients;
     })
   }
-
   sendClient(client : Client){
     this.clientService.sendClient(client,"POST");
   }
