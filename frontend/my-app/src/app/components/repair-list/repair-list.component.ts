@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RepairListApicallService } from 'src/app/services/repair-list-apicall.service';
 import {Repair} from "../../models/Repair";
-import { WorkerListServiceService } from 'src/app/services/worker-list-apicall.service';
+
 @Component({
   selector: 'app-repair-list',
   templateUrl: './repair-list.component.html',
