@@ -10,7 +10,7 @@
       <th>Czy może tworzyć pracowników w bazie?</th>
       <th></th>
     </tr>
-    <tr *ngFor="let worker of workers | searchFilter: searchText">
+    <tr appZoomDirective *ngFor="let worker of workers | searchFilter: searchText">
       <td>{{worker.name}} {{worker.surname}}</td>
       <td>{{worker.telNr}}</td>
       <td>{{worker.email}}</td>
