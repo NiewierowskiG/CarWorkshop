@@ -10,8 +10,8 @@
     <th></th>
   </tr>
 
-  <ng-container appZoomDirective *ngFor="let client of clients$ | async | searchFilter: searchText"> <!---  only one async needed--->
-    <tr>
+  <ng-container *ngFor="let client of clients$ | async | searchFilter: searchText"> <!---  only one async needed--->
+    <tr appZoomDirective>
       <td>{{client.id}}</td>
       <td>{{client.name}} {{client.surname}}</td>
       <td>{{client.telNr}}</td>
