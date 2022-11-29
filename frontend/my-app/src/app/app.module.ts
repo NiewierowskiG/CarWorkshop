@@ -17,6 +17,8 @@ import {MainPageComponent} from "./components/main-page/main-page.component";
 import {AddworkerComponent} from "./components/addworker/addworker.component";
 import {SearchFilterPipe} from "./services/search-pipe.pipe";
 import {AddrepairComponent} from "./components/addrepair/addrepair.component";
+import {ZoomDirective} from "./zoom.directive";
+import { EditworkerComponent } from './components/editworker/editworker.component';
 
 
 @NgModule({
@@ -32,7 +34,9 @@ import {AddrepairComponent} from "./components/addrepair/addrepair.component";
     AddclientComponent,
     AddworkerComponent,
     AddrepairComponent,
-    SearchFilterPipe
+    SearchFilterPipe,
+    ZoomDirective,
+    EditworkerComponent
   ],
   imports: [
     BrowserModule,

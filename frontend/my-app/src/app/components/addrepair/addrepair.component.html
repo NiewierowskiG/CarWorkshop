@@ -1,12 +1,76 @@
-<form >
-    <label for="new-repair">Imie naprawa</label>
-    <input id="new-repair" type="text"  name="name"/>
-    <label for="new-repair">Imie </label>
-    <input id="new-repair" type="text"  name="name"/>
-    <label for="new-repair">Imie </label>
-    <input id="new-repair" type="text"  name="name"/>
-    <label for="new-repair">Imie </label>
-    <input id="new-repair" type="text"  name="name"/>
-    <label for="new-repair">Imie </label>
-    <input id="new-repair" type="text"  name="name"/>
+<form (ngSubmit)="postRepair(repair)">
+
+    <label for="new-repair">Klient:</label>
+    <select id="new-repair" [(ngModel)]="repair.client" name="client" required #client = "ngModel" >
+      <option [ngValue]="null">Wybierz pozycję</option>
+      <option *ngFor="let client of clients" [ngValue]="client">{{client.name}} {{client.surname}}</option>
+    </select>
+    <div *ngIf="  client.invalid && (client.dirty || client.touched)" class="alert" style="color:red">
+      <div *ngIf="client.errors?.['required']">
+        To pole jest wymagane.
+      </div>
+    </div>
+
+    <label for="new-repair">Pracownik:</label>
+    <select id="new-repair" [(ngModel)]="repair.worker" name="worker" required #worker = "ngModel">
+      <option [ngValue]="null">Wybierz pozycję</option>
+      <option *ngFor="let worker of workers" [ngValue]="worker">{{worker.name}} {{worker.surname}}</option>
+    </select>
+    <div *ngIf="  worker.invalid && (worker.dirty || worker.touched)" class="alert" style="color:red">
+      <div *ngIf="worker.errors?.['required']">
+        To pole jest wymagane.
+      </div>
+    </div>
+
+    <label for="new-repair">Samochód:</label>
+    <select id="new-repair" [(ngModel)]="repair.car" name="car" required #car = "ngModel">
+      <option [ngValue]="null">Wybierz pozycję</option>
+      <option *ngFor="let car of cars" [ngValue]="car">{{car.model.brand.name}} {{car.model.name}}</option>
+    </select>
+    <div *ngIf="  car.invalid && (car.dirty || car.touched)" class="alert" style="color:red">
+      <div *ngIf="car.errors?.['required']">
+        To pole jest wymagane.
+      </div>
+    </div>
+
+    <label for="new-repair">Rozpoczęcie naprawy:</label>
+    <input id="new-repair" type="datetime-local"  [(ngModel)]="repair.createTime" name="createTime"
+           class="form-control" #createTime="ngModel" required >
+    <div *ngIf="  createTime.invalid && (createTime.dirty || createTime.touched)" class="alert" style="color:red">
+      <div *ngIf="createTime.errors?.['required']">
+        To pole jest wymagane.
+      </div>
+    </div>
+
+    <label for="new-repair">Planowany termin ukończenia naprawy:</label>
+    <input id="new-repair" type="date"  [(ngModel)]="repair.endTime" name="endTime"
+           class="form-control" #endTime="ngModel" required>
+    <div *ngIf="  endTime.invalid && (endTime.dirty || endTime.touched)" class="alert" style="color:red">
+      <div *ngIf="endTime.errors?.['required']">
+        To pole jest wymagane.
+      </div>
+    </div>
+
+
+    <label for="new-repair">Cena:</label>
+    <input id="new-repair" type="text"  [(ngModel)]="repair.price" name="price"
+           class="form-control" #price="ngModel" required pattern="^\d*(\.\d{1,2})?$">
+    <div *ngIf="  price.invalid && (price.dirty || price.touched)" class="alert" style="color:red">
+      <div *ngIf="price.errors?.['required']">
+        To pole jest wymagane.
+      </div>
+      <div *ngIf="price.errors?.['pattern']">
+        Niepoprawna cena.
+      </div>
+    </div>
+
+    <label for="new-repair">Zakończona:</label>
+    <input id="new-repair" type="checkbox"  [(ngModel)]="repair.done" name="done"
+           class="form-control" #done="ngModel">
+
+
+    <input class="submit"  type="submit" value="Dodaj naprawę"
+           [disabled]="client.invalid || !repair.client.name || worker.invalid || !repair.worker.name || car.invalid ||
+           !repair.car.vin || createTime.invalid || endTime.invalid || price.invalid">
 </form>
+

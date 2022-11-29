@@ -12,7 +12,7 @@ class Person(models.Model):
 
 class Client(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
-    nip = models.IntegerField(null=True, blank=True)
+    nip = models.BigIntegerField(null=True, blank=True)
 
 
 class Position(models.Model):

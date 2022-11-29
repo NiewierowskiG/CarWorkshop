@@ -8,7 +8,7 @@
     <th>Kontakt do klienta</th>
     <th></th>
   </tr>
-  <tr *ngFor="let repair of repairs | searchFilter: searchText">
+  <tr appZoomDirective *ngFor="let repair of repairs | searchFilter: searchText">
     <td>{{repair.client.name}} {{repair.client.surname}}</td>
     <td>{{repair.worker.name}} {{repair.worker.surname}}</td>
     <td>
@@ -25,8 +25,8 @@
       </ul>
     </td>
     <td class="action">
-      <button>Edytuj</button>
-      <button>Usuń</button>
+     <!--- <button>Edytuj</button>--->
+      <button (click)="delRepair(repair.id)">Usuń</button>
     </td>
   </tr>
 </table>

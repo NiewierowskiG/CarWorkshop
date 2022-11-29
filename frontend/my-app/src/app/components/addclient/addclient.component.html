@@ -1,13 +1,80 @@
-<form (ngSubmit)="sendClient(client)">
+<form (ngSubmit)="postClient(client)">
     <label for="new-repair">Imie klienta:</label>
-    <input id="new-repair" type="text"  [(ngModel)]="client.name" name="name"/>
+    <input id="new-repair" type="text"  [(ngModel)]="client.name" name="name"
+           class="form-control" required pattern="^[A-Za-z]+-?[A-Za-z]+ ?[A-Za-z]+$" #name="ngModel">
+              <div *ngIf="  name.invalid && (name.dirty || name.touched)" class="alert" style="color:red">
+                   <div *ngIf="name.errors?.['required']">
+                      Imię jest wymagane.
+                    </div>
+                    <div *ngIf="name.errors?.['pattern']">
+                      Niepoprawne imię.
+                    </div>
+              </div>
+
+
     <label for="new-repair">Nazwisko klienta:</label>
-    <input id="new-repair" type="text"  [(ngModel)]="client.surname" name="surname"/>
+    <input id="new-repair" type="text"  [(ngModel)]="client.surname" name="surname"
+           class="form-control" required pattern="^[A-Za-z]+-?[A-Za-z]+$" #surname="ngModel">
+              <div *ngIf="  surname.invalid && (surname.dirty || surname.touched)" class="alert" style="color:red">
+                    <div *ngIf="surname.errors?.['required']">
+                      Nazwisko jest wymagane.
+                    </div>
+                    <div *ngIf="surname.errors?.['pattern']">
+                      Niepoprawne nazwisko.
+                    </div>
+              </div>
+
     <label for="new-repair">Numer telefonu:</label>
-    <input id="new-repair" type="text"  name="telNr" [(ngModel)]="client.telNr"/>
+    <input id="new-repair" type="text"  name="telNr" [(ngModel)]="client.telNr"
+           class="form-control" required minlength="9" maxlength="9" pattern="^\d*$" #telNr="ngModel">
+              <div *ngIf="  telNr.invalid && (telNr.dirty || telNr.touched)" class="alert" style="color:red">
+                     <div *ngIf="telNr.errors?.['required']">
+                      Numer jest wymagany.
+                    </div>
+                    <div *ngIf="telNr.errors?.['minlength']">
+                      Numer jest zbyt krótki.
+                    </div>
+                    <div *ngIf="telNr.errors?.['maxlength']">
+                      Number is too long.
+                    </div>
+                    <div *ngIf="telNr.errors?.['pattern']">
+                      Niepoprawny numer.
+                    </div>
+              </div>
+
     <label for="new-repair">E-mail:</label>
-    <input id="new-repair" type="text" [(ngModel)]="client.email" name="email"/>
-    <label for="new-repair">NIP (opcjonalnie):</label>
-    <input if="new-repair" type="text" [(ngModel)]="client.nip" name="nip">
-    <input class="submit" type="submit" value="Dodaj klienta">
+    <input id="new-repair" type="email" name="email" class="form-control"
+           required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+           [(ngModel)]="client.email" #email="ngModel">
+            <div *ngIf="  email.invalid && (email.dirty || email.touched)" class="alert" style="color:red">
+              <div *ngIf="email.errors?.['required']">
+                E-mail jest wymagany.
+              </div>
+              <div *ngIf="email.errors?.['pattern']">
+                Niepoprawny e-mail.
+              </div>
+            </div>
+
+    <label for="new-repair">NIP:</label>
+    <input id="new-repair" type="text" placeholder="Enter NIP" [(ngModel)]="client.nip" name="nip"
+           class="form-control" required minlength="10" maxlength="11" pattern="^\d*$" #nip="ngModel">
+            <div *ngIf="  nip.invalid && (nip.dirty || nip.touched)" class="alert" style="color:red">
+                  <div *ngIf="nip.errors?.['required']">
+                    NIP jest wymagany.
+                  </div>
+                  <div *ngIf="nip.errors?.['minlength']">
+                    NIP jest zbyt krótki.
+                  </div>
+                  <div *ngIf="nip.errors?.['maxlength']">
+                    NIP is too long.
+                  </div>
+                  <div *ngIf="nip.errors?.['pattern']">
+                    Niepoprawny NIP.
+                  </div>
+            </div>
+
+    <input class="submit"  type="submit" value="Dodaj klienta"
+           [disabled]="name.invalid || surname.invalid || telNr.invalid || nip.invalid || email.invalid">
+
 </form>
+

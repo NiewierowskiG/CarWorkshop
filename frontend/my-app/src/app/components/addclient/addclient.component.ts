@@ -12,9 +12,9 @@ export class AddclientComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  sendClient(client : Client){
-    this.clientService.sendClient(client,'POST');
-    
+  postClient(client : Client){
+    this.clientService.postClient(client,'POST');
+
   }
-  
+
 }

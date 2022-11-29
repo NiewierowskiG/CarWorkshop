@@ -8,9 +8,12 @@ export class SearchFilterPipe implements PipeTransform {
     if (!value) return null;
     if (!args) return value;
     args = args.toLowerCase();
-    debugger;
+
     return value.filter(function(item: string) {
-      return JSON.stringify(item).toLowerCase().includes(args);
+      let arg_list = args.split(/\s+/);
+      console.log(arg_list)
+      console.log(arg_list.every((v:string) => JSON.stringify(item).toLowerCase().includes(v)))
+      return arg_list.every((v:string) => JSON.stringify(item).toLowerCase().includes(v))
     });
   }
 }
