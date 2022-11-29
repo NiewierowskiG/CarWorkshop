@@ -35,8 +35,6 @@ export class CrudComponent implements OnInit {
   }
 
 
-
-
   postClient(rep : Client):void{
     const header = new HttpHeaders({'Content-Type':'application/json'})
     console.log(JSON.stringify(rep));

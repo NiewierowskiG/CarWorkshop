@@ -20,7 +20,7 @@
       <td *ngIf="worker.position.canCreateWorkers == true; else elseBlock">tak</td>
       <ng-template #elseBlock><td>nie</td></ng-template>
       <td class="action">
-        <button [routerLink]="[getLink(worker)]">Edytuj</button>
+        <button [routerLink]="[getLink(worker.salary,id:number)]">Edytuj</button>
         <button>Usuń</button>
       </td>
     </tr>
