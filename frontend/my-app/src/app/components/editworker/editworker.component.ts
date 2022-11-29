@@ -17,8 +17,10 @@ export class EditworkerComponent implements OnInit {
     this.id = Number(this.route.snapshot.paramMap.get("id"));
     this.salary = Number(this.route.snapshot.paramMap.get("salary"));
   }
-  putWorker(id: number, salary: number){
-    this.workerservice.putWorker()
+  putWorker( salary?: number,id?: number):void{
+    if(id!=undefined && salary!=undefined ){
+      this.workerservice.putWorker(salary,id);
+    }
   }
 }
 

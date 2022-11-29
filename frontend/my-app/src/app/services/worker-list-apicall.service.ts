@@ -21,7 +21,7 @@ export class WorkerListApicallService {
   delWorker(id:number):void{
     this._WorkerSource.next([id, "DELETE"]);
    }
-  putWorker(Worker:Worker,id:number){
-    this._WorkerSource.next([Worker,"PUT",id]);
+  putWorker(salary:number,id:number){
+    this._WorkerSource.next([salary,"PUT",id]);
   }
 }

@@ -1,7 +1,6 @@
 <form (ngSubmit)="putWorker(salary, id)" >
     <label for="new-repair">Nowa Pensja:</label>
-    <input id="new-repair" type="int"   name="name" placeholder="{{salary}}" value="{{salary}}"/>
-    <input id="new-repair" type="hidden" name="name" value="{{id}}"/>
+    <input id="new-repair" type="int" [(ngModel)]="salary" required="required"  name="salary" placeholder="{{salary}}"/>
     <input class="submit" type="submit" value="Edytuj pensje">
 </form>
 <p> {{id}} </p>
