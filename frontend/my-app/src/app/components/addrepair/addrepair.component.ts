@@ -14,6 +14,10 @@ import { CarBrand } from 'src/app/models/CarBrand';
   styleUrls: ['./addrepair.component.css']
 })
 export class AddrepairComponent implements OnInit {
+  workers?: Worker[]
+  clients?: Client[]
+  cars?: Car[]
+
   repair = new Repair(
    new Client('','','','a@a.a',0)
   ,new Worker(
@@ -24,7 +28,27 @@ export class AddrepairComponent implements OnInit {
   constructor(private repairService: RepairListApicallService) { }
 
   ngOnInit(): void {
+    this.getWorkers()
+    this.getClients()
+    this.getCars()
   }
+  getWorkers(){
+    this.repairService.getWorkers().subscribe(workers => {
+      this.workers = workers
+    })
+  }
+  getClients(){
+    this.repairService.getClients().subscribe(clients => {
+      this.clients = clients
+    })
+  }
+  getCars(){
+    this.repairService.getCars().subscribe(cars => {
+      this.cars = cars
+    })
+  }
+
+
   postRepair(repair : Repair){
     this.repairService.postRepair(repair,'POST');
   }

@@ -67,12 +67,17 @@
                   </div>
             </div>
 
-   <label for="new-repair">Pozycja:</label>
-    <select id="new-repair" [(ngModel)]="worker.position" name="position">
+    <label for="new-repair">Pozycja:</label>
+    <select id="new-repair" [(ngModel)]="worker.position" name="position" required #position="ngModel">
       <option [ngValue]="null">Wybierz pozycję</option>
-      <option *ngFor="let position of positions" [ngValue]="position">{{position.canCreateClients}}</option>
+      <option *ngFor="let position of positions" [ngValue]="position">{{position.name}}</option>
     </select>
-    {{worker.position.name}}
-    <input class="submit"  type="submit" value="Dodaj pracownika">
+    <div *ngIf="  position.invalid && (position.dirty || position.touched)" class="alert" style="color:red">
+      <div *ngIf="position.errors?.['required']">
+        To pole jest wymagane.
+      </div>
+    </div>
+    <input class="submit"  type="submit" value="Dodaj pracownika" [disabled]="name.invalid || surname.invalid ||
+           telNr.invalid || salary.invalid || email.invalid || position.invalid || !worker.position.name">
 </form>
 

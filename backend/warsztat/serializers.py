@@ -10,7 +10,7 @@ class PersonSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'surname', 'telNr', 'email')
 
 
-class ClientSerializer(WritableNestedModelSerializer,serializers.ModelSerializer):
+class ClientSerializer(WritableNestedModelSerializer, serializers.ModelSerializer):
     name = serializers.CharField(source="person.name")
     surname = serializers.CharField(source="person.surname")
     telNr = serializers.CharField(source="person.tel_nr")
@@ -30,7 +30,7 @@ class PositionSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'canCreateClients', 'canCreateWorkers')
 
 
-class WorkerSerializer(WritableNestedModelSerializer,serializers.ModelSerializer):
+class WorkerSerializer(WritableNestedModelSerializer, serializers.ModelSerializer):
     name = serializers.CharField(source="person.name")
     surname = serializers.CharField(source="person.surname")
     telNr = serializers.CharField(source="person.tel_nr")
@@ -51,7 +51,7 @@ class CarBrandSerializer(serializers.ModelSerializer):
         fields = ('id', 'name')
 
 
-class CarModelSerializer(WritableNestedModelSerializer,serializers.ModelSerializer):
+class CarModelSerializer(WritableNestedModelSerializer, serializers.ModelSerializer):
     prodYearStart = serializers.IntegerField(source="prod_year_start")
     prodYearEnd = serializers.IntegerField(source="prod_year_end")
     brand = CarBrandSerializer()
@@ -60,7 +60,7 @@ class CarModelSerializer(WritableNestedModelSerializer,serializers.ModelSerializ
         fields = ('id', 'name', 'brand', 'prodYearStart', 'prodYearEnd')
 
 
-class CarSerializer(serializers.ModelSerializer):
+class CarSerializer(WritableNestedModelSerializer, serializers.ModelSerializer):
     model = CarModelSerializer()
     prodYear = serializers.IntegerField(source="prod_year")
 
@@ -69,7 +69,7 @@ class CarSerializer(serializers.ModelSerializer):
         fields = ('id', 'model', 'color', 'prodYear', 'vin')
 
 
-class RepairSerializer(serializers.ModelSerializer):
+class RepairSerializer(WritableNestedModelSerializer, serializers.ModelSerializer):
     client = ClientSerializer()
     worker = WorkerSerializer()
     car = CarSerializer()
@@ -83,7 +83,7 @@ class RepairSerializer(serializers.ModelSerializer):
                   'endTime', 'done', 'during', 'price')
 
 
-class HoursWorkedSerializer(serializers.ModelSerializer):
+class HoursWorkedSerializer(WritableNestedModelSerializer, serializers.ModelSerializer):
     repair = RepairSerializer()
 
     class Meta:
