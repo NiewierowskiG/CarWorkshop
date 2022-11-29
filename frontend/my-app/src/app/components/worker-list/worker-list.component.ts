@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ClientListApicallService } from 'src/app/services/client-list-apicall.service';
 import { Worker } from 'src/app/models/Worker';
-import { WorkerListServiceService } from 'src/app/services/worker-list-apicall.service';
+import { WorkerListApicallService } from 'src/app/services/worker-list-apicall.service';
 @Component({
   selector: 'app-worker-list',
   templateUrl: './worker-list.component.html',
@@ -10,7 +9,7 @@ import { WorkerListServiceService } from 'src/app/services/worker-list-apicall.s
 export class WorkerListComponent implements OnInit {
   workers?: Worker[]
   searchText?: string;
-  constructor(private workerService: WorkerListServiceService) { }
+  constructor(private workerService: WorkerListApicallService) { }
 
   ngOnInit(): void {
     this.getWorker()

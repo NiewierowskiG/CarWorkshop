@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {Observable} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import { Worker } from '../models/Worker';
 
 @Injectable({
@@ -8,6 +8,19 @@ import { Worker } from '../models/Worker';
 })
 export class WorkerListApicallService {
 
-  constructor(private httpClient2: HttpClient) { }
-  getWorker = (): Observable<Worker[]> => this.httpClient2.get<Worker[]>("http://localhost:8000/workers.json")
+  constructor(private http: HttpClient) { }
+  getWorker = (): Observable<Worker[]> => this.http.get<Worker[]>("http://localhost:8000/workers.json")
+
+  private _WorkerSource = new Subject<any[3]>();
+  WorkerSource$ = this._WorkerSource.asObservable();
+
+  postWorker(json: Worker, httpType:string):void{
+    this._WorkerSource.next([json, httpType]);
+  }
+  delWorker(id:number):void{
+    this._WorkerSource.next([id, "DELETE"]);
+   }
+  putWorker(Worker:Worker,id:number){
+    this._WorkerSource.next([Worker,"PUT",id]);
+  }
 }
