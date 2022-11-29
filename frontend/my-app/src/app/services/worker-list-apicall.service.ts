@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Observable, Subject} from "rxjs";
+import { Position } from '../models/Position';
 import { Worker } from '../models/Worker';
-import { Position} from '../models/Position';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class WorkerListApicallService {
 
   constructor(private http: HttpClient) { }
   getWorker = (): Observable<Worker[]> => this.http.get<Worker[]>("http://localhost:8000/workers.json")
-  getWorkerPosition = (): Observable<Position[]> => this.http.get<Position[]>("http://localhost:8000/positions.json")
+  getWorkerPositions = (): Observable<Position[]> => this.http.get<Position[]>("http://localhost:8000/positions.json")
   private _WorkerSource = new Subject<any[3]>();
   WorkerSource$ = this._WorkerSource.asObservable();
 

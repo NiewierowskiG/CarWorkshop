@@ -20,7 +20,6 @@ export class ZoomDirective  {
 }
 
   private zoom(amount: number, color: string){
-      console.log(this.element.nativeElement);
     this.element.nativeElement.style.transform = `scale(${amount})`;
     this.element.nativeElement.style.backgroundColor = color;
   }

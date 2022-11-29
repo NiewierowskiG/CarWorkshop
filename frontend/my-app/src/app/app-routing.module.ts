@@ -1,3 +1,4 @@
+import { EditworkerComponent } from './components/editworker/editworker.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddclientComponent } from './components/addclient/addclient.component';
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: 'MainPage', component: MainPageComponent},
   {path: 'AddRepair', component: AddrepairComponent},
   {path: 'AddClient', component: AddclientComponent},
-  {path: 'AddWorker', component: AddworkerComponent}
+  {path: 'AddWorker', component: AddworkerComponent},
+  {path: 'EditWorker/:salary/:id', component: EditworkerComponent}
 ];
 
 @NgModule({

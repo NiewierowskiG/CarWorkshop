@@ -19,5 +19,7 @@ export class WorkerListComponent implements OnInit {
       this.workers = workers
     })
   }
-
+  getLink(salary:number,id:number){
+    return `/EditWorker/`.concat(salary.toString(), '/', id.toString());
+  }
 }
