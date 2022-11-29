@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientListApicallService } from 'src/app/services/client-list-apicall.service';
 import { Worker } from 'src/app/models/Worker';
-import { WorkerListServiceService } from 'src/app/services/worker-list-service.service';
+import { WorkerListServiceService } from 'src/app/services/worker-list-apicall.service';
 @Component({
   selector: 'app-worker-list',
   templateUrl: './worker-list.component.html',

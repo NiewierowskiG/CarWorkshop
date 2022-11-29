@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { WorkerListServiceService } from './worker-list-service.service';
+import { WorkerListApicallService } from './worker-list-apicall.service';
 
-describe('WorkerListServiceService', () => {
-  let service: WorkerListServiceService;
+describe('WorkerListApicallService', () => {
+  let service: WorkerListApicallService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(WorkerListServiceService);
+    service = TestBed.inject(WorkerListApicallService);
   });
 
   it('should be created', () => {

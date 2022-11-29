@@ -1,3 +1,10 @@
 label{
     display: block;
 }
+.submit{
+    display: block;
+    margin-bottom: auto;
+}
+*{
+    margin-bottom: auto;
+}
