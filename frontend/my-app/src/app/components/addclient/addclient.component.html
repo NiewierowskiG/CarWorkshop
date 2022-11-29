@@ -1,5 +1,4 @@
-<form (ngSubmit)="sendClient(client)">
-
+<form (ngSubmit)="postClient(client)">
     <label for="new-repair">Imie klienta:</label>
     <input id="new-repair" type="text"  [(ngModel)]="client.name" name="name"
            class="form-control" required pattern="^[A-Za-z]+-?[A-Za-z]+ ?[A-Za-z]+$" #name="ngModel">

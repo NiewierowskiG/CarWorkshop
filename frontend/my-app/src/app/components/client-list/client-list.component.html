@@ -1,6 +1,6 @@
 <h1>Lista klientów</h1>
 <input type="text" class="form-control search-field" placeholder="Wyszukaj" [(ngModel)]="searchText">
-<table >
+<table>
   <tr>
     <th>Id.</th>
     <th>Imię i nazwisko klienta</th>
@@ -9,17 +9,22 @@
     <th>NIP (opcjonalnie)</th>
     <th></th>
   </tr>
-  <tr appZoomDirective *ngFor="let client of clients | searchFilter: searchText">
-    <td>{{client.id}}</td>
-    <td>{{client.name}} {{client.surname}}</td>
-    <td>{{client.telNr}}</td>
-    <td>{{client.email}}</td>
-    <td>{{client.nip}}</td>
-    <td class="action">
-      <button (click)="getClient()">Edytuj</button>
-      <button (click)="delClient(client.id)">Usuń</button>
-    </td>
-  </tr>
+
+  <ng-container appZoomDirective *ngFor="let client of clients$ | async | searchFilter: searchText"> <!---  only one async needed--->
+    <tr>
+      <td>{{client.id}}</td>
+      <td>{{client.name}} {{client.surname}}</td>
+      <td>{{client.telNr}}</td>
+      <td>{{client.email}}</td>
+      <td>{{client.nip}}</td>
+      <td class="action">
+        <button>Edytuj</button>
+        <!---  putClient() / formularz  edytujacy--->
+        <button (click)="delClient(client.id)">Usuń</button>
+      </td>
+    </tr>
+  </ng-container>
+
+>>>>>>> Stashed changes
 </table>
 <button routerLink="/AddClient">Dodaj</button>
-

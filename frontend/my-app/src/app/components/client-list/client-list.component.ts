@@ -1,3 +1,5 @@
+import { observable, Subscription } from 'rxjs';
+import { Observable, timeInterval } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ClientListApicallService } from '../../services/client-list-apicall.service';
 import { Client } from 'src/app/models/Client';
@@ -9,24 +11,27 @@ import { Client } from 'src/app/models/Client';
   styleUrls: ['./client-list.component.css']
 })
 export class ClientListComponent implements OnInit {
-  clients?: Client[]
   searchText?: string;
+  clients$?: Observable<Client[]>
+
+
   constructor(private clientService: ClientListApicallService) { }
+
   ngOnInit(): void {
-    this.getClient()
-  }
-  getClient() {
-    this.clientService.getClient().subscribe(clients => {
-      this.clients = clients;
-    })
+    this.clients$ = this.clientService.getClient();
   }
 
   sendClient(client: Client): void {
-    this.clientService.sendClient(client, "POST");
+    this.clientService.postClient(client, "POST");
   }
+
   delClient(id: number): void {
     this.clientService.delClient(id);
-    setTimeout( (_:any)=>{this.getClient();} ,50) //time to be sure that client was deleted
-
+    setTimeout( (_:any)=>{this.clients$ = this.clientService.getClient();} ,10) //time to be sure that client was deleted
   }
+
+  putClient(client: Client, id: number) {
+    this.clientService.putClient(client, id);
+  }
+
 }
