@@ -23,7 +23,7 @@ export class ZoomDirective  {
     this.element.nativeElement.style.transform = `scale(${amount})`;
     this.element.nativeElement.style.backgroundColor = color;
     this.element.nativeElement.style.color = fcolor;
-    this.element.nativeElement.style.transition = `1s linear`
+    this.element.nativeElement.style.transition = `0.6s linear`
   }
 
 }
