@@ -1,3 +1,33 @@
 h1{
+  margin-top: 30px;
   text-align: center;  
+  font-family: 'Courier New', Courier, monospace;
+}img{
+    width: 200px;
+    height: 200px;
+    background-color: white;
+    color: black;
+}
+.navigation{
+  width: 100%;
+  display: flex;
+}
+.choose{
+  margin-top: 100px;
+  width: 33%;
+ justify-content: space-around;
+ text-align: center;
+}
+.choose a{
+  color: black;
+  text-decoration: none;
+  font-size: 20px;
+}
+.choose:hover{
+  transition: 0.8s linear;
+  text-decoration: underline;
+  transform: scale(1.25);
+}
+blockquote{
+  margin-top: 10px;
 }

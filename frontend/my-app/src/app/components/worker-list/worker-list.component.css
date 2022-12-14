@@ -7,6 +7,18 @@ table {
   margin-left: auto;
   margin-right: auto;
 }
+h1{
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-family: 'Courier New', Courier, monospace;
+}
+.form-control{
+  margin-left: 300px;
+  margin-bottom: 20px;
+  width: 200px;
+  height: 40px;
+}
 td, th {
   border: 1px solid black;
   text-align: center;
@@ -21,10 +33,16 @@ th{
   list-style-type:circle;
   text-align: left;
 }
-button{
-  margin-right: 20px;
-  padding: 5px;
-}
 .action{
-  width: 200px;
+width: 200px;
+}
+.add{
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  padding:10px
+}
+.action button{
+  padding: 10px;
+  margin-right: 20px;
 }
