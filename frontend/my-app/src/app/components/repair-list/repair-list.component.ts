@@ -31,4 +31,8 @@ export class RepairListComponent implements OnInit {
       date =new Date(rep.createTime)
     return date;
   }
+
+  getLink(repairId:number,workerId:number){
+    return `/Showrepair/`.concat(repairId.toString(), '/', workerId.toString());
+  }
 }
