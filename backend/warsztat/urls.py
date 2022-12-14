@@ -3,6 +3,7 @@ from . import views
 from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
+    path('test_email/<str:email>/<str:subject>/<str:body>', views.test_email),
     #path('repairs', views.repairs_main_screen),
     #path('repairs/<id>', views.single_repair),
     path('people/', views.people_list),

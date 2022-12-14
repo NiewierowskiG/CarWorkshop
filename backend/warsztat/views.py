@@ -4,9 +4,8 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-
 from .serializers import *
-
+from .email import send_email
 
 def repairs_main_screen(request):
     repairs = Repair.objects.all()
@@ -34,6 +33,11 @@ def single_repair(request, id):
         repair.save()
 
     return render(request, 'warsztat/../templates/warsztat/repair_single.html', context)
+
+
+@api_view(['GET', 'POST'])
+def test_email(request, email, subject, body, format=None):
+    send_email(email, subject, body)
 
 
 @api_view(['GET', 'POST'])
