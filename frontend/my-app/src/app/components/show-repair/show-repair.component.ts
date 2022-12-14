@@ -19,14 +19,14 @@ export class ShowRepairComponent implements OnInit {
 
 
   startStopWork() {
-    this.http.get('http://localhost:8000/startStopRepair'.concat(this.repairId.toString(),'/',this.workerId.toString()))
+    this.http.get('http://localhost:8000/startStopRepair/'.concat(this.repairId.toString(),'/',this.workerId.toString()))
       .subscribe((res) => {
         console.log(res);
       })
   }
 
   endRepair() {
-    this.http.get('http://localhost:8000/endRepair'.concat(this.repairId.toString(),'/',this.workerId.toString()))
+    this.http.get('http://localhost:8000/endRepair/'.concat(this.repairId.toString()))
     .subscribe((res) => {
       console.log(res);
     })
