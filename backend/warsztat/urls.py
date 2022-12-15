@@ -3,7 +3,10 @@ from . import views
 from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
+    path('workerMoney/<int:worker_id>', views.get_workers_money),
     path('test_email/<str:email>/<str:subject>/<str:body>', views.test_email),
+    path('startStopRepair/<int:repair_id>/<int:worker_id>', views.start_stop_work),
+    path('endRepair/<int:repair_id>', views.end_repair),
     #path('repairs', views.repairs_main_screen),
     #path('repairs/<id>', views.single_repair),
     path('people/', views.people_list),

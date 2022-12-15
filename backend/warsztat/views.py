@@ -1,15 +1,30 @@
 from django.shortcuts import render
-from datetime import datetime
-from django.http import JsonResponse
+from datetime import datetime, date
+from django.http import JsonResponse, HttpResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import *
 from .email import send_email
+from django.utils.timezone import now
+
 
 def repairs_main_screen(request):
     repairs = Repair.objects.all()
     return render(request, 'warsztat/../templates/warsztat/repair_main.html', {"repairs": repairs})
+
+
+@api_view(['GET'])
+def get_workers_money(request, worker_id):
+    worker = Worker.objects.get(id=worker_id)
+    time_sum = float(0.0)
+    hours_worked_list = HoursWorked.objects.filter(date__gte='2022-12-01', date__lte='2022-12-31')
+    for hour_worked in hours_worked_list:
+        time_sum = time_sum + \
+                   float((hour_worked.end_time.hour + hour_worked.end_time.minute/60) -
+                    (hour_worked.start_time.hour + hour_worked.start_time.minute / 60))
+    print(type(time_sum))
+    return Response({'amount': round(time_sum * float(worker.salary), 2)})
 
 
 def single_repair(request, id):
@@ -35,9 +50,45 @@ def single_repair(request, id):
     return render(request, 'warsztat/../templates/warsztat/repair_single.html', context)
 
 
+@api_view(['GET'])
+def end_repair(request, repair_id, format=None):
+    repair = Repair.objects.get(id=repair_id)
+    hours_worked = HoursWorked.objects.filter(repair=repair, end_time__isnull=True)
+    for hour_worked in hours_worked:
+        hour_worked.end_time = now()
+        hour_worked.save()
+    repair.during = False
+    repair.done = True
+    repair.save()
+
+
+@api_view(['GET'])
+def start_stop_work(request, repair_id, worker_id, format=None):
+    repair = Repair.objects.get(id=repair_id)
+    print(repair.price)
+    # try tylko dla testów
+    try:
+        worker = Worker.objects.get(id=worker_id)
+    except:
+        worker = Worker.objects.all()[0]
+    # koniec dla testów
+    hours_worked = HoursWorked.objects.filter(worker=worker, repair=repair, end_time__isnull=True)
+    if hours_worked.count() == 0:
+        hours_worked = HoursWorked.objects.create(worker=worker, repair=repair)
+        repair.during = True
+    else:
+        if hours_worked.count() == 1:
+            repair.during = False
+        hours_worked = hours_worked[0]
+        hours_worked.end_time = now()
+    hours_worked.save()
+    repair.save()
+
+
 @api_view(['GET', 'POST'])
 def test_email(request, email, subject, body, format=None):
     send_email(email, subject, body)
+    return HttpResponse("wyslalo")
 
 
 @api_view(['GET', 'POST'])
@@ -390,6 +441,7 @@ def hours_worked_detail(request, id, format=None):
         item.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+
 @api_view(['GET', 'POST'])
 def client_notification_list(request, format=None):
     if request.method == 'GET':
@@ -401,7 +453,6 @@ def client_notification_list(request, format=None):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
 
 
 @api_view(['GET', 'PUT', 'PATCH', 'DELETE'])  # RUD from CRUD
