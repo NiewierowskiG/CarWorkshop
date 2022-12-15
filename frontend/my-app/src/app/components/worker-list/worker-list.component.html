@@ -23,7 +23,7 @@
       <ng-template #elseBlock><td>nie</td></ng-template>
       <td class="action">
         <button [routerLink]="[getLink(worker.salary, worker.id)]">Edytuj pensje</button>
-        <button (click)="delWorker(worker.id)">Usuń</button>
+        <button (click)="delWorker(worker.id, worker.email)">Usuń</button>
       </td>
     </tr>
   </table>
