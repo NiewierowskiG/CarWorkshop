@@ -22,15 +22,25 @@ services:
     depends_on:
       - db
     restart: always
-  frontend:
-    build: ./frontend
+  workshop:
+    build: ./workshop
     environment: 
       PORT: 4200
     command: "ng serve --host 0.0.0.0 --poll=2000 --port 4200 --disable-host-check --hmr"
     volumes:
-      - ./frontend/my-app/:/app/
-      - /app/node_modules
+      - ./workshop/my-app/:/workshop/
+      - /workshop/node_modules
     ports:
       - "80:4200"
+  warehouse:
+    build: ./warehouse
+    environment: 
+      PORT: 3000
+    command: "npm start"
+    volumes:
+      - ./warehouse/my-app/:/warehouse/
+      - /warehouse/node_modules
+    ports:
+      - "3000:3000"
 volumes:
   postgres_data:

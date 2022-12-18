@@ -36,11 +36,10 @@
 # COPY ./nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
 FROM node:18.10
-RUN mkdir /app
-WORKDIR /app
+RUN mkdir /workshop
+WORKDIR /workshop
 RUN npm install -g @angular/cli
 RUN npm install -g tslib
-COPY ./my-app/package*.json /app 
+COPY ./my-app/package*.json /workshop 
 RUN npm install
 EXPOSE 4200
-CMD ["ng", "serve", "--host", "0.0.0.0", "--poll=2000", "--port", "4200", "--disable-host-check", "--hmr"]
