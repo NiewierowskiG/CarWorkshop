@@ -1,7 +1,7 @@
 import * as React from 'react';
-import OrdersList from "./OrdersList";
-import "./App.css"
-import OrderAdd from './OrderAdd';
+import OrdersList from '../OrderList/OrderList';
+import "./App.module.css"
+import OrderAdd from '../OrderAdd/OrderAdd';
 
 const orders1 = [
       {

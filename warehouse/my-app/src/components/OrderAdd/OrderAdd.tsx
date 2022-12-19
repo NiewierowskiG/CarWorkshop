@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import "./App.css"
-import ErrorValidate from "./ErrorValidate";
+import React from 'react';
+import "../App/App.module.css"
+import ErrorValidate from "../ErrorValidate/ErrorValidate";
 
 interface Props {
 

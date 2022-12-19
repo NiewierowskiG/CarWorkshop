@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './OrdersList.css'
+import './OrdersList.module.css'
 
 interface Order{
     id: number;

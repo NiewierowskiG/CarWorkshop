@@ -1,4 +1,6 @@
 import * as React from 'react';
+import './ErrorValidate.module.css'
+
 
 interface Props {
   error: string[]
@@ -8,10 +10,6 @@ interface State {
 }
 
 class ErrorValidate extends React.Component<Props, State> {
-    constructor(props: Props)
-    {
-        super(props);
-    }
   render() {
         return (
           <div>
