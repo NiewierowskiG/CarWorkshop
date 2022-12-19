@@ -1,6 +1,7 @@
 import * as React from 'react';
 import OrdersList from "./OrdersList";
 import "./App.css"
+import OrderAdd from './OrderAdd';
 
 const orders1 = [
       {
@@ -68,6 +69,9 @@ class App extends React.Component<Props, State> {
   render() {
     return (
       <div>
+        <div>
+          <OrderAdd />
+        </div>
         <div className="OrdersList">
              <OrdersList orders={orders1}/>
          </div>

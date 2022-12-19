@@ -6,7 +6,7 @@ import OrderAdd from "./OrderAdd.tsx";
 
 ReactDOM.render(
   <React.StrictMode>
-      <OrderAdd />
+      <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
