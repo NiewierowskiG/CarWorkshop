@@ -1,15 +1,16 @@
 import * as React from 'react';
-import './OrdersList.module.css'
+import './OrderList.module.css'
+import Order from '../Order/Order';
 
-interface Order{
-    id: number;
-    items_count: number;
-    date: string;
-    title: string;
+interface Order {
+  id: number;
+  items_count: number;
+  date: string;
+  title: string;
 }
 
 interface Props {
-    orders: Order[]
+  orders: Order[]
 }
 
 interface State {
@@ -27,28 +28,24 @@ class OrdersList extends React.Component<Props, State> {
   render() {
     return (
       <div>
-          {
-              <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Items</th>
-            <th>Date</th>
-            <th>Title</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.props.orders.map(order => (
-            <tr key={order.id}>
-              <td>{order.id}</td>
-              <td>{order.items_count}</td>
-              <td>{order.date}</td>
-              <td>{order.title}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-          }
+        {
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Items</th>
+                <th>Date</th>
+                <th>Title</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.props.orders.map(order => (
+                // Use the Order component to render each individual order
+                <Order key={order.id} id={order.id} items_count={order.items_count} date={order.date} title={order.title} />
+              ))}
+            </tbody>
+          </table>
+        }
       </div>
     );
   }
