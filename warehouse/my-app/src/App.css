@@ -28,6 +28,13 @@
   color: #61dafb;
 }
 
+.OrdersList {
+  text-align: center;
+  width: 24%;
+  display: inline-block;
+  float: left;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

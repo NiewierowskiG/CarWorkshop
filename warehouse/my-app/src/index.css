@@ -12,12 +12,6 @@ code {
     monospace;
 }
 
-.OrdersList {
-  text-align: center;
-  width: 24%;
-  display: inline-block;
-  float: left;
-}
 #root {
   margin-left: 10%;
   margin-right: 10%;

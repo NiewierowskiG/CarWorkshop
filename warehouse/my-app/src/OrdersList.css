@@ -3,6 +3,10 @@ table {
     width: 100%;
 }
 
+tr {
+    border: #282c34 solid;
+}
+
 th,td {
     word-wrap: break-word;
 }
