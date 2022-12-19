@@ -1,5 +1,5 @@
 import * as React from 'react';
-import OrdersList from "./OrdersList.tsx";
+import OrdersList from "./OrdersList";
 import "./App.css"
 
 const orders1 = [

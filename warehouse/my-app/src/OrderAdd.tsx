@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "./App.css"
-import ErrorValidate from "./ErrorValidate.tsx";
+import ErrorValidate from "./ErrorValidate";
 
 interface Props {
 
@@ -61,11 +61,16 @@ class OrderAdd extends React.Component<Props, State> {
       if (!this.isValidDateFormat(this.state.date)){
           errors.push("Data musi być podana we właściwej formie")
       }
-      if (this.state.title.length == 0){
+      if (this.state.title.length === 0){
           errors.push("Tytuł musi zostać podany")
       }
       this.setState({ errors: errors });
       console.log(errors)
+      if(errors.length === 0){
+        return true;
+      }
+      else 
+        return false;
   }
 
 
@@ -78,7 +83,7 @@ class OrderAdd extends React.Component<Props, State> {
   };
 
   handleItemCountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ items_count: event.target.value });
+    this.setState({ items_count: Number(event.target.value)});
     console.log(this.state['items_count']);
   };
 
@@ -104,7 +109,7 @@ class OrderAdd extends React.Component<Props, State> {
             <input id="Title" value={this.state.title} onChange={this.handleTitleChange} />
             <button type="submit">Submit</button>
           </form>
-          {!(this.state.errors == '') && <ErrorValidate error={this.state.errors}/>}
+          {!(this.state.errors.length === 0) && <ErrorValidate error={this.state.errors}/>}
       </div>
     );
   }
