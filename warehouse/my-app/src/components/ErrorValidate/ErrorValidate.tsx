@@ -14,7 +14,7 @@ class ErrorValidate extends React.Component<Props, State> {
         return (
           <div>
               {this.props.error.map(err => (
-                  <p>{err}</p>
+                  <p key={err}>{err}</p>
               ))}
           </div>
       );

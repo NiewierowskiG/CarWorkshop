@@ -1,8 +1,8 @@
 import * as React from 'react';
 import './OrderList.module.css'
-import Order from '../Order/Order';
+import OrderComponent from '../Order/Order';
 
-interface Order {
+interface Order{
   id: number;
   items_count: number;
   date: string;
@@ -41,7 +41,7 @@ class OrdersList extends React.Component<Props, State> {
             <tbody>
               {this.props.orders.map(order => (
                 // Use the Order component to render each individual order
-                <Order key={order.id} id={order.id} items_count={order.items_count} date={order.date} title={order.title} />
+                <OrderComponent key={order.id} id={order.id} items_count={order.items_count} date={order.date} title={order.title} />
               ))}
             </tbody>
           </table>
