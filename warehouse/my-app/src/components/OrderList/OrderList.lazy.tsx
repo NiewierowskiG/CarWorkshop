@@ -5,7 +5,7 @@ const LazyOrderList = lazy(() => import('./OrderList'));
 
 const OrderList = (props: JSX.IntrinsicAttributes & { children?: React.ReactNode; }) => (
   <Suspense fallback={null}>
-    <LazyOrderList onOrderFromList={function (order: OrderProps): void {
+    <LazyOrderList idsList={[]} onOrderFromList={function (order: OrderProps): void {
       throw new Error('Function not implemented.');
     } } orders={[]} {...props} />
   </Suspense>

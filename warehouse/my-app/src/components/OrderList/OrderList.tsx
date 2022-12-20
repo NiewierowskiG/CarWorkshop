@@ -32,7 +32,7 @@ class OrdersList extends React.Component<Props, State> {
   render() {
     return (
       <div>
-        <OrderAdd onOrderFromAdd={this.handleOrderFromAdd}/>
+        <OrderAdd onOrderFromAdd={this.handleOrderFromAdd} idsList={this.props.idsList}/>
         <table>
           <thead>
             <tr>

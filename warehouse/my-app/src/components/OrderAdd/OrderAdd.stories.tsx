@@ -12,7 +12,7 @@ export default {
   title: "OrderAdd",
 };
 
-export const Default = () => <OrderAdd onOrderFromAdd={(order: OrderProps) => {}} />;
+export const Default = () => <OrderAdd onOrderFromAdd={(order: OrderProps) => { } } idsList={[]} />;
 
 Default.story = {
   name: 'default',
