@@ -79,9 +79,9 @@ class App extends React.Component<Props, State> {
   }
   componentDidMount() {
     this.setState((state) => {
-      return { idsList: state.orders1.map(order => order.id) };
+      return { idsList: this.state.orders1.map(order => order.id) };
     }, () => {
-      console.log('State updated!', this.state.idsList);
+      //console.log('State updated!', this.state.idsList);
     });
   }
 
