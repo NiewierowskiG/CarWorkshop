@@ -7,6 +7,7 @@ import { OrderProps } from '../Order/OrderProps';
 
 interface Props {
   onOrderFromAdd: (order: OrderProps) => void;
+  idsList: number[];
 }
 
 interface State {
@@ -57,6 +58,14 @@ class OrderAdd extends React.Component<Props, State> {
       }
       return true;
     };
+  /*isValidId = (id: number): boolean=> {
+    if (typeof id !== "number"){
+        return false;
+    }
+    if (id<0){
+        return false;
+    }
+  };*/
 
   validate =  (): boolean => {
       let errors: string[] = [];
@@ -106,21 +115,28 @@ class OrderAdd extends React.Component<Props, State> {
   handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ title: event.target.value });
   };
+  handleIdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({ id: Number(event.target.value)});
+    console.log(this.state['id']);
+  };
 
 
   render() {
     return (
       <div>
           <form onSubmit={this.handleSubmit}>
-            <label htmlFor="ItemCount">Item Count</label>
-            <input id="ItemCount" value={this.state.items_count} onChange={this.handleItemCountChange} />
-            <br/>
-            <label htmlFor="Date (YYYY-MM-DD Format)">Date</label>
-            <input id="Date" value={this.state.date} onChange={this.handleDateChange} />
-            <br/>
-            <label htmlFor="Title">Title</label>
-            <input id="Title" value={this.state.title} onChange={this.handleTitleChange} />
-            <button type="submit">Submit</button>
+                <label htmlFor="ID">ID</label>
+                <input id="ID" value={this.state.id} onChange={this.handleIdChange} />
+                <br/>
+                <label htmlFor="ItemCount">Item Count</label>
+                <input id="ItemCount" value={this.state.items_count} onChange={this.handleItemCountChange} />
+                <br/>
+                <label htmlFor="Date (YYYY-MM-DD Format)">Date</label>
+                <input id="Date" value={this.state.date} onChange={this.handleDateChange} />
+                <br/>
+                <label htmlFor="Title">Title</label>
+                <input id="Title" value={this.state.title} onChange={this.handleTitleChange} />
+                <button type="submit">Submit</button>
           </form>
           {!(this.state.errors.length === 0) && <ErrorValidate error={this.state.errors}/>}
       </div>

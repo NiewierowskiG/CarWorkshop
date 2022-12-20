@@ -14,6 +14,7 @@ interface Props {
 interface State {
   orders1: OrderProps[];
   orders2: OrderProps[];
+  idsList: number[];
 }
 
 class App extends React.Component<Props, State> {
@@ -72,33 +73,50 @@ class App extends React.Component<Props, State> {
           title: 'Gorgeous Concrete Towels',
           status: 'undone'
         }
-      ]
+      ],
+      idsList: []
     };
   }
+  componentDidMount() {
+    this.setState((state) => {
+      return { idsList: state.orders1.map(order => order.id) };
+    }, () => {
+      console.log('State updated!', this.state.idsList);
+    });
+  }
+
 
   handleOrderFromList = (data: OrderProps) => {
     this.setState((state) => {
       return {
-        orders1: [...state.orders1, data]
+        orders1: [...state.orders1, data],
+        idsList: [...state.idsList, data.id]
       };
     });
+    /*setTimeout(() => {
+      console.log("eo", this.state.idsList)
+    }, 1000);*/
   }
+
+
+
+
 
 
   render() {
     return (
       <div>
         <div className="OrdersList">
-          <OrdersList orders={this.state.orders1} onOrderFromList={this.handleOrderFromList} />
+          <OrdersList orders={this.state.orders1} idsList={this.state.idsList} onOrderFromList={this.handleOrderFromList} />
         </div>
         <div className="OrdersList">
-          <OrdersList orders={this.state.orders2} onOrderFromList={this.handleOrderFromList} />
+          <OrdersList orders={this.state.orders2} idsList={this.state.idsList} onOrderFromList={this.handleOrderFromList} />
         </div>
         <div className="OrdersList">
-          <OrdersList orders={this.state.orders1} onOrderFromList={this.handleOrderFromList} />
+          <OrdersList orders={this.state.orders1} idsList={this.state.idsList} onOrderFromList={this.handleOrderFromList} />
         </div>
         <div className="OrdersList">
-          <OrdersList orders={this.state.orders2} onOrderFromList={this.handleOrderFromList} />
+          <OrdersList orders={this.state.orders2} idsList={this.state.idsList} onOrderFromList={this.handleOrderFromList} />
         </div>
       </div>
     );

@@ -8,6 +8,7 @@ import { OrderProps } from '../Order/OrderProps';
 interface Props {
   orders: OrderProps[]
   onOrderFromList: (order: OrderProps) => void;
+  idsList: number[]
 
 }
 
