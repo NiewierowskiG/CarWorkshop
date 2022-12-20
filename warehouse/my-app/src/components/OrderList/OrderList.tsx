@@ -1,51 +1,54 @@
 import * as React from 'react';
 import './OrderList.module.css'
-import OrderComponent from '../Order/Order';
+import Order from '../Order/Order';
+import OrderAdd from '../OrderAdd/OrderAdd';
+import { OrderProps } from '../Order/OrderProps';
 
-interface Order{
-  id: number;
-  items_count: number;
-  date: string;
-  title: string;
-}
 
 interface Props {
-  orders: Order[]
+  orders: OrderProps[]
+  onOrderFromList: (order: OrderProps) => void;
+
 }
 
 interface State {
   // State type definition goes here
 }
 
+
+
 class OrdersList extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-
     };
+  }
+
+  handleOrderFromAdd = (data:OrderProps) => {
+    this.props.onOrderFromList({...data});
   }
 
   render() {
     return (
       <div>
-        {
-          <table>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Items</th>
-                <th>Date</th>
-                <th>Title</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.props.orders.map(order => (
-                // Use the Order component to render each individual order
-                <OrderComponent key={order.id} id={order.id} items_count={order.items_count} date={order.date} title={order.title} />
-              ))}
-            </tbody>
-          </table>
-        }
+        <OrderAdd onOrderFromAdd={this.handleOrderFromAdd}/>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Items</th>
+              <th>Date</th>
+              <th>Title</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.props.orders.map(order => (
+              // Use the Order component to render each individual order
+              <Order key={order.id} id={order.id} items_count={order.items_count} date={order.date} title={order.title} />
+            ))}
+          </tbody>
+        </table>
+
       </div>
     );
   }

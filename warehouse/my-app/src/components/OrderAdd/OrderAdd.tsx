@@ -1,15 +1,20 @@
 import React from 'react';
 import "../App/App.module.css"
 import ErrorValidate from "../ErrorValidate/ErrorValidate";
+import { OrderProps } from '../Order/OrderProps';
+
+
 
 interface Props {
-
+  onOrderFromAdd: (order: OrderProps) => void;
 }
 
 interface State {
+  id: number;
   items_count: number;
   date: string;
   title: string;
+  status: string;
   errors: string[];
 }
 
@@ -17,9 +22,11 @@ class OrderAdd extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
+        id: -1,
         items_count: 0,
         date: '',
         title: '',
+        status: '',
         errors: [],
     };
   }
@@ -52,7 +59,6 @@ class OrderAdd extends React.Component<Props, State> {
     };
 
   validate =  (): boolean => {
-      console.log("weszlo")
       let errors: string[] = [];
       if (Number(this.state.items_count) < 0){
           errors.push("Liczba przedmiotów nie może być ujemna")
@@ -76,10 +82,16 @@ class OrderAdd extends React.Component<Props, State> {
 
   handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (this.validate()){
-
+    if (this.validate()) {
+      const order = {
+        id: this.state.id,
+        items_count: this.state.items_count,
+        date: this.state.date,
+        title: this.state.title,
+        status: this.state.status
+      };
+      this.props.onOrderFromAdd(order);
     }
-
   };
 
   handleItemCountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -94,6 +106,7 @@ class OrderAdd extends React.Component<Props, State> {
   handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ title: event.target.value });
   };
+
 
   render() {
     return (
