@@ -58,14 +58,18 @@ class OrderAdd extends React.Component<Props, State> {
       }
       return true;
     };
-  /*isValidId = (id: number): boolean=> {
+  isValidId = (id: number): boolean=> {
     if (typeof id !== "number"){
         return false;
     }
     if (id<0){
         return false;
     }
-  };*/
+    if (this.props.idsList.includes(id)){
+        return false;
+    }
+    return true;
+  };
 
   validate =  (): boolean => {
       let errors: string[] = [];
@@ -78,6 +82,9 @@ class OrderAdd extends React.Component<Props, State> {
       }
       if (this.state.title.length === 0){
           errors.push("Tytuł musi zostać podany")
+      }
+      if (!this.isValidId(this.state.id)){
+          errors.push("Nieprawidłowe ID")
       }
       this.setState({ errors: errors });
       console.log(errors)
@@ -101,11 +108,12 @@ class OrderAdd extends React.Component<Props, State> {
       };
       this.props.onOrderFromAdd(order);
     }
+    alert(this.props.idsList)
   };
 
   handleItemCountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ items_count: Number(event.target.value)});
-    console.log(this.state['items_count']);
+    //console.log(this.state['items_count']);
   };
 
   handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -117,7 +125,7 @@ class OrderAdd extends React.Component<Props, State> {
   };
   handleIdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ id: Number(event.target.value)});
-    console.log(this.state['id']);
+    //console.log(this.state['id']);
   };
 
 
@@ -126,10 +134,10 @@ class OrderAdd extends React.Component<Props, State> {
       <div>
           <form onSubmit={this.handleSubmit}>
                 <label htmlFor="ID">ID</label>
-                <input id="ID" value={this.state.id} onChange={this.handleIdChange} />
+                <input id="ID" type='number' value={this.state.id} onChange={this.handleIdChange} />
                 <br/>
                 <label htmlFor="ItemCount">Item Count</label>
-                <input id="ItemCount" value={this.state.items_count} onChange={this.handleItemCountChange} />
+                <input id="ItemCount" type='number' value={this.state.items_count} onChange={this.handleItemCountChange} />
                 <br/>
                 <label htmlFor="Date (YYYY-MM-DD Format)">Date</label>
                 <input id="Date" value={this.state.date} onChange={this.handleDateChange} />
