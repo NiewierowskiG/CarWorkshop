@@ -98,11 +98,6 @@ class App extends React.Component<Props, State> {
     }, 1000);*/
   }
 
-
-
-
-
-
   render() {
     return (
       <div>

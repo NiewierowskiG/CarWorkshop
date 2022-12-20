@@ -1,7 +1,7 @@
 import React from 'react';
 import "../App/App.module.css"
 import ErrorValidate from "../ErrorValidate/ErrorValidate";
-import {OrderProps} from '../Order/OrderProps';
+import { OrderProps } from '../Order/OrderProps';
 
 
 interface Props {
@@ -98,7 +98,7 @@ class OrderAdd extends React.Component<Props, State> {
         if (!this.isValidId(this.state.id)) {
             errors.push("Nieprawidłowe ID")
         }
-        this.setState({errors: errors});
+        this.setState({ errors: errors });
         console.log(errors)
         if (errors.length === 0) {
             return true;
@@ -119,23 +119,43 @@ class OrderAdd extends React.Component<Props, State> {
             };
             this.props.onOrderFromAdd(order);
         }
-        this.setState({id: this.findBestID(this.props.idsList)});
+        this.setState({ id: this.findBestID(this.props.idsList) });
     };
 
     handleItemCountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({items_count: Number(event.target.value)});
+        this.setState({ items_count: Number(event.target.value) });
     };
 
     handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({date: event.target.value});
+        this.setState({ date: event.target.value });
     };
 
     handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({title: event.target.value});
+        this.setState({ title: event.target.value });
     };
     handleIdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({id: Number(event.target.value)});
+        this.setState({ id: Number(event.target.value) });
     };
+
+    handleData = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const target = event.target;
+        let value = target.value;
+        const name = target.name;
+
+        if (name === 'id' || name === 'items_count') {
+            this.setState({
+                id: Number(value)
+            });
+        }
+        else {
+            this.setState({
+                [name]: value
+            });
+        }
+
+
+    }
+
 
 
     render() {
@@ -144,20 +164,20 @@ class OrderAdd extends React.Component<Props, State> {
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="ID">ID</label>
                     <input id="ID" type='number' value={this.state.id}
-                           onChange={this.handleIdChange}/>
-                    <br/>
+                        onChange={this.handleIdChange} />
+                    <br />
                     <label htmlFor="ItemCount">Item Count</label>
                     <input id="ItemCount" type='number' value={this.state.items_count}
-                           onChange={this.handleItemCountChange}/>
-                    <br/>
+                        onChange={this.handleItemCountChange} />
+                    <br />
                     <label htmlFor="Date (YYYY-MM-DD Format)">Date</label>
-                    <input id="Date" value={this.state.date} onChange={this.handleDateChange}/>
-                    <br/>
+                    <input id="Date" value={this.state.date} onChange={this.handleData} />
+                    <br />
                     <label htmlFor="Title">Title</label>
-                    <input id="Title" value={this.state.title} onChange={this.handleTitleChange}/>
+                    <input id="Title" value={this.state.title} onChange={this.handleTitleChange} />
                     <button type="submit">Submit</button>
                 </form>
-                {!(this.state.errors.length === 0) && <ErrorValidate error={this.state.errors}/>}
+                {!(this.state.errors.length === 0) && <ErrorValidate error={this.state.errors} />}
             </div>
         );
     }
