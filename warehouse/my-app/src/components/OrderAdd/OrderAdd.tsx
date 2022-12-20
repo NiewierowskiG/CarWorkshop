@@ -108,7 +108,7 @@ class OrderAdd extends React.Component<Props, State> {
       };
       this.props.onOrderFromAdd(order);
     }
-    alert(this.props.idsList)
+    //alert(this.props.idsList)
   };
 
   handleItemCountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
