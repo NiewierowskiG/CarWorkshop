@@ -73,8 +73,8 @@ class OrderAdd extends React.Component<Props, State> {
 
   validate =  (): boolean => {
       let errors: string[] = [];
-      if (Number(this.state.items_count) < 0){
-          errors.push("Liczba przedmiotów nie może być ujemna")
+      if (Number(this.state.items_count) <= 0){
+          errors.push("Liczba przedmiotów nie może być ujemna ani równa 0")
       }
       console.log(typeof this.state.date)
       if (!this.isValidDateFormat(this.state.date)){
