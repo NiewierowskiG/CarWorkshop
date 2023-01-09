@@ -2,6 +2,7 @@ import React from 'react';
 import "../App/App.module.css"
 import ErrorValidate from "../ErrorValidate/ErrorValidate";
 import { OrderProps } from '../Order/OrderProps';
+import ValueValidate from "../ValueValidate/ValueValidate";
 
 
 interface Props {
@@ -44,13 +45,13 @@ class OrderAdd extends React.Component<Props, State> {
         };
     }
 
-    isValidDateFormat = (dateString: string): boolean => {
+    isValidDateFormat = (dateString: string | number): boolean => {
         if (typeof dateString !== 'string') {
-            return false;
+            return true;
         }
         const dateParts = dateString.split('-');
         if (dateParts.length !== 3) {
-            return false;
+            return true;
         }
         const year = parseInt(dateParts[0], 10);
         const month = parseInt(dateParts[1], 10);
@@ -60,56 +61,33 @@ class OrderAdd extends React.Component<Props, State> {
             !Number.isInteger(month) ||
             !Number.isInteger(day)
         ) {
-            return false;
+            return true;
         }
         if (month < 1 || month > 12) {
-            return false;
+            return true;
         }
         if (day < 1 || day > 31) {
-            return false;
-        }
-        return true;
-    };
-    isValidId = (id: number): boolean => {
-        if (typeof id !== "number") {
-            return false;
-        }
-        if (id <= 0) {
-            return false;
-        }
-        if (this.props.idsList.includes(id)) {
-            return false;
-        }
-        return true;
-    };
-
-    validate = (): boolean => {
-        let errors: string[] = [];
-        if (Number(this.state.items_count) <= 0) {
-            errors.push("Liczba przedmiotów nie może być ujemna ani równa 0")
-        }
-        console.log(typeof this.state.date)
-        if (!this.isValidDateFormat(this.state.date)) {
-            errors.push("Data musi być podana we właściwej formie")
-        }
-        if (this.state.title.length === 0) {
-            errors.push("Tytuł musi zostać podany")
-        }
-        if (!this.isValidId(this.state.id)) {
-            errors.push("Nieprawidłowe ID")
-        }
-        this.setState({ errors: errors });
-        console.log(errors)
-        if (errors.length === 0) {
             return true;
-        } else
+        }
+        return false;
+    };
+    isValidId = (id: string | number): boolean => {
+        if (typeof id !== "string") {
             return false;
-    }
+        }
 
+        if (Number(id) <= 0) {
+            return false;
+        }
+        if (this.props.idsList.includes(Number(id))) {
+            return false;
+        }
+        return true;
+    };
 
     handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        if (this.validate()) {
+        if (true) {
             const order = {
                 id: this.findBestID(this.props.idsList),
                 items_count: this.state.items_count,
@@ -122,59 +100,47 @@ class OrderAdd extends React.Component<Props, State> {
         this.setState({ id: this.findBestID(this.props.idsList) });
     };
 
-    handleItemCountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({ items_count: Number(event.target.value) });
-    };
-
-    handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({ date: event.target.value });
-    };
-
-    handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({ title: event.target.value });
-    };
-    handleIdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({ id: Number(event.target.value) });
-    };
-
-    handleData = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const target = event.target;
-        let value = target.value;
-        const name = target.name;
-
-        if (name === 'id' || name === 'items_count') {
+    handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { id, value, type, checked } = event.target;
+        if (id === "ID" || id === "items_count"){
             this.setState({
-                id: Number(value)
-            });
-        }
-        else {
+                ...this.state,
+                [id.toLowerCase()]: Number(value),
+            })
+        }else{
             this.setState({
-                [name]: value
+                ...this.state,
+                [id.toLowerCase()]: value,
             });
         }
 
-
-    }
+  };
 
 
 
     render() {
+        const validateTitle = (value: string | number) => String(value).length == 0;
+        const validateitems_count = (value: number | string) => Number(value) < 0;
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="ID">ID</label>
                     <input id="ID" type='number' value={this.state.id}
-                        onChange={this.handleIdChange} />
+                        onChange={this.handleChange} />
+                    <ValueValidate  value={this.state.id} validationFunction={this.isValidId} errorMessage={"Nieprawidłowe ID"}/>
                     <br />
-                    <label htmlFor="ItemCount">Item Count</label>
-                    <input id="ItemCount" type='number' value={this.state.items_count}
-                        onChange={this.handleItemCountChange} />
+                    <label htmlFor="items_count">Item Count</label>
+                    <input id="items_count" type='number' value={this.state.items_count}
+                           onChange={this.handleChange} />
+                    <ValueValidate  value={this.state.items_count} validationFunction={validateitems_count} errorMessage={"Liczba przedmiotów nie może być ujemna"}/>
                     <br />
-                    <label htmlFor="Date (YYYY-MM-DD Format)">Date</label>
-                    <input id="Date" value={this.state.date} onChange={this.handleData} />
+                    <label htmlFor="Date">Date (YYYY-MM-DD Format)</label>
+                    <input id="Date" value={this.state.date} onChange={this.handleChange} />
+                    <ValueValidate  value={this.state.date} validationFunction={this.isValidDateFormat} errorMessage={"Data musi być podana we właściwej formie"}/>
                     <br />
                     <label htmlFor="Title">Title</label>
-                    <input id="Title" value={this.state.title} onChange={this.handleTitleChange} />
+                    <input id="Title" value={this.state.title} onChange={this.handleChange} />
+                    <ValueValidate  value={this.state.title} validationFunction={validateTitle} errorMessage={"Tytuł musi zostać podany"}/>
                     <button type="submit">Submit</button>
                 </form>
                 {!(this.state.errors.length === 0) && <ErrorValidate error={this.state.errors} />}
