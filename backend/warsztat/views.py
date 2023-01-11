@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from datetime import datetime, date
 from django.http import JsonResponse, HttpResponse
-from rest_framework.decorators import api_view
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import *
@@ -92,6 +94,7 @@ def test_email(request, email, subject, body, format=None):
 
 
 @api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
 def people_list(request, format=None):
     if request.method == 'GET':
         queryset = Person.objects.all()
