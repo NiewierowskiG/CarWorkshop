@@ -9,16 +9,25 @@ class Person(models.Model):
     tel_nr = models.IntegerField()
     email = models.EmailField(max_length=254)
 
+    def __str__(self):
+        return self.name
+
 
 class Client(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
     nip = models.BigIntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return self.person.name
 
 
 class Position(models.Model):
     name = models.CharField(max_length=200)
     can_create_clients = models.BooleanField()
     can_create_workers = models.BooleanField()
+
+    def __str__(self):
+        return self.name
 
 
 class Worker(models.Model):
@@ -29,9 +38,15 @@ class Worker(models.Model):
     position = models.ForeignKey(Position, on_delete=models.CASCADE)
     salary = models.DecimalField(max_digits=10, decimal_places=2)
 
+    def __str__(self):
+        return self.person.name
+
 
 class CarBrand(models.Model):
     name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
 
 
 class CarModel(models.Model):
@@ -40,12 +55,18 @@ class CarModel(models.Model):
     prod_year_start = models.SmallIntegerField()
     prod_year_end = models.SmallIntegerField()
 
+    def __str__(self):
+        return self.name
+
 
 class Car(models.Model):
     model = models.ForeignKey(CarModel, on_delete=models.CASCADE)
     color = models.CharField(max_length=100)
     prod_year = models.SmallIntegerField()
     vin = models.CharField(max_length=17)
+
+    def __str__(self):
+        return f'{self.model.name} {self.color} {str(self.prod_year)}'
 
 
 class Repair(models.Model):
@@ -57,10 +78,15 @@ class Repair(models.Model):
     done = models.BooleanField(default=False)
     during = models.BooleanField(default=False)
     price = models.DecimalField(max_digits=7, decimal_places=2)
+
     def get_start_time(self):
         return self.create_time
+
     def get_car(self):
         return self.car.model.brand.name + ' ' + self.car.model.name + ' ' + self.car.color
+
+    def __str__(self):
+        return f'{self.create_time} {self.client.__str__()} {self.car.__str__()}'
 
 
 class HoursWorked(models.Model):
@@ -77,11 +103,17 @@ class HoursWorked(models.Model):
     def get_tel(self):
         return self.client.person.tel_nr
 
+    def __str__(self):
+        return self.worker.person.__str__() + ' ' + str(self.date)
+
 
 class ClientNotification(models.Model):    # repair id
     content = models.CharField(max_length=500, null=True)
     date = models.DateTimeField(null=True)
     repair = models.ForeignKey(Repair, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.repair.__str__()
 
 
 class PerformanceReview(models.Model):
@@ -90,6 +122,9 @@ class PerformanceReview(models.Model):
     content = models.CharField(max_length=500, null=True)
     date = models.DateTimeField(null=True)
 
+    def __str__(self):
+        return f'{self.employer.person.name} {self.employee.person.name} {self.content}'
+
 
 class Notifications(models.Model):
     sender = models.ForeignKey(Worker, on_delete=models.DO_NOTHING, null=True)
@@ -97,14 +132,23 @@ class Notifications(models.Model):
     content = models.CharField(max_length=500, null=True)
     date = models.DateTimeField(null=True)
 
+    def __str__(self):
+        return f'{self.sender.person.name} {self.receiver.person.name} {self.content}'
+
 
 class SubstituteCar(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE, null=True)
     price = models.DecimalField(max_digits=7, decimal_places=2, null=True)
     is_rented = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.car.__str__()
+
 
 class RentCar(models.Model):
     car = models.ForeignKey(SubstituteCar, on_delete=models.CASCADE, null=True, default=None)
     start_date = models.DateField(default=now)
     end_date = models.DateField(blank=True, null=True, default=None)
+
+    def __str__(self):
+        return self.car.__str__()

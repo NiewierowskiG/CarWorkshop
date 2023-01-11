@@ -45,6 +45,10 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
 ]
 
+JAZZMIN_UI_TWEAKS = {
+    "theme": "darkly",
+}
+
 REST_FRAMEWORK = {
    'DEFAULT_AUTHENTICATION_CLASSES': (
        'rest_framework.authentication.TokenAuthentication',
