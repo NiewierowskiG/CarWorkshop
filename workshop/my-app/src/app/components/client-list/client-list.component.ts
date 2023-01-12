@@ -5,7 +5,9 @@ import { ClientListApicallService } from '../../services/client-list-apicall.ser
 import { Client } from 'src/app/models/Client';
 import { RepairListApicallService } from 'src/app/services/repair-list-apicall.service';
 import {Repair} from "../../models/Repair";
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+//import { LoginComponent} from "../login/login.component";
+
 @Component({
   selector: 'app-client-list',
   templateUrl: './client-list.component.html',
@@ -21,15 +23,19 @@ export class ClientListComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.clients$ = this.clientService.getClient();
-    this.repairs$ = this.repairService.getRepair();
-    this.clientHttp.get<Repair[]>("http://localhost:8000/repairs.json").subscribe(repairs => {
+    const token = localStorage.getItem('token')
+    const headers = new HttpHeaders().set('Authorization', 'Token ' + token);
+    this.clients$ = this.clientService.getClient(headers);
+    this.repairs$ = this.repairService.getRepair(headers);
+    this.clientHttp.get<Repair[]>("http://localhost:8000/repairs.json", {headers: headers}).subscribe(repairs => {
       this.repairs = repairs;
       console.log(repairs);
     });
   }
 
   delClient(id: number, email: string): void {
+    const token = localStorage.getItem('token')
+    const headers = new HttpHeaders().set('Authorization', 'Token ' + token);
     if(this.repairs != undefined)
     {
       let filtr = this.repairs.filter(repair => repair.client.email == email)
@@ -40,7 +46,7 @@ export class ClientListComponent implements OnInit {
       else
       {
         this.clientService.delClient(id);
-        setTimeout( (_:any)=>{this.clients$ = this.clientService.getClient();} ,10); //time to be sure that client was deleted
+        setTimeout( (_:any)=>{this.clients$ = this.clientService.getClient(headers);} ,10); //time to be sure that client was deleted
       }
     }
 

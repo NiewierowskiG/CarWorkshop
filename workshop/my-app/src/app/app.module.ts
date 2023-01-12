@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ClientListComponent } from './components/client-list/client-list.component';
@@ -21,6 +20,8 @@ import {ZoomDirective} from "./zoom.directive";
 import { EditworkerComponent } from './components/editworker/editworker.component';
 import { ShowRepairComponent } from './components/show-repair/show-repair.component';
 import { LoginComponent } from './components/login/login.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -47,7 +48,9 @@ import { LoginComponent } from './components/login/login.component';
     AppRoutingModule,
     RouterLink,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

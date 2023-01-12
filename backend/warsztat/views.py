@@ -86,7 +86,7 @@ def start_stop_work(request, repair_id, worker_id, format=None):
     hours_worked.save()
     repair.save()
 
-
+#@permission_classes([IsAuthenticated])
 @api_view(['GET', 'POST'])
 def test_email(request, email, subject, body, format=None):
     send_email(email, subject, body)
@@ -94,7 +94,6 @@ def test_email(request, email, subject, body, format=None):
 
 
 @api_view(['GET', 'POST'])
-@permission_classes([IsAuthenticated])
 def people_list(request, format=None):
     if request.method == 'GET':
         queryset = Person.objects.all()
@@ -133,7 +132,9 @@ def person_detail(request, id, format=None):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+
 @api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
 def clients_list(request, format=None):
     if request.method == 'GET':
         queryset = Client.objects.all()
@@ -209,6 +210,8 @@ def position_detail(request, id, format=None):
     elif request.method == 'DELETE':
         item.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+#@permission_classes([IsAuthenticated])
 
 
 @api_view(['GET', 'POST'])
