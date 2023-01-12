@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RepairListApicallService } from 'src/app/services/repair-list-apicall.service';
 import {Repair} from "../../models/Repair";
 import { Observable, timeInterval } from 'rxjs';
+import {HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-repair-list',
@@ -17,7 +18,9 @@ export class RepairListComponent implements OnInit {
     this.getRepair()
   }
   getRepair(){
-    this.appService.getRepair().subscribe(repairs => {
+    const token = localStorage.getItem('token')
+    const headers = new HttpHeaders().set('Authorization', 'Token ' + token);
+    this.appService.getRepair(headers).subscribe(repairs => {
       this.repairs = repairs;
     })
   }

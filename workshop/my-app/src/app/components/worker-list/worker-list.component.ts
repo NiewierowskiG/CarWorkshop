@@ -4,7 +4,7 @@ import { WorkerListApicallService } from 'src/app/services/worker-list-apicall.s
 import {Observable} from "rxjs";
 import {Repair} from "../../models/Repair";
 import {RepairListApicallService} from "../../services/repair-list-apicall.service";
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 @Component({
   selector: 'app-worker-list',
   templateUrl: './worker-list.component.html',
@@ -20,7 +20,9 @@ export class WorkerListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getWorker()
-    this.repairs$ = this.repairService.getRepair();
+    const token = localStorage.getItem('token')
+    const headers = new HttpHeaders().set('Authorization', 'Token ' + token);
+    this.repairs$ = this.repairService.getRepair(headers);
     this.workerHttp.get<Repair[]>("http://localhost:8000/repairs.json").subscribe(repairs => {
       this.repairs = repairs;
       console.log(repairs);

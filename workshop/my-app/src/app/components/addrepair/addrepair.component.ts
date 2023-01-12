@@ -7,6 +7,7 @@ import { Position } from 'src/app/models/Position';
 import { Car } from 'src/app/models/Car';
 import { CarModel } from 'src/app/models/CarModel';
 import { CarBrand } from 'src/app/models/CarBrand';
+import {HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-addrepair',
@@ -33,12 +34,16 @@ export class AddrepairComponent implements OnInit {
     this.getCars()
   }
   getWorkers(){
-    this.repairService.getWorkers().subscribe(workers => {
+    const token = localStorage.getItem('token')
+    const headers = new HttpHeaders().set('Authorization', 'Token ' + token);
+    this.repairService.getWorkers(headers).subscribe(workers => {
       this.workers = workers
     })
   }
   getClients(){
-    this.repairService.getClients().subscribe(clients => {
+    const token = localStorage.getItem('token')
+    const headers = new HttpHeaders().set('Authorization', 'Token ' + token);
+    this.repairService.getClients(headers).subscribe(clients => {
       this.clients = clients
     })
   }

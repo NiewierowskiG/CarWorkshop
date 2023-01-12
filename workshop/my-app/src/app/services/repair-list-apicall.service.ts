@@ -13,9 +13,9 @@ import {Car} from "../models/Car";
 export class RepairListApicallService {
 
   constructor(private http: HttpClient) { }
-  getRepair = (): Observable<Repair[]> => this.http.get<Repair[]>("http://localhost:8000/repairs.json")
-  getWorkers = (): Observable<Worker[]> => this.http.get<Worker[]>("http://localhost:8000/workers.json")
-  getClients = (): Observable<Client[]> => this.http.get<Client[]>("http://localhost:8000/clients.json")
+  getRepair = (headers:any): Observable<Repair[]> => this.http.get<Repair[]>("http://localhost:8000/repairs.json", {headers: headers})
+  getWorkers = (headers:any): Observable<Worker[]> => this.http.get<Worker[]>("http://localhost:8000/workers.json", {headers: headers})
+  getClients = (headers:any): Observable<Client[]> => this.http.get<Client[]>("http://localhost:8000/clients.json", {headers: headers})
   getCars = (): Observable<Car[]> => this.http.get<Car[]>("http://localhost:8000/cars.json")
   private _RepairSource = new Subject<any[3]>();
   RepairSource$ = this._RepairSource.asObservable();
