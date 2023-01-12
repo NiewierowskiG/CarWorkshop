@@ -1,10 +1,17 @@
-<form>
-  <label for="username">Username:</label>
-  <input type="text" id="username" [(ngModel)]="username" name="username">
+<div *ngIf="isLoggedIn; else loginForm">
+  <p>You are logged in!</p>
+  <button (click)="logout()">Logout</button>
+</div>
+<ng-template #loginForm>
+  <form>
+    <label for="username">Username:</label>
+    <input type="text" id="username" [(ngModel)]="username" name="username">
 
-  <label for="password">Password:</label>
-  <input type="password" id="password" [(ngModel)]="password" name="password">
+    <label for="password">Password:</label>
+    <input type="password" id="password" [(ngModel)]="password" name="password">
 
-  <button (click)="onLogin()">Login</button>
-  <div *ngIf="error" class="error">{{error}}</div>
-</form>
+    <button (click)="onLogin()">Login</button>
+    <div *ngIf="error" class="error">{{error}}</div>
+  </form>
+</ng-template>
+

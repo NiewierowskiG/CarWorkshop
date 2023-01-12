@@ -44,4 +44,8 @@ export class LoginComponent {
         this.snackBar.open('Login successful!', 'Dismiss', {duration: 3000});
       });
   }
+  logout() {
+    localStorage.removeItem('token');
+    this.isLoggedIn = false;
+  }
 }
