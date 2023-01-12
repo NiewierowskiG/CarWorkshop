@@ -9,6 +9,7 @@ import { ClientListComponent } from './components/client-list/client-list.compon
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { RepairListComponent } from './components/repair-list/repair-list.component';
 import { WorkerListComponent } from './components/worker-list/worker-list.component';
+import { LoginComponent } from './components/login/login.component';
 const routes: Routes = [
   {path:'RepairList',component: RepairListComponent},
   {path: 'ClientList', component: ClientListComponent},
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path: 'AddClient', component: AddclientComponent},
   {path: 'AddWorker', component: AddworkerComponent},
   {path: 'EditWorker/:salary/:id', component: EditworkerComponent},
-  {path: 'Showrepair/:repairId/:workerId', component: ShowRepairComponent}
+  {path: 'Showrepair/:repairId/:workerId', component: ShowRepairComponent},
+  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({
