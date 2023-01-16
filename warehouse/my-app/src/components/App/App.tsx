@@ -1,7 +1,3 @@
-
-
-
-
 import * as React from 'react';
 import OrdersList from '../OrderList/OrderList';
 import "./App.module.css"
@@ -100,20 +96,8 @@ class App extends React.Component<Props, State> {
 
   render() {
     return (
-      <div>
-        <div className="OrdersList">
-          <OrdersList orders={this.state.orders1} idsList={this.state.idsList} onOrderFromList={this.handleOrderFromList} />
-        </div>
-        <div className="OrdersList">
-          <OrdersList orders={this.state.orders2} idsList={this.state.idsList} onOrderFromList={this.handleOrderFromList} />
-        </div>
-        <div className="OrdersList">
-          <OrdersList orders={this.state.orders1} idsList={this.state.idsList} onOrderFromList={this.handleOrderFromList} />
-        </div>
-        <div className="OrdersList">
-          <OrdersList orders={this.state.orders2} idsList={this.state.idsList} onOrderFromList={this.handleOrderFromList} />
-        </div>
-      </div>
+
+      <OrdersList orders={this.state.orders2} idsList={this.state.idsList} onOrderFromList={this.handleOrderFromList} />
     );
   }
 }
