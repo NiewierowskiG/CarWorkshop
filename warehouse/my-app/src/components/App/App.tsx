@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import OrdersList from '../OrderList/OrderList';
 import "./App.module.css"
 import { OrderProps } from '../Order/OrderProps';
