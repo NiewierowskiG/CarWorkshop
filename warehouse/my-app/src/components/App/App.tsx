@@ -2,7 +2,8 @@ import * as React from 'react';
 import OrdersList from '../OrderList/OrderList';
 import "./App.module.css"
 import { OrderProps } from '../Order/OrderProps';
-
+import Navbar from '../Navbar/Navbar';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 interface Props {
 
 }
@@ -17,7 +18,7 @@ class App extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      orders1: [
+      orders1: [ 
         {
           id: 1,
           items_count: 2,
@@ -96,8 +97,15 @@ class App extends React.Component<Props, State> {
 
   render() {
     return (
-
-      <OrdersList orders={this.state.orders2} idsList={this.state.idsList} onOrderFromList={this.handleOrderFromList} />
+      <Router>
+        <div>
+        <Navbar />
+          <h1>Main page</h1>
+          <Route path='/Orders'>
+            <OrdersList orders={this.state.orders2} idsList={this.state.idsList} onOrderFromList={this.handleOrderFromList}/>
+          </Route>
+        </div>
+      </Router>
     );
   }
 }
