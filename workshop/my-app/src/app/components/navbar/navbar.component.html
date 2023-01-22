@@ -7,5 +7,6 @@
 		<option>Warsztat</option>
 		<option>Magazyn</option>
 	</select>
-    <a routerLink="login">Zaloguj się</a>
+    <a routerLink="login" *ngIf="isLogged(); else elseBlock">Zaloguj się</a>
+    <ng-template #elseBlock><a (click)="logout()">Wyloguj się</a></ng-template>
 </nav>
