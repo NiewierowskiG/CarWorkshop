@@ -6,8 +6,8 @@ from django.conf import settings
 class Person(models.Model):
     name = models.CharField(max_length=100)
     surname = models.CharField(max_length=100)
-    tel_nr = models.IntegerField()
-    email = models.EmailField(max_length=254)
+    tel_nr = models.IntegerField(unique=True)
+    email = models.EmailField(max_length=254, unique=True)
 
     def __str__(self):
         return self.name
@@ -22,7 +22,7 @@ class Client(models.Model):
 
 
 class Position(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, unique=True)
     can_create_clients = models.BooleanField()
     can_create_workers = models.BooleanField()
 
@@ -43,14 +43,14 @@ class Worker(models.Model):
 
 
 class CarBrand(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.name
 
 
 class CarModel(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     brand = models.ForeignKey(CarBrand, on_delete=models.CASCADE)
     prod_year_start = models.SmallIntegerField()
     prod_year_end = models.SmallIntegerField()
@@ -63,7 +63,7 @@ class Car(models.Model):
     model = models.ForeignKey(CarModel, on_delete=models.CASCADE)
     color = models.CharField(max_length=100)
     prod_year = models.SmallIntegerField()
-    vin = models.CharField(max_length=17)
+    vin = models.CharField(max_length=17, unique=True)
 
     def __str__(self):
         return f'{self.model.name} {self.color} {str(self.prod_year)}'
@@ -152,3 +152,22 @@ class RentCar(models.Model):
 
     def __str__(self):
         return self.car.__str__()
+
+
+"""
+
+class PartItem(models.Model):
+    name = models.CharField(max_length=100)
+    price = models.DecimalField(decimal_places=2, max_digits=8)
+    amount = models.IntegerField()
+
+
+class Order(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.CASCADE())
+    address = models.CharField(max_length=150)
+
+
+class OrderxItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE())
+    item = models.ForeignKey(PartItem, on_delete=models.CASCADE())
+"""
