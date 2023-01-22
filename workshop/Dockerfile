@@ -39,6 +39,7 @@ FROM node:18.10
 RUN mkdir /workshop
 WORKDIR /workshop
 RUN npm install -g @angular/cli
+RUN npm install -g @angular/material
 RUN npm install -g tslib
 COPY ./my-app/package*.json /workshop 
 RUN npm install
