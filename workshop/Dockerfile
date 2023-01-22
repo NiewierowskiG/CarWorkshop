@@ -40,7 +40,7 @@ RUN mkdir /workshop
 WORKDIR /workshop
 COPY ./my-app/package*.json /workshop 
 RUN npm install
-RUN npm install @angular-devkit/build-angular
+RUN npm install -g @angular-devkit/build-angular
 RUN npm install -g @angular/cli
 RUN npm install -g @angular/material
 RUN npm install -g tslib
