@@ -26,11 +26,11 @@ export class AuthGuard implements CanActivate {
   }
 }
 const routes: Routes = [
-  {path: '', component: MainPageComponent, canActivate: [AuthGuard] },
+  {path: '', component: MainPageComponent },
   {path:'RepairList',component: RepairListComponent, canActivate: [AuthGuard] },
   {path: 'ClientList', component: ClientListComponent, canActivate: [AuthGuard] },
   {path: 'WorkerList', component: WorkerListComponent, canActivate: [AuthGuard] },
-  {path: 'MainPage', component: MainPageComponent, canActivate: [AuthGuard] },
+  {path: 'MainPage', component: MainPageComponent},
   {path: 'AddRepair', component: AddrepairComponent, canActivate: [AuthGuard] },
   {path: 'AddClient', component: AddclientComponent, canActivate: [AuthGuard] },
   {path: 'AddWorker', component: AddworkerComponent, canActivate: [AuthGuard] },
