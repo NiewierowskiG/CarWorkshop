@@ -101,7 +101,7 @@ class OrderAdd extends React.Component<Props, State> {
     };
 
     handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { id, value, type, checked } = event.target;
+        const { id, value} = event.target;
         if (id === "ID" || id === "items_count"){
             this.setState({
                 ...this.state,
@@ -119,7 +119,7 @@ class OrderAdd extends React.Component<Props, State> {
 
 
     render() {
-        const validateTitle = (value: string | number) => String(value).length == 0;
+        const validateTitle = (value: string | number) => String(value).length === 0;
         const validateitems_count = (value: number | string) => Number(value) < 0;
         return (
             <div>
