@@ -1,13 +1,12 @@
 
 nav{
     background-color: gray;
-    padding: 0;
+    padding-left:10px;
     margin: 0;
     height: 80px;
     display: flex;
     align-items: center;
-    width: 85%;
-    border-radius: 10px;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
 }
