@@ -67,7 +67,8 @@ export class CrudComponent implements OnInit {
 
 
   postClient(rep : Client):void{
-    const header = new HttpHeaders({'Content-Type':'application/json'})
+    const token = localStorage.getItem('token')
+    const header = new HttpHeaders({'Content-Type':'application/json'}).set('Authorization', 'Token ' + token)
     console.log(JSON.stringify(rep));
     this.http.post('http://localhost:8000/clients/', JSON.stringify(rep), {headers : header})
     .subscribe((res)=>{
@@ -76,7 +77,8 @@ export class CrudComponent implements OnInit {
 
   }
   deleteClient(id : number):void{
-    const header = new HttpHeaders({'Content-Type':'application/json'})
+    const token = localStorage.getItem('token')
+    const header = new HttpHeaders({'Content-Type':'application/json'}).set('Authorization', 'Token ' + token)
     this.http.delete('http://localhost:8000/clients/'.concat(id.toString()), {headers : header})
     .subscribe((res)=>{
 
@@ -85,7 +87,8 @@ export class CrudComponent implements OnInit {
   }
 
   putClient(rep : Client,id:Number): void{
-    const header = new HttpHeaders({'Content-Type':'application/json'})
+    const token = localStorage.getItem('token')
+    const header = new HttpHeaders({'Content-Type':'application/json'}).set('Authorization', 'Token ' + token)
     this.http.put('http://localhost:8000/clients/'.concat(id.toString()), JSON.stringify(rep), {headers : header})
     .subscribe((res)=>{
 
@@ -94,7 +97,8 @@ export class CrudComponent implements OnInit {
   }
 
   postWorker(rep : Worker):void{
-    const header = new HttpHeaders({'Content-Type':'application/json'})
+    const token = localStorage.getItem('token')
+    const header = new HttpHeaders({'Content-Type':'application/json'}).set('Authorization', 'Token ' + token)
     console.log(JSON.stringify(rep));
     this.http.post('http://localhost:8000/workers/', JSON.stringify(rep), {headers : header})
     .subscribe((res)=>{
@@ -103,7 +107,8 @@ export class CrudComponent implements OnInit {
 
   }
   putWorker(rep : number,id:number):void{
-    const header = new HttpHeaders({'Content-Type':'application/json'})
+    const token = localStorage.getItem('token')
+    const header = new HttpHeaders({'Content-Type':'application/json'}).set('Authorization', 'Token ' + token)
     console.log(id);
     this.http.patch('http://localhost:8000/workers/'.concat(id.toString()), {'salary':rep}, {headers : header})
     .subscribe((res)=>{
@@ -113,7 +118,8 @@ export class CrudComponent implements OnInit {
 
   }
   deleteWorker(id : number):void{
-    const header = new HttpHeaders({'Content-Type':'application/json'})
+    const token = localStorage.getItem('token')
+    const header = new HttpHeaders({'Content-Type':'application/json'}).set('Authorization', 'Token ' + token)
     this.http.delete('http://localhost:8000/workers/'.concat(id.toString()), {headers : header})
     .subscribe((res)=>{
 
@@ -121,7 +127,8 @@ export class CrudComponent implements OnInit {
   }
 
   postRepair(rep : Repair):void{
-    const header = new HttpHeaders({'Content-Type':'application/json'})
+    const token = localStorage.getItem('token')
+    const header = new HttpHeaders({'Content-Type':'application/json'}).set('Authorization', 'Token ' + token)
     console.log(JSON.stringify(rep));
     this.http.post('http://localhost:8000/repairs/', JSON.stringify(rep), {headers : header})
     .subscribe((res)=>{
@@ -130,7 +137,8 @@ export class CrudComponent implements OnInit {
 
   }
   putRepair(rep : number,id:number):void{
-    const header = new HttpHeaders({'Content-Type':'application/json'})
+    const token = localStorage.getItem('token')
+    const header = new HttpHeaders({'Content-Type':'application/json'}).set('Authorization', 'Token ' + token)
     console.log(id);
     this.http.patch('http://localhost:8000/repairs/'.concat(id.toString()), {'salary':rep}, {headers : header})
     .subscribe((res)=>{
@@ -140,7 +148,8 @@ export class CrudComponent implements OnInit {
 
   }
   deleteRepair(id : number):void{
-    const header = new HttpHeaders({'Content-Type':'application/json'})
+    const token = localStorage.getItem('token')
+    const header = new HttpHeaders({'Content-Type':'application/json'}).set('Authorization', 'Token ' + token)
     this.http.delete('http://localhost:8000/repairs/'.concat(id.toString()), {headers : header})
     .subscribe((res)=>{
 

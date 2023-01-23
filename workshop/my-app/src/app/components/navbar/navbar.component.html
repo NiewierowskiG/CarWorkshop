@@ -1,4 +1,11 @@
-<nav>
+<div class="dayInfo">
+    <div class="header">
+        <h1>Witaj w warsztacie samochodowym</h1>
+        <p>Dzisiaj jest {{nameday.day}}.{{nameday.month}}<br> Imieniny mają dzisiaj: {{nameday.nameday.pl}}</p>
+    </div>
+</div>
+<nav>   
+   
     <a routerLink="MainPage">Strona główna</a>
     <a routerLink="RepairList">Lista napraw</a>
     <a routerLink="WorkerList">Lista pracowników</a>

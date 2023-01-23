@@ -19,6 +19,7 @@ export class AddworkerComponent implements OnInit {
   getWorkerPosition() {
        this.workerService.getWorkerPositions().subscribe(positions => {
          this.positions = positions
+         console.log(positions)
        })
   }
   postWorker(worker : Worker){
