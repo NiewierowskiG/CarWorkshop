@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WorkerListApicallService } from 'src/app/services/worker-list-apicall.service';
 import { Worker } from 'src/app/models/Worker';
 import { Position } from 'src/app/models/Position';
+import {HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-addworker',
@@ -17,7 +18,9 @@ export class AddworkerComponent implements OnInit {
     this.getWorkerPosition()
   }
   getWorkerPosition() {
-       this.workerService.getWorkerPositions().subscribe(positions => {
+    const token = localStorage.getItem('token')
+    const headers = new HttpHeaders().set('Authorization', 'Token ' + token);
+       this.workerService.getWorkerPositions(headers).subscribe(positions => {
          this.positions = positions
          console.log(positions)
        })
