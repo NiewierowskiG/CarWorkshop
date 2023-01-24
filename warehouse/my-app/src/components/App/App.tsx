@@ -4,6 +4,8 @@ import "./App.module.css"
 import { OrderProps } from '../Order/OrderProps';
 import Navbar from '../Navbar/Navbar';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
+import OrderPartsList from "../OrderPartsList/OrderPartsList";
+import OrderCreate from "../OrderCreate/OrderCreate";
 interface Props {
 
 }
@@ -97,6 +99,7 @@ class App extends React.Component<Props, State> {
 
   render() {
     return (
+        /*
       <Router>
         <div>
         <Navbar />
@@ -105,7 +108,10 @@ class App extends React.Component<Props, State> {
             <OrdersList orders={this.state.orders2} idsList={this.state.idsList} onOrderFromList={this.handleOrderFromList}/>
           </Route>
         </div>
-      </Router>
+      </Router>*/
+      <div>
+        <OrderCreate/>
+      </div>
     );
   }
 }
