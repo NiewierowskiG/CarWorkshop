@@ -9,7 +9,7 @@ export class ZoomDirective  {
   }
 
   @HostListener('mouseenter') onMouseEnter(){
-    this.zoom(1.02, 'dodgerblue', 'white')
+    this.zoom(1.02, 'gray', 'white')
   }
 
   @HostListener('mouseleave') onMouseLeave(){
