@@ -6,7 +6,7 @@ import OrderPartsList from "../OrderPartsList/OrderPartsList";
 class OrderCreate extends Component {
   render() {
     return (
-      <div>
+      <div style={{display: ' flex', justifyContent: 'space-around', marginTop: '40px'}}>
           <OrderCreateList/>
           <OrderPartsList/>
       </div>

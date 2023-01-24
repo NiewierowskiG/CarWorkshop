@@ -9,7 +9,7 @@ interface PartItemProps {
 class PartItem extends Component<PartItemProps> {
   render() {
     return (
-      <div>
+      <div style={{borderBottom: '1px solid black'}}>
         <p>Name: {this.props.name}</p>
         <p>Price: {this.props.price}</p>
         <p>Amount: {this.props.amount}</p>

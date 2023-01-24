@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 class OrderCreateList extends Component {
   render() {
     return (
-      <div style={{border: "4px solid black"}}>
+      <div style={{backgroundColor:'blue', height: '200px', width: ' 200px'}}> xdxdxdxd
       </div>
     );
   }
