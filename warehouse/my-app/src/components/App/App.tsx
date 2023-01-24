@@ -4,8 +4,8 @@ import "./App.module.css"
 import { OrderProps } from '../Order/OrderProps';
 import Navbar from '../Navbar/Navbar';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import OrderPartsList from "../OrderPartsList/OrderPartsList";
 import OrderCreate from "../OrderCreate/OrderCreate";
+import Item from '../Item/Item';
 interface Props {
 
 }
@@ -104,13 +104,13 @@ class App extends React.Component<Props, State> {
         <Navbar />
           <h1>Main page</h1>
           <Route path='/Orders'>
-            <OrdersList orders={this.state.orders2} idsList={this.state.idsList} onOrderFromList={this.handleOrderFromList}/>
+            <OrderCreate/>
           </Route>
-        </div>
+          <Route>
+            <Item/>
+          </Route>
+       </div>
       </Router>
-      // <div>
-      //   <OrderCreate/>
-      // </div>
     );
   }
 }

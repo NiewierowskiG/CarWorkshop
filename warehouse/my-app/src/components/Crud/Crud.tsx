@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-import React, { Component } from 'react'
-
-export class Crud extends Component {
-  render() {
-    return (
-      <div>Crud</div>
-    )
-  }
-}
-
-export default Crud
-=======
 import React from 'react';
 import './Crud.module.css';
 import { OrderProps } from '../Order/OrderProps';
@@ -40,4 +27,3 @@ const Crud: React.FunctionComponent<CrudProps> = ({ order }) => {
 
 
 export default Crud;
->>>>>>> 85f3018c7833003f26aa52c042aeb74e212ba409
