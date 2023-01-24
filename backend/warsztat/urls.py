@@ -38,7 +38,9 @@ urlpatterns = [
     path('substitutecar/', views.substitute_car_list),
     path('substitutecar/<int:id>', views.substitute_car_detail),
     path('rentcar/', views.rent_car_list),
-    path('rentcar/', views.rent_car_detail),
+    path('rentcar/<int:id>', views.rent_car_detail),
+    path('orders/', views.order_list),
+    path('orders/<int:id>', views.order_detail),
 ]
 
 

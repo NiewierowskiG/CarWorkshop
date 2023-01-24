@@ -154,6 +154,15 @@ class RentCar(models.Model):
         return self.car.__str__()
 
 
+class Order(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    address = models.CharField(max_length=150)
+    items_count = models.FloatField()
+    date    = models.DateField(blank=True, null=True, default=None)
+    title = models.CharField(max_length=150)
+    status = models.CharField(max_length=50)
+
+
 """
 
 class PartItem(models.Model):
@@ -162,9 +171,7 @@ class PartItem(models.Model):
     amount = models.IntegerField()
 
 
-class Order(models.Model):
-    client = models.ForeignKey(Client, on_delete=models.CASCADE())
-    address = models.CharField(max_length=150)
+
 
 
 class OrderxItem(models.Model):

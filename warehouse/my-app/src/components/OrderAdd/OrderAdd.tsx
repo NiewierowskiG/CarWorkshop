@@ -3,6 +3,7 @@ import "../App/App.module.css"
 import ErrorValidate from "../ErrorValidate/ErrorValidate";
 import { OrderProps } from '../Order/OrderProps';
 import ValueValidate from "../ValueValidate/ValueValidate";
+import Crud from '../Crud/Crud';
 
 
 interface Props {
@@ -101,20 +102,20 @@ class OrderAdd extends React.Component<Props, State> {
     };
 
     handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { id, value} = event.target;
-        if (id === "ID" || id === "items_count"){
+        const { id, value } = event.target;
+        if (id === "ID" || id === "items_count") {
             this.setState({
                 ...this.state,
                 [id.toLowerCase()]: Number(value),
             })
-        }else{
+        } else {
             this.setState({
                 ...this.state,
                 [id.toLowerCase()]: value,
             });
         }
 
-  };
+    };
 
 
 
@@ -127,21 +128,21 @@ class OrderAdd extends React.Component<Props, State> {
                     <label htmlFor="ID">ID</label>
                     <input id="ID" type='number' value={this.state.id}
                         onChange={this.handleChange} />
-                    <ValueValidate  value={this.state.id} validationFunction={this.isValidId} errorMessage={"Nieprawidłowe ID"}/>
+                    <ValueValidate value={this.state.id} validationFunction={this.isValidId} errorMessage={"Nieprawidłowe ID"} />
                     <br />
                     <label htmlFor="items_count">Item Count</label>
                     <input id="items_count" type='number' value={this.state.items_count}
-                           onChange={this.handleChange} />
-                    <ValueValidate  value={this.state.items_count} validationFunction={validateitems_count} errorMessage={"Liczba przedmiotów nie może być ujemna"}/>
+                        onChange={this.handleChange} />
+                    <ValueValidate value={this.state.items_count} validationFunction={validateitems_count} errorMessage={"Liczba przedmiotów nie może być ujemna"} />
                     <br />
                     <label htmlFor="Date">Date (YYYY-MM-DD Format)</label>
                     <input id="Date" value={this.state.date} onChange={this.handleChange} />
-                    <ValueValidate  value={this.state.date} validationFunction={this.isValidDateFormat} errorMessage={"Data musi być podana we właściwej formie"}/>
+                    <ValueValidate value={this.state.date} validationFunction={this.isValidDateFormat} errorMessage={"Data musi być podana we właściwej formie"} />
                     <br />
                     <label htmlFor="Title">Title</label>
                     <input id="Title" value={this.state.title} onChange={this.handleChange} />
-                    <ValueValidate  value={this.state.title} validationFunction={validateTitle} errorMessage={"Tytuł musi zostać podany"}/>
-                    <button type="submit">Submit</button>
+                    <ValueValidate value={this.state.title} validationFunction={validateTitle} errorMessage={"Tytuł musi zostać podany"} />
+                    <Crud order={this.state} />
                 </form>
                 {!(this.state.errors.length === 0) && <ErrorValidate error={this.state.errors} />}
             </div>
