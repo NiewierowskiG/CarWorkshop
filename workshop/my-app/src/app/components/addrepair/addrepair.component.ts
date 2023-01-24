@@ -48,7 +48,9 @@ export class AddrepairComponent implements OnInit {
     })
   }
   getCars(){
-    this.repairService.getCars().subscribe(cars => {
+    const token = localStorage.getItem('token')
+    const headers = new HttpHeaders().set('Authorization', 'Token ' + token);
+    this.repairService.getCars(headers).subscribe(cars => {
       this.cars = cars
     })
   }

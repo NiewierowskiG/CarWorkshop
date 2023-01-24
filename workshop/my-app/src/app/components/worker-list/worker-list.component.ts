@@ -23,13 +23,15 @@ export class WorkerListComponent implements OnInit {
     const token = localStorage.getItem('token')
     const headers = new HttpHeaders().set('Authorization', 'Token ' + token);
     this.repairs$ = this.repairService.getRepair(headers);
-    this.workerHttp.get<Repair[]>("http://localhost:8000/repairs.json").subscribe(repairs => {
+    this.workerHttp.get<Repair[]>("http://localhost:8000/repairs.json",{headers: headers}).subscribe(repairs => {
       this.repairs = repairs;
       console.log(repairs);
     });
   }
   getWorker(){
-    this.workerService.getWorker().subscribe(workers =>{
+    const token = localStorage.getItem('token')
+    const headers = new HttpHeaders().set('Authorization', 'Token ' + token);
+    this.workerService.getWorker(headers).subscribe(workers =>{
       this.workers = workers
     })
   }

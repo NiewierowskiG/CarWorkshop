@@ -10,8 +10,8 @@ import { Worker } from '../models/Worker';
 export class WorkerListApicallService {
 
   constructor(private http: HttpClient) { }
-  getWorker = (): Observable<Worker[]> => this.http.get<Worker[]>("http://localhost:8000/workers.json")
-  getWorkerPositions = (): Observable<Position[]> => this.http.get<Position[]>("http://localhost:8000/positions.json")
+  getWorker = (headers:any): Observable<Worker[]> => this.http.get<Worker[]>("http://localhost:8000/workers.json", {headers:headers})
+  getWorkerPositions = (headers:any): Observable<Position[]> => this.http.get<Position[]>("http://localhost:8000/positions.json", {headers:headers})
   private _WorkerSource = new Subject<any[3]>();
   WorkerSource$ = this._WorkerSource.asObservable();
 
