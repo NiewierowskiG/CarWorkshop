@@ -228,6 +228,45 @@ def workers_list(request, format=None):
 
 
 @api_view(['GET', 'PUT', 'DELETE', 'PATCH'])  # RUD from CRUD
+def order_detail(request, id, format=None):
+    try:
+        item = Order.objects.get(pk=id)
+    except Order.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    if request.method == 'GET':
+        serializer = OrderSerializer(item)
+        return Response(serializer.data)
+    elif request.method == 'PUT':
+        serializer = OrderSerializer(item, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'PATCH':
+        serializer = OrderSerializer(item, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'DELETE':
+        item.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET', 'POST'])
+def order_list(request, format=None):
+    if request.method == 'GET':
+        queryset = Order.objects.all()
+        serializer = OrderSerializer(queryset, many=True)
+        return Response(serializer.data)
+    if request.method == 'POST':
+        serializer = OrderSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+@api_view(['GET', 'PUT', 'DELETE', 'PATCH'])  # RUD from CRUD
 def worker_detail(request, id, format=None):
     try:
         item = Worker.objects.get(pk=id)

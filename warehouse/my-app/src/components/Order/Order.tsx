@@ -1,12 +1,6 @@
 import React from 'react';
 import './Order.module.css';
-
-interface OrderProps {
-  id: number;
-  items_count: number;
-  date: string;
-  title: string;
-}
+import { OrderProps } from './OrderProps';
 
 const Order: React.FunctionComponent<OrderProps> = ({ id, items_count, date, title }) => {
   return (

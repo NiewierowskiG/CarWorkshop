@@ -95,26 +95,26 @@ class HoursWorkedSerializer(WritableNestedModelSerializer, serializers.ModelSeri
 class ClientNotificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = ClientNotification
-        fields = ('content', 'date', 'repair')
+        fields = ('id','content', 'date', 'repair')
 
 
 class PerformanceReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = PerformanceReview
-        fields = ('employer', 'employee', 'content', 'date')
+        fields = ('id','employer', 'employee', 'content', 'date')
 
 
 class NotificationsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Notifications
-        fields = ('sender', 'receiver', 'content')
+        fields = ('id','sender', 'receiver', 'content')
 
 
 class SubstituteCarSerializer(serializers.ModelSerializer):
     isRented = serializers.BooleanField(source='is_rented')
     class Meta:
         model = SubstituteCar
-        fields = ('car', 'price', 'isRented')
+        fields = ('id','car', 'price', 'isRented')
 
 
 class RentCarSerializer(serializers.ModelSerializer):
@@ -122,4 +122,11 @@ class RentCarSerializer(serializers.ModelSerializer):
     endDate = serializers.DateField(source='end_date')
     class Meta:
         model = RentCar
-        fields = ('car', 'startDate', 'endDate')
+        fields = ('id','car', 'startDate', 'endDate')
+
+
+class OrderSerializer(WritableNestedModelSerializer, serializers.ModelSerializer):
+    client = ClientSerializer()
+    class Meta:
+        model = Order
+        fields = ('id','client', 'address','items_count','date','title','status')

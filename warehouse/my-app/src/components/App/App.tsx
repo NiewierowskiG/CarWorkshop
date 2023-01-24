@@ -80,7 +80,7 @@ class App extends React.Component<Props, State> {
     this.setState((state) => {
       return { idsList: this.state.orders1.map(order => order.id) };
     }, () => {
-      //console.log('State updated!', this.state.idsList);
+      console.log('State updated!', this.state.idsList);
     });
   }
 
@@ -99,7 +99,6 @@ class App extends React.Component<Props, State> {
 
   render() {
     return (
-        /*
       <Router>
         <div>
         <Navbar />
@@ -108,10 +107,10 @@ class App extends React.Component<Props, State> {
             <OrdersList orders={this.state.orders2} idsList={this.state.idsList} onOrderFromList={this.handleOrderFromList}/>
           </Route>
         </div>
-      </Router>*/
-      <div>
-        <OrderCreate/>
-      </div>
+      </Router>
+      // <div>
+      //   <OrderCreate/>
+      // </div>
     );
   }
 }
