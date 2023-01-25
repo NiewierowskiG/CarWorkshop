@@ -7,6 +7,7 @@ type OrderCreateListProps = {
 };
 
 const OrderCreateList: React.FC<OrderCreateListProps> = ({ order }) => {
+    console.log(order)
   return (
     <div className="table-wrapper">
       <div className="table-scroll">

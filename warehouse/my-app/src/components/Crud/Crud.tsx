@@ -1,33 +1,42 @@
 import React from 'react';
 import './Crud.module.css';
-import { OrderProps } from '../Order/OrderProps';
+import {OrderProps} from '../Order/OrderProps';
 import axios from 'axios';
 import {ItemProps} from "../Item/ItemProps";
 
-const AUTH_TOKEN = "Token e19d08dda86eb3c838271ccab74b59f029dc94e3"
+const AUTH_TOKEN = "Token b570a848252266feb5e37d0a7b6ff6ef866cc577"
 
 interface CrudProps {
-  order: OrderProps;
-  //item: ItemProps;
+    prop: OrderProps | ItemProps
+    propType: string;
 }
 
 
-const Crud: React.FunctionComponent<CrudProps> = ({ order  }) => {
-  const handleSubmitOrder = async () => {
-    try {
-      console.log(order);
-      axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-      await axios.post('http://localhost:8000/orders/', order);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+const Crud: React.FunctionComponent<CrudProps> = ({propType, prop}) => {
+    const handleSubmit = async () => {
+        try {
+            console.log(propType + "   " + prop);
+            axios.defaults.headers.common['Authorization'] =AUTH_TOKEN;
+            switch (propType) {
+                case 'order':
+                    await axios.post('http://localhost:8000/orders/', prop);
+                    break;
+                case 'item':
+                    await axios.post('http://localhost:8000/items/', prop);
+                    break;
+                default:
+                    console.log("Invalid prop type")
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
-  return (
-    <button type="submit" onClick={handleSubmitOrder}>
-      Submit
-    </button>
-  );
+    return (
+        <button type="submit" onClick={handleSubmit}>
+            Submit
+        </button>
+    );
 }
 
 

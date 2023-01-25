@@ -4,6 +4,7 @@ import ValueValidate from "../ValueValidate/ValueValidate";
 import {isValidId, isValidNumber} from "../ValueValidate/utils/validators";
 import ItemList from '../ItemList/ItemList';
 import './ItemActions.css'
+import {postWithPayload} from "../Services/services";
 const ItemAdd: React.FC<{ addItem: (item: ItemProps) => void }> = ({ addItem }) => {
   const [newItem, setNewItem] = useState<ItemProps>({ id: 0, name: '', price: 0, amount: 0 });
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -12,6 +13,7 @@ const ItemAdd: React.FC<{ addItem: (item: ItemProps) => void }> = ({ addItem }) 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     addItem(newItem);
+    const response = postWithPayload(newItem, 'items')
     setNewItem({ id: 0, name: '', price: 0, amount: 0 });
   };
   const [showAdd, setShowAdd] = useState(true)
