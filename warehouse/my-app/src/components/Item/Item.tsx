@@ -7,8 +7,8 @@ const items = [
   { id: 3, name: 'Item 3', amount: 20, price: 200 },
 ];
 
-const MyComponent = () => {
+const Item = () => {
   return <ItemList items={items} />;
 };
 
-export default MyComponent;
+export default Item;

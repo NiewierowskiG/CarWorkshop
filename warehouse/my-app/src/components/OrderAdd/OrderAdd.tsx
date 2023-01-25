@@ -2,8 +2,9 @@ import React from "react";
 import Crud from "../Crud/Crud";
 import ErrorValidate from "../ErrorValidate/ErrorValidate";
 import { OrderProps } from "../Order/OrderProps";
-import ValueValidate from "../ValueValidate/ValueValidate";
 
+import ValueValidate from "../ValueValidate/ValueValidate";
+import {isValidDateFormat} from "../ValueValidate/utils/validators";
 
 
 interface Props {
@@ -12,7 +13,7 @@ interface Props {
 }
 
 interface State {
-    order:OrderProps
+    order: OrderProps
     errors: string[];
 }
 
@@ -32,24 +33,24 @@ class OrderAdd extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
-        this.state = {   
-            order:{
+        this.state = {
+            order: {
                 id: this.findBestID(this.props.idsList),
-                worker:{ 
-                    person : {
-                      id:4, 
-                      name:"", 
-                      surname:'', 
-                      telNr:0, 
-                      email:'1@w.a'
+                worker: {
+                    person: {
+                        id: 4,
+                        name: "",
+                        surname: '',
+                        telNr: 0,
+                        email: '1@w.a'
                     },
-                    position:{
-                        name:"",
-                        canCreateClients:false,
-                        canCreateWorkers:false,
+                    position: {
+                        name: "",
+                        canCreateClients: false,
+                        canCreateWorkers: false,
                     },
-                    salary:0, 
-                  },
+                    salary: 0,
+                },
                 date: '',
                 title: '',
                 status: 'DONE',
@@ -58,32 +59,7 @@ class OrderAdd extends React.Component<Props, State> {
         };
     }
 
-    isValidDateFormat = (dateString: string | number): boolean => {
-        if (typeof dateString !== 'string') {
-            return true;
-        }
-        const dateParts = dateString.split('-');
-        if (dateParts.length !== 3) {
-            return true;
-        }
-        const year = parseInt(dateParts[0], 10);
-        const month = parseInt(dateParts[1], 10);
-        const day = parseInt(dateParts[2], 10);
-        if (
-            !Number.isInteger(year) ||
-            !Number.isInteger(month) ||
-            !Number.isInteger(day)
-        ) {
-            return true;
-        }
-        if (month < 1 || month > 12) {
-            return true;
-        }
-        if (day < 1 || day > 31) {
-            return true;
-        }
-        return false;
-    };
+
     isValidId = (id: string | number): boolean => {
         if (typeof id !== "string") {
             return false;
@@ -103,21 +79,21 @@ class OrderAdd extends React.Component<Props, State> {
         if (true) {
             const order = {
                 id: this.findBestID(this.props.idsList),
-                worker:{  //TODO change to dynamic
-                    person : {
-                      id: this.state.order.worker.person.id, 
-                      name:"adam", 
-                      surname:'malysz', 
-                      telNr:0, 
-                      email:'a@a.pl'
+                worker: {  //TODO change to dynamic
+                    person: {
+                        id: this.state.order.worker.person.id,
+                        name: "adam",
+                        surname: 'malysz',
+                        telNr: 0,
+                        email: 'a@a.pl'
                     },
-                    position:{
-                        name:"spryciarz",
-                        canCreateClients:false,
-                        canCreateWorkers:false,
+                    position: {
+                        name: "spryciarz",
+                        canCreateClients: false,
+                        canCreateWorkers: false,
                     },
-                    salary:0, 
-                  },
+                    salary: 0,
+                },
                 date: this.state.order.date,
                 title: this.state.order.title,
                 status: this.state.order.status
@@ -125,7 +101,7 @@ class OrderAdd extends React.Component<Props, State> {
             this.props.onOrderFromAdd(order);
         }
         this.setState((prevState) => {
-            const updatedOrder = {...prevState.order, id: this.findBestID(this.props.idsList)};
+            const updatedOrder = { ...prevState.order, id: this.findBestID(this.props.idsList) };
             return { order: updatedOrder }
         });
     };
@@ -150,16 +126,17 @@ class OrderAdd extends React.Component<Props, State> {
     };
 
 
-
     render() {
         const validateTitle = (value: string | number) => String(value).length === 0;
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="ID">ID</label>
+
                     <input id="ID" type='number' value={this.state.order.id}
                         onChange={this.handleChange} />
                     <ValueValidate value={this.state.order.id} validationFunction={this.isValidId} errorMessage={"Nieprawidłowe ID"} />
+                    <br />
                     <label htmlFor="Date">Date (YYYY-MM-DD Format)</label>
                     <input id="Date" value={this.state.order.date} onChange={this.handleChange} />
                     <ValueValidate value={this.state.order.date} validationFunction={this.isValidDateFormat} errorMessage={"Data musi być podana we właściwej formie"} />
@@ -168,6 +145,7 @@ class OrderAdd extends React.Component<Props, State> {
                     <input id="Title" value={this.state.order.title} onChange={this.handleChange} />
                     <ValueValidate value={this.state.order.title} validationFunction={validateTitle} errorMessage={"Tytuł musi zostać podany"} />
                     <Crud order={this.state.order} />
+
                 </form>
                 {!(this.state.errors.length === 0) && <ErrorValidate error={this.state.errors} />}
             </div>

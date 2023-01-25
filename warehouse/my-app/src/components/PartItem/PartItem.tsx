@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 interface PartItemProps {
+    id: number;
     name: string;
     price: number;
     amount: number;
@@ -9,11 +10,12 @@ interface PartItemProps {
 class PartItem extends Component<PartItemProps> {
   render() {
     return (
-      <div>
-        <p>Name: {this.props.name}</p>
-        <p>Price: {this.props.price}</p>
-        <p>Amount: {this.props.amount}</p>
-      </div>
+        <tr>
+          <td style={{width: '200px', height: '50px', borderBottom: "1px solid black", borderCollapse: "collapse",textAlign: 'center'}}>{this.props.id}</td>
+          <td style={{width: '200px', height: '50px', borderBottom: "1px solid black", borderCollapse: "collapse",textAlign: 'center'}}>{this.props.name}</td>
+          <td style={{width: '200px', height: '50px', borderBottom: "1px solid black", borderCollapse: "collapse",textAlign: 'center'}}>{this.props.price}</td>
+          <td style={{width: '200px', height: '50px', borderBottom: "1px solid black", borderCollapse: "collapse",textAlign: 'center'}}>{this.props.amount}</td>
+        </tr>
     );
   }
 }

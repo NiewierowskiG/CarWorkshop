@@ -7,7 +7,7 @@ export class Navbar extends Component {
             <nav className='nav'>
                 <Link to="/">Strona główna</Link>
                 <Link to="/Orders">Zamówienia</Link>
-                <a href='/Storage'>xdxdx</a>
+                <Link to="/Item">Części w magazynie</Link>
             </nav>
         );
       }
