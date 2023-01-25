@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { ItemProps } from '../Item/ItemProps';
 import ValueValidate from "../ValueValidate/ValueValidate";
-import {isValidId, isValidNumber} from "../ValueValidate/utils/validators";
+import {isValidId, isValidInteger, isValidNumber} from "../ValueValidate/utils/validators";
 import ItemList from '../ItemList/ItemList';
 import './ItemActions.css'
 import {postWithPayload} from "../Services/services";
 const ItemAdd: React.FC<{ addItem: (item: ItemProps) => void }> = ({ addItem }) => {
-  const [newItem, setNewItem] = useState<ItemProps>({ id: 0, name: '', price: 0, amount: 0 });
+  const [newItem, setNewItem] = useState<ItemProps>({ id: 1000, name: '', price: 0, amount: 0 });
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewItem({ ...newItem, [e.target.name]: e.target.value });
   };
@@ -14,23 +14,19 @@ const ItemAdd: React.FC<{ addItem: (item: ItemProps) => void }> = ({ addItem }) 
     e.preventDefault();
     addItem(newItem);
     const response = postWithPayload(newItem, 'items')
-    setNewItem({ id: 0, name: '', price: 0, amount: 0 });
+    setNewItem({ id: 1000, name: '', price: 0, amount: 0 });
   };
   const [showAdd, setShowAdd] = useState(true)
    return (
      <form style={{}} onSubmit={handleSubmit}> 
-          <label>
-          <span>Nr. ID:</span>
-            <input type="number" name="id" value={newItem.id} onChange={handleInputChange} />
-              <ValueValidate  value={newItem.id} validationFunction={isValidId} errorMessage={"Nieprawidłowe ID"}/>
-          </label>
+
           <label>
            <span> Nazwa części:</span>
             <input type="text" name="name" value={newItem.name} onChange={handleInputChange} />
           </label>
           <label>
             <span>Ilość:</span>
-            <input type="number" step={0.01} name="amount" value={newItem.amount} onChange={handleInputChange} />
+            <input type="number" name="amount" value={newItem.amount} onChange={handleInputChange} />
             <ValueValidate  value={newItem.amount} validationFunction={isValidNumber} errorMessage={"Nieprawidłowa ilość"}/>
           </label>
           <label>
