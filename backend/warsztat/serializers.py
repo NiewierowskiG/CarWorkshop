@@ -8,6 +8,11 @@ class PersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
         fields = ('id', 'name', 'surname', 'telNr', 'email')
+class PersonWarehouseSerializer(serializers.ModelSerializer):
+    telNr = serializers.CharField(source="tel_nr")
+    class Meta:
+        model = Person
+        fields = ('id', 'name', 'surname', 'telNr', 'email')
 
 
 class ClientSerializer(WritableNestedModelSerializer, serializers.ModelSerializer):
@@ -22,9 +27,6 @@ class ClientSerializer(WritableNestedModelSerializer, serializers.ModelSerialize
 
 
 class PositionSerializer(serializers.ModelSerializer):
-    canCreateClients = serializers.BooleanField(source="canCreateClients")
-    canCreateWorkers = serializers.BooleanField(source="canCreateWorkers")
-
     class Meta:
         model = Position
         fields = ('id', 'name', 'canCreateClients', 'canCreateWorkers')
@@ -36,7 +38,7 @@ class WorkerSerializer(WritableNestedModelSerializer, serializers.ModelSerialize
     telNr = serializers.CharField(source="person.tel_nr")
     email = serializers.CharField(source="person.email")
     salary = serializers.DecimalField(max_digits=10, decimal_places=2)
-    person = PersonSerializer()
+    person = PersonWarehouseSerializer()
     position = PositionSerializer()
 
     class Meta:

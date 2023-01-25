@@ -6,5 +6,7 @@ WORKDIR /warehouse
 COPY ./my-app/package*.json /warehouse 
 
 RUN npm install
+RUN npm install bootstrap
+RUN npm install axios
 
 EXPOSE 3080
