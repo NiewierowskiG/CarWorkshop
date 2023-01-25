@@ -6,188 +6,54 @@ import Navbar from '../Navbar/Navbar';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import OrderCreate from "../OrderCreate/OrderCreate";
 import Item from '../Item/Item';
+import axios from 'axios';
+
+const AUTH_TOKEN = "Token e5d65aad6b4f0e8c19bb0870bbbc01b6048db93a"
+
 interface Props {
 
 }
 
 interface State {
-  orders1: OrderProps[];
-  orders2: OrderProps[];
+  orders:OrderProps[];
   idsList: number[];
 }
 
 class App extends React.Component<Props, State> {
+  intervalId: NodeJS.Timer | undefined;
   constructor(props: Props) {
     super(props);
+    axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
     this.state = {
-      orders1: [ 
-        {
-          id: 1,
-          worker:{ 
-            person : {
-              id:0, 
-              name:"", 
-              surname:'', 
-              telNr:0, 
-              email:''
-            },
-            position:{
-              name:"",
-              canCreateClients:false,
-              canCreateWorkers:false
-            }, 
-            salary:0,
-          },
-          date: '2022-01-01',
-          title: 'Order #1',
-          status: 'done'
-        },
-        {
-          id: 2,
-          worker:{ 
-            person : {
-              id:0, 
-              name:"", 
-              surname:'', 
-              telNr:0, 
-              email:''
-            },
-            position:{
-              name:"",
-              canCreateClients:false,
-              canCreateWorkers:false
-            }, 
-            salary:0,
-          },
-          date: '2022-01-02',
-          title: 'Order #2',
-          status: 'done'
-        }
-      ],
-      orders2: [
-        {
-          id: 23478637,
-          worker:{ 
-            person : {
-              id:0, 
-              name:"", 
-              surname:'', 
-              telNr:0, 
-              email:''
-            },
-            position:{
-              name:"",
-              canCreateClients:false,
-              canCreateWorkers:false
-            }, 
-            salary:0,
-          },
-          date: '2021-09-14T15:39:01.319Z',
-          title: 'Ergonomic Plastic Chicken',
-          status: 'undone'
-        },
-        {
-          id: 84511239,
-          worker:{ 
-            person : {
-              id:0, 
-              name:"", 
-              surname:'', 
-              telNr:0, 
-              email:''
-            },
-            position:{
-              name:"",
-              canCreateClients:false,
-              canCreateWorkers:false
-            }, 
-            salary:0,
-          },
-          date: '2021-09-14T15:39:01.319Z',
-          title: 'Handcrafted Frozen Chips',
-          status: 'undone'
-        },
-        {
-          id: 58772912,
-          worker:{ 
-            person : {
-              id:0, 
-              name:"", 
-              surname:'', 
-              telNr:0, 
-              email:''
-            },
-            position:{
-              name:"",
-              canCreateClients:false,
-              canCreateWorkers:false
-            }, 
-            salary:0,
-          },
-          date: '2021-09-14T15:39:01.319Z',
-          title: 'Small Fresh Car',
-          status: 'undone'
-        },
-        {
-          id: 77114799,
-          worker:{ 
-            person : {
-              id:0, 
-              name:"", 
-              surname:'', 
-              telNr:0, 
-              email:''
-            },
-            position:{
-              name:"",
-              canCreateClients:false,
-              canCreateWorkers:false
-            }, 
-            salary:0,
-          },
-
-          date: '2021-09-14T15:39:01.319Z',
-          title: 'Intelligent Soft Soap',
-          status: 'undone'
-        },
-        {
-          id: 89627201,
-          worker:{ 
-            person : {
-              id:0, 
-              name:"", 
-              surname:'', 
-              telNr:0, 
-              email:''
-            },
-            position:{
-              name:"",
-              canCreateClients:false,
-              canCreateWorkers:false
-            }, 
-            salary:0,
-          },
-          date: '2021-09-14T15:39:01.319Z',
-          title: 'Gorgeous Concrete Towels',
-          status: 'undone'
-        }
-      ],
+      orders:[],
       idsList: []
     };
   }
   componentDidMount() {
-    this.setState((state) => {
-      return { idsList: this.state.orders1.map(order => order.id) };
-    }, () => {
-      console.log('State updated!', this.state.idsList);
-    });
-  }
+    this.fetchOrders();
+    this.intervalId = setInterval(() => this.fetchOrders(), 5000);
+}
+
+
+
+fetchOrders() {
+    axios.get("http://localhost:8000/orders/")
+        .then(response => {
+            return this.setState({
+                orders: response.data
+            });
+            
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
 
 
   handleOrderFromList = (data: OrderProps) => {
     this.setState((state) => {
       return {
-        orders1: [...state.orders1, data],
+        orders: [...state.orders, data],
         idsList: [...state.idsList, data.id]
       };
     });
