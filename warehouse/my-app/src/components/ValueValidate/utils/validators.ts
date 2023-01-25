@@ -5,7 +5,16 @@ export const isValidId = (id: string | number): boolean => {
     return false;
 };
 export const isValidNumber = (number: string | number): boolean => {
-    if (number <= 0) {
+    if (number < 0) {
+        return true;
+    }
+    return false;
+};
+export const isValidInteger = (number: string | number): boolean => {
+    if (number < 0) {
+        return true;
+    }
+    if (!Number.isInteger(number)) {
         return true;
     }
     return false;

@@ -1,29 +1,44 @@
 import PartItem from "../PartItem/PartItem";
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import { ItemType } from "../types/ItemTypes";
+import "./OrderCreateList.css"
+type OrderCreateListProps = {
+  order: ItemType[];
+};
 
-class OrderCreateList extends Component {
-  render() {
-    return (
-      <table style={{border: "1px solid black", borderCollapse: "collapse", width: "40%"}}>
-        <tr>
-          <th style={{width:"200px", height: '50px'}}>ID:sss</th>
-          <th style={{width:"200px", height: '50px'}}>Name:</th>
-          <th style={{width:"200px", height: '50px'}}>Price:</th>
-          <th style={{width:"200px", height: '50px'}}>Amount:</th>
-        </tr>
-      <PartItem id = {1} name="Apple" price={1.99} amount={5} />
-      <PartItem id = {2} name="Orange" price={2.99} amount={3} />
-      <PartItem id = {3} name="Orange" price={2.99} amount={3} />
-      <PartItem id = {4} name="Orange" price={2.99} amount={3} />
-      <PartItem id = {5} name="Orange" price={2.99} amount={3} />
-      <PartItem id = {6} name="Orange" price={2.99} amount={3} />
-      <PartItem id = {7} name="Orange" price={2.99} amount={3} />
-      <PartItem id = {8} name="Orange" price={2.99} amount={3} />
-      <PartItem id = {9} name="Orange" price={2.99} amount={3} />
-      <PartItem id = {10} name="Orange" price={2.99} amount={3} />
-      </table>
-    );
-  }
-}
+const OrderCreateList: React.FC<OrderCreateListProps> = ({ order }) => {
+    console.log(order)
+  return (
+    <div className="table-wrapper">
+      <div className="table-scroll">
+        <table
+          style={{
+            border: "1px solid black",
+            borderCollapse: "collapse",
+            width: "100%",
+          }}
+        >
+          <tr>
+            <th style={{ width: "200px", height: "50px", textAlign:'center', border: '2px solid black', backgroundColor: 'lightgrey'}}>Nr. ID:</th>
+            <th style={{ width: "200px", height: "50px", textAlign:'center', border: '2px solid black', backgroundColor: 'lightgrey'}}>Nazwa części:</th>
+            <th style={{ width: "200px", height: "50px", textAlign:'center', border: '2px solid black', backgroundColor: 'lightgrey'}}>Cena (1 sztuka) :</th>
+            <th style={{ width: "200px", height: "50px", textAlign:'center', border: '2px solid black', backgroundColor: 'lightgrey'}}>Ilość:</th>
+            <th style={{ width: "200px", height: "50px", textAlign:'center', border: '2px solid black', backgroundColor: 'lightgrey'}}>Całkowita cena:</th>
+          </tr>
+          {order.map((item) => (
+            <PartItem
+              key={item.id}
+              id={item.id}
+              name={item.name}
+              price={item.price}
+              amount={item.amount}
+              cost = {item.price * item.amount}
+            />
+          ))}
+        </table>
+      </div>
+    </div>
+  );
+};
 
 export default OrderCreateList;
