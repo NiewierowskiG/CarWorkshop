@@ -11,8 +11,6 @@ import {ItemProps} from "../Item/ItemProps";
 import ItemList from "../ItemList/ItemList";
 import {AUTH_TOKEN} from "../Config/Config";
 
-const AUTH_TOKEN = "Token b570a848252266feb5e37d0a7b6ff6ef866cc577"
-
 interface Props {
 
 }
