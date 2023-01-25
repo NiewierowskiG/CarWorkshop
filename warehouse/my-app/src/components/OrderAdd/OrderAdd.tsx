@@ -139,7 +139,7 @@ class OrderAdd extends React.Component<Props, State> {
                     <br />
                     <label htmlFor="Date">Date (YYYY-MM-DD Format)</label>
                     <input id="Date" value={this.state.order.date} onChange={this.handleChange} />
-                    <ValueValidate value={this.state.order.date} validationFunction={this.isValidDateFormat} errorMessage={"Data musi być podana we właściwej formie"} />
+                    <ValueValidate value={this.state.order.date} validationFunction={isValidDateFormat} errorMessage={"Data musi być podana we właściwej formie"} />
                     <br />
                     <label htmlFor="Title">Title</label>
                     <input id="Title" value={this.state.order.title} onChange={this.handleChange} />
