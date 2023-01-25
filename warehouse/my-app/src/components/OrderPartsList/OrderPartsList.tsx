@@ -35,7 +35,7 @@ const OrderPartsList: React.FC<OrderPartsListProps> = ({
                         backgroundColor: "lightgrey"
                     }}
                 >
-                    ID:
+                    Numer Zamówienia:
                 </th>
                 <th
                     style={{
@@ -46,7 +46,7 @@ const OrderPartsList: React.FC<OrderPartsListProps> = ({
                         backgroundColor: "lightgrey"
                     }}
                 >
-                    Name:
+                    Nazwa zamówienia:
                 </th>
                 <th
                     style={{
@@ -57,7 +57,7 @@ const OrderPartsList: React.FC<OrderPartsListProps> = ({
                         backgroundColor: "lightgrey"
                     }}
                 >
-                    Price:
+                    Cena (1 sztuka) :
                 </th>
                 <th
                     style={{
@@ -68,7 +68,18 @@ const OrderPartsList: React.FC<OrderPartsListProps> = ({
                         backgroundColor: "lightgrey"
                     }}
                 >
-                    Amount:
+                    Ilość:
+                </th>
+                <th
+                    style={{
+                        width: "200px",
+                        height: "50px",
+                        border: "2px solid black",
+                        textAlign: 'center',
+                        backgroundColor: "lightgrey"
+                    }}
+                >
+                    Cena całkowita:
                 </th>
             </tr>
             <PartItem

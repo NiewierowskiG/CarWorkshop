@@ -3,17 +3,21 @@ form{
     left: 75%;
     width: 400px;
     background-color: lightgray;
-    text-align: center;
     box-shadow: 7px 7px 7px gray;
     border: 2px solid black;
     transition: linear 1s;
 }
 label, button{
     margin-top: 20px;
-    display: block;
+    display: flex;
+    align-items: flex-end;
 }
 input{
     padding-left: 10px;
+}
+span{
+    margin-left: 20px;
+    margin-right: 10px;
 }
 button{
     margin-left: auto;

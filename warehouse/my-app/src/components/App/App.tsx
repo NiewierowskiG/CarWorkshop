@@ -93,7 +93,7 @@ class App extends React.Component<Props, State> {
                         <OrderCreate/>
                     </Route>
                     <Route path='/Item'>
-                        <ItemList items={this.state.items} />
+                        <ItemList items={this.state.items} />;
                     </Route>
             </Router>
         )

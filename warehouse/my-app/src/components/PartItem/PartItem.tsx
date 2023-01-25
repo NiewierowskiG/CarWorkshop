@@ -6,6 +6,7 @@ interface PartItemProps {
   name: string;
   price: number;
   amount: number;
+  cost: number;
   onClick?: (item: ItemType) => void;
 }
 
@@ -14,6 +15,7 @@ const PartItem: React.FC<PartItemProps> = ({
   name,
   price,
   amount,
+  cost,
   onClick,
 }) => {
   const handleClick = () => {
@@ -23,10 +25,12 @@ const PartItem: React.FC<PartItemProps> = ({
         name,
         price,
         amount,
+        cost
       };
       onClick(item);
     }
   };
+
   return (
     <tr className= "content" onClick={handleClick}>
       <td
@@ -72,6 +76,17 @@ const PartItem: React.FC<PartItemProps> = ({
         }}
       >
         {amount}
+      </td>
+      <td
+        style={{
+          width: "200px",
+          height: "50px",
+          border: "1px solid black",
+          borderCollapse: "collapse",
+          textAlign: "center",
+        }}
+      >
+        {cost}
       </td>
     </tr>
   );

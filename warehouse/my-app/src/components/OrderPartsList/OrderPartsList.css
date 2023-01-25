@@ -22,3 +22,8 @@
     width:35%;
     border:1px solid red;
   }
+  tr:hover{
+    background-color: gray;
+    transition: linear 0.6s;
+    cursor: copy;
+  }

@@ -18,25 +18,25 @@ const ItemAdd: React.FC<{ addItem: (item: ItemProps) => void }> = ({ addItem }) 
    return (
      <form style={{}} onSubmit={handleSubmit}> 
           <label>
-            ID:
+          <span>Nr. ID:</span>
             <input type="number" name="id" value={newItem.id} onChange={handleInputChange} />
               <ValueValidate  value={newItem.id} validationFunction={isValidId} errorMessage={"Nieprawidłowe ID"}/>
           </label>
           <label>
-            Name:
+           <span> Nazwa części:</span>
             <input type="text" name="name" value={newItem.name} onChange={handleInputChange} />
           </label>
           <label>
-            Amount:
+            <span>Ilość:</span>
             <input type="number" step={0.01} name="amount" value={newItem.amount} onChange={handleInputChange} />
             <ValueValidate  value={newItem.amount} validationFunction={isValidNumber} errorMessage={"Nieprawidłowa ilość"}/>
           </label>
           <label>
-            Price:
+          <span>Cena (1 sztuka):</span>
             <input type="number" step={0.01} name="price" value={newItem.price} onChange={handleInputChange} />
             <ValueValidate  value={newItem.price} validationFunction={isValidNumber} errorMessage={"Nieprawidłowa cena"}/>
           </label>
-          <button style={{marginLeft:"auto",marginRight:"auto", marginBottom: '10px', marginTop: '20px' }}onClick={() => setShowAdd(!showAdd)} type="submit">Add Item</button>
+          <button style={{marginLeft:"auto",marginRight:"auto", marginBottom: '10px', marginTop: '20px', padding: '8px' }}onClick={() => setShowAdd(!showAdd)} type="submit">Add Item</button>
         </form>
   );
 };
