@@ -28,12 +28,12 @@ const PartItem: React.FC<PartItemProps> = ({
     }
   };
   return (
-    <tr onClick={handleClick}>
+    <tr className= "content" onClick={handleClick}>
       <td
         style={{
           width: "200px",
           height: "50px",
-          borderBottom: "1px solid black",
+          border: "1px solid black",
           borderCollapse: "collapse",
           textAlign: "center",
         }}
@@ -44,7 +44,7 @@ const PartItem: React.FC<PartItemProps> = ({
         style={{
           width: "200px",
           height: "50px",
-          borderBottom: "1px solid black",
+          border: "1px solid black",
           borderCollapse: "collapse",
           textAlign: "center",
         }}
@@ -55,7 +55,7 @@ const PartItem: React.FC<PartItemProps> = ({
         style={{
           width: "200px",
           height: "50px",
-          borderBottom: "1px solid black",
+          border: "1px solid black",
           borderCollapse: "collapse",
           textAlign: "center",
         }}
@@ -66,7 +66,7 @@ const PartItem: React.FC<PartItemProps> = ({
         style={{
           width: "200px",
           height: "50px",
-          borderBottom: "1px solid black",
+          border: "1px solid black",
           borderCollapse: "collapse",
           textAlign: "center",
         }}

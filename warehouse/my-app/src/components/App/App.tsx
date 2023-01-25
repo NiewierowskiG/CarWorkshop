@@ -87,18 +87,16 @@ class App extends React.Component<Props, State> {
     render() {
         return (
             <Router>
-                <div>
                     <Navbar/>
                     <h1>Main page</h1>
                     <Route path='/Orders'>
                         <OrderCreate/>
                     </Route>
                     <Route path='/Item'>
-                        return <ItemList items={this.state.items} />;
+                        <ItemList items={this.state.items} />
                     </Route>
-                </div>
             </Router>
-        );
+        )
     }
 }
 

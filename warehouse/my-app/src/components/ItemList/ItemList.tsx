@@ -67,7 +67,7 @@ const ItemList: React.FC<ItemListProps> = ({items: initialItems}) => {
             </table>
             <ItemAdd addItem={(item: ItemProps) => setItems([...items, item])}/>
                         </div>*/
-    );
+    )
 };
 
 export default ItemList;

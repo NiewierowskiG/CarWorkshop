@@ -16,8 +16,8 @@ const OrderCreate: React.FC = () => {
         width: "100%",
       }}
     >
-      <OrderCreateList order={order} />
       <OrderPartsList order={order} onSetOrder={setOrder} />
+      <OrderCreateList order={order} />
     </div>
   );
 };

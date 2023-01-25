@@ -2,6 +2,7 @@ import PartItem from "../PartItem/PartItem";
 import React, {Component} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {ItemType} from "../types/ItemTypes";
+import './OrderPartsList.css'
 
 type OrderPartsListProps = {
     order: ItemType[];
@@ -14,12 +15,14 @@ const OrderPartsList: React.FC<OrderPartsListProps> = ({
                                                        }) => {
     const handleAddItem = (item: ItemType): void => onSetOrder([...order, item]);
     return (
+        <div className="table-wrapper">
+        <div className="table-scroll">
         <table
             className="table"
             style={{
-                borderBottom: "1px solid black",
+                border: "1px solid black",
                 borderCollapse: "collapse",
-                width: "40%",
+                width: "100%",
             }}
         >
             <tr className="thead-dark">
@@ -27,7 +30,9 @@ const OrderPartsList: React.FC<OrderPartsListProps> = ({
                     style={{
                         width: "200px",
                         height: "50px",
-                        borderBottom: "1px solid black",
+                        border: "2px solid black",
+                        textAlign: 'center',
+                        backgroundColor: "lightgrey"
                     }}
                 >
                     ID:
@@ -36,7 +41,9 @@ const OrderPartsList: React.FC<OrderPartsListProps> = ({
                     style={{
                         width: "200px",
                         height: "50px",
-                        borderBottom: "1px solid black",
+                        border: "2px solid black",
+                        textAlign: 'center',
+                        backgroundColor: "lightgrey"
                     }}
                 >
                     Name:
@@ -45,7 +52,9 @@ const OrderPartsList: React.FC<OrderPartsListProps> = ({
                     style={{
                         width: "200px",
                         height: "50px",
-                        borderBottom: "1px solid black",
+                        border: "2px solid black",
+                        textAlign: 'center',
+                        backgroundColor: "lightgrey"
                     }}
                 >
                     Price:
@@ -54,7 +63,9 @@ const OrderPartsList: React.FC<OrderPartsListProps> = ({
                     style={{
                         width: "200px",
                         height: "50px",
-                        borderBottom: "1px solid black",
+                        border: "2px solid black",
+                        textAlign: 'center',
+                        backgroundColor: "lightgrey"
                     }}
                 >
                     Amount:
@@ -79,6 +90,8 @@ const OrderPartsList: React.FC<OrderPartsListProps> = ({
             <PartItem onClick={handleAddItem} id={21} name="Orange" price={2.99} amount={3}/>
             <PartItem onClick={handleAddItem} id={22} name="Orange" price={2.99} amount={3}/>
         </table>
+        </div>
+        </div>
     );
 };
 
