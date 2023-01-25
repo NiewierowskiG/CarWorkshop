@@ -9,8 +9,9 @@ import Item, {items3} from '../Item/Item';
 import axios from 'axios';
 import {ItemProps} from "../Item/ItemProps";
 import ItemList from "../ItemList/ItemList";
+import {AUTH_TOKEN} from "../Config/Config";
 
-const AUTH_TOKEN = "Token b570a848252266feb5e37d0a7b6ff6ef866cc577"
+//const AUTH_TOKEN = "Token b570a848252266feb5e37d0a7b6ff6ef866cc577"
 
 interface Props {
 
@@ -54,7 +55,7 @@ class App extends React.Component<Props, State> {
             .catch(error => {
                 console.log(error);
             });
-        console.log(this.state.orders)
+        //console.log(this.state.orders)
     }
 
 
@@ -69,7 +70,7 @@ class App extends React.Component<Props, State> {
             .catch(error => {
                 console.log(error);
             });
-        console.log(this.state.items)
+        //console.log(this.state.items)
     }
 
     handleOrderFromList = (data: OrderProps) => {

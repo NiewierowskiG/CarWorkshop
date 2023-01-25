@@ -5,6 +5,7 @@ import { OrderProps } from "../Order/OrderProps";
 
 import ValueValidate from "../ValueValidate/ValueValidate";
 import {isValidDateFormat} from "../ValueValidate/utils/validators";
+import order from "../Order/Order";
 
 
 
@@ -145,7 +146,7 @@ class OrderAdd extends React.Component<Props, State> {
                     <label htmlFor="Title">Title</label>
                     <input id="Title" value={this.state.order.title} onChange={this.handleChange} />
                     <ValueValidate value={this.state.order.title} validationFunction={validateTitle} errorMessage={"Tytuł musi zostać podany"} />
-                    <Crud order={this.state.order} />
+                    <Crud prop={this.state.order} propType={'order'}/>
 
                 </form>
                 {!(this.state.errors.length === 0) && <ErrorValidate error={this.state.errors} />}
