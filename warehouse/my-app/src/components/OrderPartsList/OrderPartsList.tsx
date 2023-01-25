@@ -38,7 +38,7 @@ const OrderPartsList: React.FC<OrderPartsListProps> = ({
                         backgroundColor: "lightgrey"
                     }}
                 >
-                    Numer Zamówienia:
+                    Nr. ID:
                 </th>
                 <th
                     style={{
@@ -49,7 +49,7 @@ const OrderPartsList: React.FC<OrderPartsListProps> = ({
                         backgroundColor: "lightgrey"
                     }}
                 >
-                    Nazwa zamówienia:
+                    Nazwa części:
                 </th>
                 <th
                     style={{
@@ -85,13 +85,6 @@ const OrderPartsList: React.FC<OrderPartsListProps> = ({
                     Cena całkowita:
                 </th>
             </tr>
-            <PartItem
-                onClick={handleAddItem}
-                id={11}
-                name="Apple"
-                price={1.99}
-                amount={5}
-            />
             {items.map(item => (
                     <PartItem
                         onClick={handleAddItem}
@@ -99,6 +92,7 @@ const OrderPartsList: React.FC<OrderPartsListProps> = ({
                         name={item.name}
                         price={item.price}
                         amount={item.amount}
+                        cost = {item.price * item.amount}
                     />
                 ))}
 

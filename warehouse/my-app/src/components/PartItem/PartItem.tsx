@@ -25,7 +25,7 @@ const PartItem: React.FC<PartItemProps> = ({
         name,
         price,
         amount,
-        cost
+        cost,
       };
       onClick(item);
     }

@@ -5,8 +5,8 @@ export class Navbar extends Component {
     render() {
         return (
             <nav className='nav'>
-                <Link style={{marginLeft:'20px'}} to="/">Strona główna</Link>
-                <Link to="/Orders">Zamówienia</Link>
+                <Link style={{marginLeft:'20px'}} to="/">Zamówienia</Link>
+                <Link to="/Orders">Stwórz zamówienie</Link>
                 <Link to="/Item">Części w magazynie</Link>
             </nav>
         );

@@ -87,13 +87,13 @@ class App extends React.Component<Props, State> {
         return (
             <Router>
                     <Navbar/>
-                    <h1>Main page</h1>
-                    <Route path='/Orders'>
-                        <OrderCreate items={this.state.items} />
-                    </Route>
-                    <Route path='/Item'>
-                        <ItemList items={this.state.items} />;
-                    </Route>
+                        <h1>Main page</h1>
+                        <Route path='/Orders'>
+                            <OrderCreate items={this.state.items} />
+                        </Route>
+                        <Route path='/Item'>
+                            <ItemList items={this.state.items} />;
+                        </Route>
             </Router>
         )
     }
