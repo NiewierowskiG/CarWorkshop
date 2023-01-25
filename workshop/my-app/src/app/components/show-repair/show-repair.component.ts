@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -19,14 +19,18 @@ export class ShowRepairComponent implements OnInit {
 
 
   startStopWork() {
-    this.http.get('http://localhost:8000/startStopRepair/'.concat(this.repairId.toString(),'/',this.workerId.toString()))
+    const token = localStorage.getItem('token')
+    const header = new HttpHeaders({'Content-Type':'application/json'}).set('Authorization', 'Token ' + token)
+    this.http.get('http://localhost:8000/startStopRepair/'.concat(this.repairId.toString(),'/',this.workerId.toString()), {headers : header})
       .subscribe((res) => {
         console.log(res);
       })
   }
 
   endRepair() {
-    this.http.get('http://localhost:8000/endRepair/'.concat(this.repairId.toString()))
+    const token = localStorage.getItem('token')
+    const header = new HttpHeaders({'Content-Type':'application/json'}).set('Authorization', 'Token ' + token)
+    this.http.get('http://localhost:8000/endRepair/'.concat(this.repairId.toString()), {headers : header})
     .subscribe((res) => {
       console.log(res);
     })

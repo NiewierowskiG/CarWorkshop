@@ -6,8 +6,8 @@ from django.conf import settings
 class Person(models.Model):
     name = models.CharField(max_length=100)
     surname = models.CharField(max_length=100)
-    tel_nr = models.IntegerField(unique=True)
-    email = models.EmailField(max_length=254, unique=True)
+    tel_nr = models.IntegerField()
+    email = models.EmailField(max_length=254)
 
     def __str__(self):
         return self.name
@@ -20,9 +20,15 @@ class Client(models.Model):
     def __str__(self):
         return self.person.name
 
+    def create(self, validated_data):
+        person_data = validated_data.pop('person')
+        person, _ = Person.objects.get_or_create(email=person_data['email'])
+        client, created = Client.objects.get_or_create(person=person, **validated_data)
+        return client
+
 
 class Position(models.Model):
-    name = models.CharField(max_length=200, unique=True)
+    name = models.CharField(max_length=200)
     canCreateClients = models.BooleanField()
     canCreateWorkers = models.BooleanField()
 
@@ -43,14 +49,14 @@ class Worker(models.Model):
 
 
 class CarBrand(models.Model):
-    name = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
 
 
 class CarModel(models.Model):
-    name = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=100)
     brand = models.ForeignKey(CarBrand, on_delete=models.CASCADE)
     prod_year_start = models.SmallIntegerField()
     prod_year_end = models.SmallIntegerField()
@@ -63,7 +69,7 @@ class Car(models.Model):
     model = models.ForeignKey(CarModel, on_delete=models.CASCADE)
     color = models.CharField(max_length=100)
     prod_year = models.SmallIntegerField()
-    vin = models.CharField(max_length=17, unique=True)
+    vin = models.CharField(max_length=17)
 
     def __str__(self):
         return f'{self.model.name} {self.color} {str(self.prod_year)}'
