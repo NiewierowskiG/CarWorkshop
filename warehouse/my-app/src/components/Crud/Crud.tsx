@@ -8,7 +8,7 @@ const AUTH_TOKEN = "Token e19d08dda86eb3c838271ccab74b59f029dc94e3"
 
 interface CrudProps {
   order: OrderProps;
-  item: ItemProps;
+  //item: ItemProps;
 }
 
 
