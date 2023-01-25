@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {ItemListProps, ItemProps} from "../Item/ItemProps";
 import ItemAdd from "../ItemAdd/ItemAdd";
 import ItemEdit from "../ItemAdd/ItemEdit";
-
+import './ItemList.css'
 
 const ItemList: React.FC<ItemListProps> = ({items: initialItems}) => {
     const [items, setItems] = useState<ItemProps[]>(initialItems);
