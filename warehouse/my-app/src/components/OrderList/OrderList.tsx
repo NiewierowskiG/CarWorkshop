@@ -37,7 +37,6 @@ class OrdersList extends React.Component<Props, State> {
           <thead>
             <tr>
               <th>ID</th>
-              <th>Items</th>
               <th>Date</th>
               <th>Title</th>
             </tr>
@@ -45,7 +44,7 @@ class OrdersList extends React.Component<Props, State> {
           <tbody>
             {this.props.orders.map(order => (
               // Use the Order component to render each individual order
-              <Order key={order.id} id={order.id} items_count={order.items_count} date={order.date} title={order.title} status={''} />
+              <Order key={order.id} id={order.id} date={order.date} title={order.title} status={''} worker={order.worker}  />
             ))}
           </tbody>
         </table>

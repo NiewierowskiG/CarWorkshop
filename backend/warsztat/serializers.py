@@ -22,8 +22,8 @@ class ClientSerializer(WritableNestedModelSerializer, serializers.ModelSerialize
 
 
 class PositionSerializer(serializers.ModelSerializer):
-    canCreateClients = serializers.BooleanField(source="can_create_clients")
-    canCreateWorkers = serializers.BooleanField(source="can_create_workers")
+    canCreateClients = serializers.BooleanField(source="canCreateClients")
+    canCreateWorkers = serializers.BooleanField(source="canCreateWorkers")
 
     class Meta:
         model = Position
@@ -43,6 +43,15 @@ class WorkerSerializer(WritableNestedModelSerializer, serializers.ModelSerialize
         model = Worker
         fields = ('id', 'name', 'surname', 'telNr',
                   'email', 'position', 'salary','person')
+
+class WorkerPersonSerializer(WritableNestedModelSerializer, serializers.ModelSerializer):
+    salary = serializers.DecimalField(max_digits=10, decimal_places=2)
+    person = PersonSerializer()
+    position = PositionSerializer()
+
+    class Meta:
+        model = Worker
+        fields = ('id', 'person', 'position', 'salary')
 
 
 class CarBrandSerializer(serializers.ModelSerializer):
@@ -126,7 +135,7 @@ class RentCarSerializer(serializers.ModelSerializer):
 
 
 class OrderSerializer(WritableNestedModelSerializer, serializers.ModelSerializer):
-    client = ClientSerializer()
+    worker = WorkerPersonSerializer()
     class Meta:
         model = Order
-        fields = ('id','client', 'address','items_count','date','title','status')
+        fields = ('id','worker','date','title','status')

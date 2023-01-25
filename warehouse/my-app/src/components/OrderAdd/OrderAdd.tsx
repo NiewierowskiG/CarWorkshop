@@ -1,9 +1,9 @@
-import React from 'react';
-import "../App/App.module.css"
+import React from "react";
+import Crud from "../Crud/Crud";
 import ErrorValidate from "../ErrorValidate/ErrorValidate";
-import { OrderProps } from '../Order/OrderProps';
+import { OrderProps } from "../Order/OrderProps";
 import ValueValidate from "../ValueValidate/ValueValidate";
-import Crud from '../Crud/Crud';
+
 
 
 interface Props {
@@ -12,11 +12,7 @@ interface Props {
 }
 
 interface State {
-    id: number;
-    items_count: number;
-    date: string;
-    title: string;
-    status: string;
+    order:OrderProps
     errors: string[];
 }
 
@@ -36,12 +32,28 @@ class OrderAdd extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
-        this.state = {
-            id: this.findBestID(this.props.idsList),
-            items_count: 1,
-            date: '',
-            title: '',
-            status: '',
+        this.state = {   
+            order:{
+                id: this.findBestID(this.props.idsList),
+                worker:{ 
+                    person : {
+                      id:4, 
+                      name:"", 
+                      surname:'', 
+                      telNr:0, 
+                      email:'1@w.a'
+                    },
+                    position:{
+                        name:"",
+                        canCreateClients:false,
+                        canCreateWorkers:false,
+                    },
+                    salary:0, 
+                  },
+                date: '',
+                title: '',
+                status: 'DONE',
+            },
             errors: [],
         };
     }
@@ -91,58 +103,71 @@ class OrderAdd extends React.Component<Props, State> {
         if (true) {
             const order = {
                 id: this.findBestID(this.props.idsList),
-                items_count: this.state.items_count,
-                date: this.state.date,
-                title: this.state.title,
-                status: this.state.status
+                worker:{  //TODO change to dynamic
+                    person : {
+                      id: this.state.order.worker.person.id, 
+                      name:"adam", 
+                      surname:'malysz', 
+                      telNr:0, 
+                      email:'a@a.pl'
+                    },
+                    position:{
+                        name:"spryciarz",
+                        canCreateClients:false,
+                        canCreateWorkers:false,
+                    },
+                    salary:0, 
+                  },
+                date: this.state.order.date,
+                title: this.state.order.title,
+                status: this.state.order.status
             };
             this.props.onOrderFromAdd(order);
         }
-        this.setState({ id: this.findBestID(this.props.idsList) });
+        this.setState((prevState) => {
+            const updatedOrder = {...prevState.order, id: this.findBestID(this.props.idsList)};
+            return { order: updatedOrder }
+        });
     };
 
     handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { id, value } = event.target;
-        if (id === "ID" || id === "items_count") {
-            this.setState({
-                ...this.state,
-                [id.toLowerCase()]: Number(value),
-            })
+        if (id === "ID") {
+            this.setState((prevState) => ({
+                order: {
+                    ...prevState.order,
+                    id: Number(value)
+                }
+            }));
         } else {
-            this.setState({
-                ...this.state,
-                [id.toLowerCase()]: value,
-            });
+            this.setState((prevState) => ({
+                order: {
+                    ...prevState.order,
+                    [id.toLowerCase()]: value
+                }
+            }));
         }
-
     };
 
 
 
     render() {
         const validateTitle = (value: string | number) => String(value).length === 0;
-        const validateitems_count = (value: number | string) => Number(value) < 0;
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="ID">ID</label>
-                    <input id="ID" type='number' value={this.state.id}
+                    <input id="ID" type='number' value={this.state.order.id}
                         onChange={this.handleChange} />
-                    <ValueValidate value={this.state.id} validationFunction={this.isValidId} errorMessage={"Nieprawidłowe ID"} />
-                    <br />
-                    <label htmlFor="items_count">Item Count</label>
-                    <input id="items_count" type='number' value={this.state.items_count}
-                        onChange={this.handleChange} />
-                    <ValueValidate value={this.state.items_count} validationFunction={validateitems_count} errorMessage={"Liczba przedmiotów nie może być ujemna"} />
-                    <br />
+                    <ValueValidate value={this.state.order.id} validationFunction={this.isValidId} errorMessage={"Nieprawidłowe ID"} />
                     <label htmlFor="Date">Date (YYYY-MM-DD Format)</label>
-                    <input id="Date" value={this.state.date} onChange={this.handleChange} />
-                    <ValueValidate value={this.state.date} validationFunction={this.isValidDateFormat} errorMessage={"Data musi być podana we właściwej formie"} />
+                    <input id="Date" value={this.state.order.date} onChange={this.handleChange} />
+                    <ValueValidate value={this.state.order.date} validationFunction={this.isValidDateFormat} errorMessage={"Data musi być podana we właściwej formie"} />
                     <br />
                     <label htmlFor="Title">Title</label>
-                    <input id="Title" value={this.state.title} onChange={this.handleChange} />
-                    <ValueValidate value={this.state.title} validationFunction={validateTitle} errorMessage={"Tytuł musi zostać podany"} />
-                    <Crud order={this.state} />
+                    <input id="Title" value={this.state.order.title} onChange={this.handleChange} />
+                    <ValueValidate value={this.state.order.title} validationFunction={validateTitle} errorMessage={"Tytuł musi zostać podany"} />
+                    <Crud order={this.state.order} />
                 </form>
                 {!(this.state.errors.length === 0) && <ErrorValidate error={this.state.errors} />}
             </div>

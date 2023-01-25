@@ -23,14 +23,42 @@ class App extends React.Component<Props, State> {
       orders1: [ 
         {
           id: 1,
-          items_count: 2,
+          worker:{ 
+            person : {
+              id:0, 
+              name:"", 
+              surname:'', 
+              telNr:0, 
+              email:''
+            },
+            position:{
+              name:"",
+              canCreateClients:false,
+              canCreateWorkers:false
+            }, 
+            salary:0,
+          },
           date: '2022-01-01',
           title: 'Order #1',
           status: 'done'
         },
         {
           id: 2,
-          items_count: 3,
+          worker:{ 
+            person : {
+              id:0, 
+              name:"", 
+              surname:'', 
+              telNr:0, 
+              email:''
+            },
+            position:{
+              name:"",
+              canCreateClients:false,
+              canCreateWorkers:false
+            }, 
+            salary:0,
+          },
           date: '2022-01-02',
           title: 'Order #2',
           status: 'done'
@@ -39,35 +67,106 @@ class App extends React.Component<Props, State> {
       orders2: [
         {
           id: 23478637,
-          items_count: 77,
+          worker:{ 
+            person : {
+              id:0, 
+              name:"", 
+              surname:'', 
+              telNr:0, 
+              email:''
+            },
+            position:{
+              name:"",
+              canCreateClients:false,
+              canCreateWorkers:false
+            }, 
+            salary:0,
+          },
           date: '2021-09-14T15:39:01.319Z',
           title: 'Ergonomic Plastic Chicken',
           status: 'undone'
         },
         {
           id: 84511239,
-          items_count: 57,
+          worker:{ 
+            person : {
+              id:0, 
+              name:"", 
+              surname:'', 
+              telNr:0, 
+              email:''
+            },
+            position:{
+              name:"",
+              canCreateClients:false,
+              canCreateWorkers:false
+            }, 
+            salary:0,
+          },
           date: '2021-09-14T15:39:01.319Z',
           title: 'Handcrafted Frozen Chips',
           status: 'undone'
         },
         {
           id: 58772912,
-          items_count: 73,
+          worker:{ 
+            person : {
+              id:0, 
+              name:"", 
+              surname:'', 
+              telNr:0, 
+              email:''
+            },
+            position:{
+              name:"",
+              canCreateClients:false,
+              canCreateWorkers:false
+            }, 
+            salary:0,
+          },
           date: '2021-09-14T15:39:01.319Z',
           title: 'Small Fresh Car',
           status: 'undone'
         },
         {
           id: 77114799,
-          items_count: 83,
+          worker:{ 
+            person : {
+              id:0, 
+              name:"", 
+              surname:'', 
+              telNr:0, 
+              email:''
+            },
+            position:{
+              name:"",
+              canCreateClients:false,
+              canCreateWorkers:false
+            }, 
+            salary:0,
+          },
+
           date: '2021-09-14T15:39:01.319Z',
           title: 'Intelligent Soft Soap',
           status: 'undone'
         },
         {
           id: 89627201,
-          items_count: 56,
+          worker:{ 
+            person : {
+              id:0, 
+              name:"", 
+              surname:'', 
+              telNr:0, 
+              email:''
+            },
+            position:{
+              name:"",
+              canCreateClients:false,
+              canCreateWorkers:false
+            }, 
+            salary:0,
+          },
           date: '2021-09-14T15:39:01.319Z',
           title: 'Gorgeous Concrete Towels',
           status: 'undone'

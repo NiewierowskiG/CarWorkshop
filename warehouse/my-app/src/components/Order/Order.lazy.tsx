@@ -4,7 +4,7 @@ const LazyOrder = lazy(() => import('./Order'));
 
 const Order = (props: JSX.IntrinsicAttributes & { children?: React.ReactNode; }) => (
   <Suspense fallback={null}>
-    <LazyOrder status={''} id={0} items_count={0} date={''} title={''} {...props} />
+    <LazyOrder id={0} worker={{ person : {id:0, name:"", surname:'', telNr:0, email:''}, position:{name:"",canCreateClients:false,canCreateWorkers:false}, salary:0}}date={''} title={''} status={''} {...props} />
   </Suspense>
 );
 

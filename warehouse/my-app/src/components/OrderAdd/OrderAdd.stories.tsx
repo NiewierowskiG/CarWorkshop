@@ -3,7 +3,6 @@ import React from 'react';
 import OrderAdd from './OrderAdd';
 interface OrderProps {
   id: number;
-  items_count: number;
   date: string;
   title: string;
 }

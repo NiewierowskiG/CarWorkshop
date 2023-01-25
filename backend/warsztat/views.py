@@ -85,7 +85,7 @@ def start_stop_work(request, repair_id, worker_id, format=None):
         hours_worked.end_time = now()
     hours_worked.save()
     repair.save()
-
+    
 #@permission_classes([IsAuthenticated])
 @api_view(['GET', 'POST'])
 def test_email(request, email, subject, body, format=None):
@@ -104,7 +104,7 @@ def people_list(request, format=None):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE', 'PATCH'])  # RUD from CRUD
 def person_detail(request, id, format=None):
@@ -130,7 +130,7 @@ def person_detail(request, id, format=None):
     elif request.method == 'DELETE':
         item.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET', 'POST'])
@@ -145,7 +145,7 @@ def clients_list(request, format=None):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE', 'PATCH'])  # RUD from CRUD
 def client_detail(request, id, format=None):
@@ -171,7 +171,7 @@ def client_detail(request, id, format=None):
     elif request.method == 'DELETE':
         item.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'POST'])
 def positions_list(request, format=None):
@@ -184,7 +184,7 @@ def positions_list(request, format=None):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE', 'PATCH'])  # RUD from CRUD
 def position_detail(request, id, format=None):
@@ -210,7 +210,7 @@ def position_detail(request, id, format=None):
     elif request.method == 'DELETE':
         item.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 #@permission_classes([IsAuthenticated])
 
 
@@ -225,7 +225,7 @@ def workers_list(request, format=None):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE', 'PATCH'])  # RUD from CRUD
 def order_detail(request, id, format=None):
@@ -251,7 +251,7 @@ def order_detail(request, id, format=None):
     elif request.method == 'DELETE':
         item.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'POST'])
 def order_list(request, format=None):
@@ -264,6 +264,7 @@ def order_list(request, format=None):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET', 'PUT', 'DELETE', 'PATCH'])  # RUD from CRUD
@@ -290,7 +291,7 @@ def worker_detail(request, id, format=None):
     elif request.method == 'DELETE':
         item.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'POST'])
 def car_brands_list(request, format=None):
@@ -303,7 +304,7 @@ def car_brands_list(request, format=None):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE', 'PATCH'])  # RUD from CRUD
 def car_brand_detail(request, id, format=None):
@@ -329,7 +330,7 @@ def car_brand_detail(request, id, format=None):
     elif request.method == 'DELETE':
         item.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'POST'])
 def car_models_list(request, format=None):
@@ -342,7 +343,7 @@ def car_models_list(request, format=None):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE', 'PATCH'])  # RUD from CRUD
 def car_model_detail(request, id, format=None):
@@ -368,7 +369,7 @@ def car_model_detail(request, id, format=None):
     elif request.method == 'DELETE':
         item.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'POST'])
 def repairs_list(request, format=None):
@@ -381,7 +382,7 @@ def repairs_list(request, format=None):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE', 'PATCH'])  # RUD from CRUD
 def repair_detail(request, id, format=None):
@@ -407,7 +408,7 @@ def repair_detail(request, id, format=None):
     elif request.method == 'DELETE':
         item.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'POST'])
 def cars_list(request, format=None):
@@ -420,7 +421,7 @@ def cars_list(request, format=None):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE', 'PATCH'])  # RUD from CRUD
 def car_detail(request, id, format=None):
@@ -446,7 +447,7 @@ def car_detail(request, id, format=None):
     elif request.method == 'DELETE':
         item.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'POST'])
 def hours_worked_list(request, format=None):
@@ -459,7 +460,7 @@ def hours_worked_list(request, format=None):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE', 'PATCH'])  # RUD from CRUD
 def hours_worked_detail(request, id, format=None):
@@ -485,7 +486,7 @@ def hours_worked_detail(request, id, format=None):
     elif request.method == 'DELETE':
         item.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'POST'])
 def client_notification_list(request, format=None):
@@ -498,7 +499,7 @@ def client_notification_list(request, format=None):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'PATCH', 'DELETE'])  # RUD from CRUD
 def client_notification_detail(request, id, format=None):
@@ -524,7 +525,7 @@ def client_notification_detail(request, id, format=None):
     elif request.method == 'DELETE':
         item.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'POST'])
 def performance_review_list(request, format=None):
@@ -537,7 +538,7 @@ def performance_review_list(request, format=None):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE', 'PATCH'])  # RUD from CRUD
 def performance_review_detail(request, id, format=None):
@@ -563,7 +564,7 @@ def performance_review_detail(request, id, format=None):
     elif request.method == 'DELETE':
         item.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'POST'])
 def notifications_list(request, format=None):
@@ -576,7 +577,7 @@ def notifications_list(request, format=None):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE', 'PATCH'])  # RUD from CRUD
 def notifications_detail(request, id, format=None):
@@ -602,7 +603,7 @@ def notifications_detail(request, id, format=None):
     elif request.method == 'DELETE':
         item.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'POST'])
 def substitute_car_list(request, format=None):
@@ -615,7 +616,7 @@ def substitute_car_list(request, format=None):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE', 'PATCH'])  # RUD from CRUD
 def substitute_car_detail(request, id, format=None):
@@ -641,7 +642,7 @@ def substitute_car_detail(request, id, format=None):
     elif request.method == 'DELETE':
         item.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'POST'])
 def rent_car_list(request, format=None):
@@ -654,7 +655,7 @@ def rent_car_list(request, format=None):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE', 'PATCH'])  # RUD from CRUD
 def rent_car_detail(request, id, format=None):
@@ -680,3 +681,4 @@ def rent_car_detail(request, id, format=None):
     elif request.method == 'DELETE':
         item.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

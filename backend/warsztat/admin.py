@@ -16,7 +16,7 @@ admin.site.register(Notifications)
 admin.site.register(SubstituteCar)
 admin.site.register(RentCar)
 
-
+admin.site.register(Order)
 
 
 

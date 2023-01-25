@@ -9,7 +9,7 @@ class RepairTestCase(TestCase):
         self.userclient = User.objects.create_user(username='test2', password='test123')
         self.workerperson = Person.objects.create(user=self.userworker, tel_nr=123123123)
         self.clientperson = Person.objects.create(user=self.userclient, tel_nr=123123123)
-        self.position = Position.objects.create(name='pracowniktest', can_create_clients=False, can_create_workers=False)
+        self.position = Position.objects.create(name='pracowniktest', canCreateClients=False, canCreateWorkers=False)
         self.worker = Worker.objects.create(person=self.workerperson, position=self.position, salary=123)
         self.clienttest = Client.objects.create(person=self.clientperson, nip=123123)
         self.brand = CarBrand.objects.create(name='testBrand')

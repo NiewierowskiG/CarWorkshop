@@ -5,7 +5,7 @@ import { OrderProps } from '../Order/OrderProps';
 
 
 
-it('It should mount', () => {
+it('should mount', () => {
   const div = document.createElement('div');
   ReactDOM.render(<OrderAdd onOrderFromAdd={function (order: OrderProps): void {
     throw new Error('Function not implemented.');

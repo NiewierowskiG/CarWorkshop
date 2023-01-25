@@ -23,8 +23,8 @@ class Client(models.Model):
 
 class Position(models.Model):
     name = models.CharField(max_length=200, unique=True)
-    can_create_clients = models.BooleanField()
-    can_create_workers = models.BooleanField()
+    canCreateClients = models.BooleanField()
+    canCreateWorkers = models.BooleanField()
 
     def __str__(self):
         return self.name
@@ -155,14 +155,13 @@ class RentCar(models.Model):
 
 
 class Order(models.Model):
-    client = models.ForeignKey(Client, on_delete=models.CASCADE)
-    address = models.CharField(max_length=150)
-    items_count = models.FloatField()
+    worker = models.ForeignKey(Worker, on_delete=models.CASCADE)
     date    = models.DateField(blank=True, null=True, default=None)
     title = models.CharField(max_length=150)
     status = models.CharField(max_length=50)
-
-
+    #TODO iteams czesci
+    def __str__(self):
+        return self.title
 """
 
 class PartItem(models.Model):
