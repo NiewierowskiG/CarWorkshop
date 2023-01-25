@@ -141,3 +141,9 @@ class OrderSerializer(WritableNestedModelSerializer, serializers.ModelSerializer
     class Meta:
         model = Order
         fields = ('id','worker','date','title','status')
+
+
+class ItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Item
+        fields = ('id', 'name', 'price', 'amount')
