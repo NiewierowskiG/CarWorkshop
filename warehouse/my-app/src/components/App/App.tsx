@@ -205,7 +205,7 @@ class App extends React.Component<Props, State> {
           <Route path='/Orders'>
             <OrderCreate/>
           </Route>
-          <Route>
+          <Route path='/Item'>
             <Item/>
           </Route>
        </div>
