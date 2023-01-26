@@ -9,7 +9,9 @@ table{
     border: 1px solid black;
     text-align: center;
 }
-
+.link:hover{
+    text-decoration: underline;
+}
 td{
     border: 1px solid black !important;
     height: 40px;

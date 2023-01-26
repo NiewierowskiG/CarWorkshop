@@ -9,8 +9,8 @@ const Order: React.FC<OrderListProps> = ({orders: initialOrders}) => {
         const updatedOrders = orders.map(order => {
             if (order.id === id) {
 
-                const response = putOrder(order)
-                return {...order, status: "done"}
+                putOrder(order)
+                return {...order, status: "Zrobione!"}
 
             }
             return order
@@ -27,7 +27,6 @@ const Order: React.FC<OrderListProps> = ({orders: initialOrders}) => {
             <table style={{width: "70%"}}>
                 <thead>
                 <tr>
-                    <th>ID:</th>
                     <th>Data:</th>
                     <th>Tytuł:</th>
                     <th>Status:</th>
@@ -39,14 +38,13 @@ const Order: React.FC<OrderListProps> = ({orders: initialOrders}) => {
                 <tbody>
                 {orders.map(order => (
                     <tr key={order.id}>
-                        <td>{order.id}</td>
                         <td>{order.date}</td>
                         <td>{order.title}</td>
-                        <td>{order.status !== "" ? order.status : 'in progress'}</td>
+                        <td>{order.status !== "" ? order.status : 'W trakcie ...'}</td>
                         <td>{order.itemNames}</td>
                         <td>{order.sum}</td>
                         <td>
-                            <button onClick={() => handleStatusChange(order.id)}>Done</button>
+                            <button style={{marginLeft:'auto',marginRight:'auto', padding: '2px'}}onClick={() => handleStatusChange(order.id)}>Zrobione</button>
                         </td>
                     </tr>
                 ))}

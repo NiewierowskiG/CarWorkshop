@@ -34,24 +34,32 @@ const ItemEdit: React.FC<ItemListProps> = ({items: initialItems}) => {
         }
     }
     return (
-        <form onSubmit={handleSave}>
+        <form className='edit' onSubmit={handleSave}>
             <label>
-                Name:
+                <span>Name:</span>
                 <input type="text" name="name" value={editedItem.name} onChange={handleInputChange}/>
             </label>
             <label>
-                Amount:
+            <span>Amount:</span>
                 <input type="number" name="amount" value={editedItem.amount} onChange={handleInputChange}/>
                 <ValueValidate value={editedItem.amount} validationFunction={isValidInteger}
                                errorMessage={"Nieprawidłowa ilość"}/>
             </label>
             <label>
+                <span>Price:</span>
+                <input type="number" name="price" value={editedItem.price} onChange={handleInputChange}/>
                 Price:
                 <input type="number" name="price" step={0.01} value={editedItem.price} onChange={handleInputChange}/>
                 <ValueValidate value={editedItem.price} validationFunction={isValidPrice}
                                errorMessage={"Nieprawidłowa cena"}/>
             </label>
-            <button disabled={!validateForm()} type="submit">Save</button>
+            <button style={{
+                marginLeft: "auto",
+                marginRight: "auto",
+                marginBottom: '10px',
+                marginTop: '20px',
+                padding: '8px'
+            }} type="submit">Save</button>
         </form>
 
     );
