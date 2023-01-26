@@ -137,10 +137,9 @@ class RentCarSerializer(serializers.ModelSerializer):
 
 
 class OrderSerializer(WritableNestedModelSerializer, serializers.ModelSerializer):
-    worker = WorkerPersonSerializer()
     class Meta:
         model = Order
-        fields = ('id','worker','date','title','status')
+        fields = ('id','date','title','status')
 
 
 class ItemSerializer(serializers.ModelSerializer):

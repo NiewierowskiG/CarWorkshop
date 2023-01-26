@@ -2,12 +2,23 @@ import PartItem from "../PartItem/PartItem";
 import React, { Component } from "react";
 import { ItemType } from "../types/ItemTypes";
 import "./OrderCreateList.css"
+import {postWithPayload} from "../Services/services";
+import {OrderPost} from "../types/OrderPost";
 type OrderCreateListProps = {
   order: ItemType[];
 };
 
+
+
 const OrderCreateList: React.FC<OrderCreateListProps> = ({ order }) => {
     console.log(order)
+    const handleButtonClick = () => {
+        const postOrder: OrderPost = {
+            order: order,
+            name: 'eo'
+        }
+        postWithPayload(postOrder, 'orders')
+    };
   return (
     <div className="table-wrapper">
       <div className="table-scroll">
@@ -37,6 +48,7 @@ const OrderCreateList: React.FC<OrderCreateListProps> = ({ order }) => {
           ))}
         </table>
       </div>
+      <button onClick={handleButtonClick}>add</button>
     </div>
   );
 };

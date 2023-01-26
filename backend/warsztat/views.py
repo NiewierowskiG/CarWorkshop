@@ -9,6 +9,7 @@ from rest_framework import status
 from .serializers import *
 from .email import send_email
 from django.utils.timezone import now
+from collections import Counter
 
 
 def repairs_main_screen(request):
@@ -260,11 +261,25 @@ def order_list(request, format=None):
         serializer = OrderSerializer(queryset, many=True)
         return Response(serializer.data)
     if request.method == 'POST':
-        serializer = OrderSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        print(request.data)
+        order = Order.objects.create(title=request.data['name'])
+        order.save()
+        print(order.id)
+        tmp = {}
+        for item in request.data['order']:
+            if item['name'] in tmp:
+                tmp[item['name']] = tmp[item['name']] + 1
+            else:
+                tmp[item['name']] = 1
+        for key in tmp.keys():
+            item = Item.objects.filter(name=key)[0]
+            orderxitem = OrderxItem.objects.create(item=item, order=order, amount=tmp[key])
+            orderxitem.save()
+        return Response(status=status.HTTP_201_CREATED)
+    else:
+        queryset = Order.objects.all()
+        serializer = OrderSerializer(queryset, many=True)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET', 'PUT', 'DELETE', 'PATCH'])  # RUD from CRUD

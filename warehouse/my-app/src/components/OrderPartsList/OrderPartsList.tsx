@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import {ItemType} from "../types/ItemTypes";
 import './OrderPartsList.css'
 import {ItemProps} from "../Item/ItemProps";
+import {postWithPayload} from "../Services/services";
 
 type OrderPartsListProps = {
     items: ItemProps[];

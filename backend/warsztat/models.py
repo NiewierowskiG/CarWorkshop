@@ -161,8 +161,7 @@ class RentCar(models.Model):
 
 
 class Order(models.Model):
-    worker = models.ForeignKey(Worker, on_delete=models.CASCADE)
-    date    = models.DateField(blank=True, null=True, default=None)
+    date = models.DateField(blank=True, null=True, default=None)
     title = models.CharField(max_length=150)
     status = models.CharField(max_length=50)
     #TODO iteams czesci
@@ -176,10 +175,8 @@ class Item(models.Model):
     amount = models.IntegerField()
 
 
-"""
-
-
 class OrderxItem(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE())
-    item = models.ForeignKey(PartItem, on_delete=models.CASCADE())
-"""
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    amount = models.IntegerField()
+
