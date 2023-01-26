@@ -5,6 +5,7 @@ import ItemEdit from "../ItemAdd/ItemEdit";
 import './ItemList.css'
 import {Link, Route} from 'react-router-dom';
 import Order from "../Order/Order";
+import { deleteItem } from '../Services/services';
 
 const ItemList: React.FC<ItemListProps> = ({items: initialItems}) => {
     const [items, setItems] = useState<ItemProps[]>(initialItems);
@@ -19,6 +20,7 @@ const ItemList: React.FC<ItemListProps> = ({items: initialItems}) => {
                     <th>Ilość:</th>
                     <th>Cena (1 sztuka):</th>
                     <th>Całkowita cena:</th>
+                    <th>Akcje:</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -28,6 +30,9 @@ const ItemList: React.FC<ItemListProps> = ({items: initialItems}) => {
                         <td>{item.amount}</td>
                         <td>{item.price}</td>
                         <td>{item.price * item.amount}</td>
+                        <td>
+                            <button onClick = {(props)=> deleteItem(item)}>Usuń</button>
+                        </td>
                     </tr>
                 ))}
                 </tbody>

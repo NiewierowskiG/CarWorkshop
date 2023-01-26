@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { useParams } from 'react-router-dom';
 import {ItemProps} from '../Item/ItemProps';
 import {putItem} from "../Services/services";
 
@@ -9,6 +10,7 @@ interface ItemEditProps {
 
 const ItemEdit: React.FC<ItemEditProps> = ({EditItem}) => {
     const [editedItem, setEditedItem] = useState<ItemProps>({...EditItem});
+   
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEditedItem({...editedItem, [e.target.name]: e.target.value});
@@ -19,7 +21,6 @@ const ItemEdit: React.FC<ItemEditProps> = ({EditItem}) => {
         const response = putItem(editedItem)
         console.log("eooo" + editedItem)
     };
-
     return (
         <form onSubmit={handleSave}>
             <label>
@@ -36,6 +37,7 @@ const ItemEdit: React.FC<ItemEditProps> = ({EditItem}) => {
             </label>
             <button type="submit">Save</button>
         </form>
+
     );
 };
 
