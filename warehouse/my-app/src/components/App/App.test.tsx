@@ -1,9 +1,21 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
 import React from 'react';
+import { shallow } from 'enzyme';
+import App from './App';
+describe('<App/>',()=>{
+   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   let appScreen; 
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+   beforeEach(() => {
+             appScreen = shallow(<App/>);
+   });
+
+	   afterEach(() => {
+             appScreen = undefined;
+   }); 
+
+it('renders', () => {
+             const appScreen = shallow(<App/>);
+             expect(appScreen.exists()).toBe(true);
+}); 
+
 });

@@ -1,12 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import OrderList from './OrderList';
 import { OrderProps } from '../Order/OrderProps';
 
-it('It should mount', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<OrderList orders={[]} onOrderFromList={function (order: OrderProps): void {
+it('should mount', () => {
+  const { createRoot } = require("react-dom/client");
+  const root = createRoot(document.createElement("div"))
+  root.render(<OrderList orders={[]} onOrderFromList={function (order: OrderProps): void {
     throw new Error('Function not implemented.');
-  } } idsList={[]} />, div);
-  ReactDOM.unmountComponentAtNode(div);
+  } } idsList={[]} />);
+  root.unmount()
 });

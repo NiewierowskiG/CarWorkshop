@@ -1,15 +1,15 @@
 import * as React from 'react';
-import OrdersList from '../OrderList/OrderList';
 import "./App.module.css"
 import {OrderProps} from '../Order/OrderProps';
 import Navbar from '../Navbar/Navbar';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import OrderCreate from "../OrderCreate/OrderCreate";
-import Item, {items3} from '../Item/Item';
-import axios from 'axios';
 import {ItemProps} from "../Item/ItemProps";
 import ItemList from "../ItemList/ItemList";
 import {AUTH_TOKEN} from "../Config/Config";
+import { AxiosError } from 'axios';
+
+
 
 interface Props {
 
@@ -22,11 +22,11 @@ interface State {
 }
 
 class App extends React.Component<Props, State> {
+    axios = require('axios');
     intervalId: NodeJS.Timer | undefined;
-
     constructor(props: Props) {
         super(props);
-        axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+        this.axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
         this.state = {
             items: [],
             orders: [],
@@ -43,14 +43,14 @@ class App extends React.Component<Props, State> {
 
 
     fetchOrders() {
-        axios.get("http://localhost:8000/orders/")
-            .then(response => {
+        this.axios.get("http://localhost:8000/orders/")
+            .then((response: { data: OrderProps[]; }) => {
                 return this.setState({
                     orders: response.data
                 });
 
             })
-            .catch(error => {
+            .catch((error: AxiosError) => {
                 console.log(error);
             });
         //console.log(this.state.orders)
@@ -58,14 +58,14 @@ class App extends React.Component<Props, State> {
 
 
     fetchItems() {
-        axios.get("http://localhost:8000/items/")
-            .then(response => {
+        this.axios.get("http://localhost:8000/items/")
+            .then((response: { data: ItemProps[]; }) => {
                 return this.setState({
                     items: response.data
                 });
 
             })
-            .catch(error => {
+            .catch((error: AxiosError) => {
                 console.log(error);
             });
         //console.log(this.state.items)

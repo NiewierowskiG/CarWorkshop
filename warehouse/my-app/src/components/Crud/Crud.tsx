@@ -1,10 +1,11 @@
 import React from 'react';
 import './Crud.module.css';
 import {OrderProps} from '../Order/OrderProps';
-import axios from 'axios';
-import {ItemProps} from "../Item/ItemProps";
 
-const AUTH_TOKEN = "Token b570a848252266feb5e37d0a7b6ff6ef866cc577"
+import {ItemProps} from "../Item/ItemProps";
+import { AUTH_TOKEN } from '../Config/Config';
+
+
 
 interface CrudProps {
     prop: OrderProps | ItemProps
@@ -13,9 +14,10 @@ interface CrudProps {
 
 
 const Crud: React.FunctionComponent<CrudProps> = ({propType, prop}) => {
+    const axios = require('axios');
     const handleSubmit = async () => {
         try {
-            console.log(propType + "   " + prop);
+            //console.log(propType + "   " + prop);
             axios.defaults.headers.common['Authorization'] =AUTH_TOKEN;
             switch (propType) {
                 case 'order':

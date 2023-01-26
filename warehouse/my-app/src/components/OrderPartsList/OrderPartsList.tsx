@@ -1,9 +1,9 @@
 import PartItem from "../PartItem/PartItem";
-import React, {Component} from "react";
+import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {ItemType} from "../types/ItemTypes";
+import { ItemType } from "../types/ItemTypes";
 import './OrderPartsList.css'
-import {ItemProps} from "../Item/ItemProps";
+import { ItemProps } from "../Item/ItemProps";
 
 type OrderPartsListProps = {
     items: ItemProps[];
@@ -12,92 +12,92 @@ type OrderPartsListProps = {
 };
 
 const OrderPartsList: React.FC<OrderPartsListProps> = ({
-                                                           items,
-                                                           order,
-                                                           onSetOrder,
-                                                       }) => {
+    items,
+    order,
+    onSetOrder,
+}) => {
     const handleAddItem = (item: ItemType): void => onSetOrder([...order, item]);
     return (
         <div className="table-wrapper">
-        <div className="table-scroll">
-        <table
-            className="table"
-            style={{
-                border: "1px solid black",
-                borderCollapse: "collapse",
-                width: "100%",
-            }}
-        >
-            <tr className="thead-dark">
-                <th
+            <div className="table-scroll">
+                <table
+                    className="table"
                     style={{
-                        width: "200px",
-                        height: "50px",
-                        border: "2px solid black",
-                        textAlign: 'center',
-                        backgroundColor: "lightgrey"
+                        border: "1px solid black",
+                        borderCollapse: "collapse",
+                        width: "100%",
                     }}
-                >
-                    Nr. ID:
-                </th>
-                <th
-                    style={{
-                        width: "200px",
-                        height: "50px",
-                        border: "2px solid black",
-                        textAlign: 'center',
-                        backgroundColor: "lightgrey"
-                    }}
-                >
-                    Nazwa części:
-                </th>
-                <th
-                    style={{
-                        width: "200px",
-                        height: "50px",
-                        border: "2px solid black",
-                        textAlign: 'center',
-                        backgroundColor: "lightgrey"
-                    }}
-                >
-                    Cena (1 sztuka) :
-                </th>
-                <th
-                    style={{
-                        width: "200px",
-                        height: "50px",
-                        border: "2px solid black",
-                        textAlign: 'center',
-                        backgroundColor: "lightgrey"
-                    }}
-                >
-                    Ilość:
-                </th>
-                <th
-                    style={{
-                        width: "200px",
-                        height: "50px",
-                        border: "2px solid black",
-                        textAlign: 'center',
-                        backgroundColor: "lightgrey"
-                    }}
-                >
-                    Cena całkowita:
-                </th>
-            </tr>
-            {items.map(item => (
-                    <PartItem
-                        onClick={handleAddItem}
-                        id={item.id}
-                        name={item.name}
-                        price={item.price}
-                        amount={item.amount}
-                        cost = {item.price * item.amount}
-                    />
-                ))}
-
-        </table>
-        </div>
+                >   <tbody>
+                        <tr className="thead-dark">
+                            <th
+                                style={{
+                                    width: "200px",
+                                    height: "50px",
+                                    border: "2px solid black",
+                                    textAlign: 'center',
+                                    backgroundColor: "lightgrey"
+                                }}
+                            >
+                                Nr. ID:
+                            </th>
+                            <th
+                                style={{
+                                    width: "200px",
+                                    height: "50px",
+                                    border: "2px solid black",
+                                    textAlign: 'center',
+                                    backgroundColor: "lightgrey"
+                                }}
+                            >
+                                Nazwa części:
+                            </th>
+                            <th
+                                style={{
+                                    width: "200px",
+                                    height: "50px",
+                                    border: "2px solid black",
+                                    textAlign: 'center',
+                                    backgroundColor: "lightgrey"
+                                }}
+                            >
+                                Cena (1 sztuka) :
+                            </th>
+                            <th
+                                style={{
+                                    width: "200px",
+                                    height: "50px",
+                                    border: "2px solid black",
+                                    textAlign: 'center',
+                                    backgroundColor: "lightgrey"
+                                }}
+                            >
+                                Ilość:
+                            </th>
+                            <th
+                                style={{
+                                    width: "200px",
+                                    height: "50px",
+                                    border: "2px solid black",
+                                    textAlign: 'center',
+                                    backgroundColor: "lightgrey"
+                                }}
+                            >
+                                Cena całkowita:
+                            </th>
+                        </tr>
+                        {items.map(item => (
+                            <PartItem key={item.id}
+                                onClick={handleAddItem}
+                                id={item.id}
+                                name={item.name}
+                                price={item.price}
+                                amount={item.amount}
+                                cost={item.price * item.amount}
+                            />
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };
