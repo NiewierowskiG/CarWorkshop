@@ -3,13 +3,15 @@ import OrderList from '../OrderList/OrderList';
 import "./App.module.css"
 import {OrderProps} from '../Order/OrderProps';
 import Navbar from '../Navbar/Navbar';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, useParams} from 'react-router-dom';
 import OrderCreate from "../OrderCreate/OrderCreate";
 import {ItemProps} from "../Item/ItemProps";
 import ItemList from "../ItemList/ItemList";
 import {AUTH_TOKEN} from "../Config/Config";
-import axios,{ AxiosError } from 'axios';
+import axios, {AxiosError} from 'axios';
 import {fetchItems, fetchOrders} from "../Services/services";
+import Order from "../Order/Order";
+import ItemEdit from "../ItemAdd/ItemEdit";
 
 interface Props {
 
@@ -23,6 +25,7 @@ interface State {
 
 class App extends React.Component<Props, State> {
     intervalId: NodeJS.Timer | undefined;
+
     constructor(props: Props) {
         super(props);
         axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
@@ -74,13 +77,16 @@ class App extends React.Component<Props, State> {
             <Router>
                 <Navbar/>
                 <Route path='/Orders'>
-                    <OrderList orders={this.state.orders}/>
+                    <Order orders={this.state.orders}/>
                 </Route>
                 <Route path='/AddOrders'>
                     <OrderCreate items={this.state.items}/>
                 </Route>
                 <Route path='/Item'>
                     <ItemList items={this.state.items}/>;
+                </Route>
+                <Route path='/Item/:id'>
+                    <ItemEdit EditItem={this.state.items[0]}/>
                 </Route>
             </Router>
         )

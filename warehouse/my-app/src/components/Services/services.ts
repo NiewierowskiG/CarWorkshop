@@ -21,6 +21,15 @@ export const postWithPayload = async (prop: OrderPost | ItemProps, propType: str
         console.error(error);
     }
 };
+export const putItem = async (prop: ItemProps) => {
+    try {
+        axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+        console.log("url: " + 'http://localhost:8000/items/' + prop.id)
+        await axios.put('http://localhost:8000/items/' + prop.id, prop);
+    } catch (error) {
+        console.error(error)
+    }
+}
 export const fetchOrders = async () => {
     try {
         const response = await axios.get("http://localhost:8000/orders/");

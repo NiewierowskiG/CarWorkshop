@@ -10,8 +10,8 @@ const Order: React.FunctionComponent<OrderListProps> = ({orders: initialItems}) 
    <table style={{width: "80%"}}>
    <thead>
        <tr>
-           <th>Nazwa</th>
            <th>Data:</th>
+           <th>Nazwa:</th>
            <th>Status:</th>
            <th>Zawartość:</th>
            <th>Suma:</th>
