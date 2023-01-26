@@ -10,6 +10,7 @@ import axios from 'axios';
 import {ItemProps} from "../Item/ItemProps";
 import ItemList from "../ItemList/ItemList";
 import {AUTH_TOKEN} from "../Config/Config";
+import Order from '../Order/Order';
 
 interface Props {
 
@@ -87,8 +88,10 @@ class App extends React.Component<Props, State> {
         return (
             <Router>
                     <Navbar/>
-                        <h1>Main page</h1>
                         <Route path='/Orders'>
+                            <Order/>
+                        </Route>
+                        <Route path='/AddOrders'>
                             <OrderCreate items={this.state.items} />
                         </Route>
                         <Route path='/Item'>

@@ -9,23 +9,23 @@ const ItemList: React.FC<ItemListProps> = ({items: initialItems}) => {
     const [showAdd, setShowAdd] = useState(false)
     return (
 
-        <div style={{display: 'flex', marginLeft: '5%', marginRight: '5%'}}>
+        <div style={{display: 'flex', marginLeft: '5%', marginRight: '5%', marginTop: '50px'}}>
             <table style={{width: "70%"}}>
                 <thead>
                     <tr>
-                        <th >Nr. ID:</th>
                         <th>Nazwa części:</th>
                         <th>Ilość:</th>
                         <th>Cena (1 sztuka):</th>
+                        <th>Całkowita cena:</th>
                     </tr>
                 </thead>
                 <tbody>
                 {items.map(item => (
                     <tr key={item.id}>
-                        <td>{item.id}</td>
                         <td>{item.name}</td>
                         <td>{item.amount}</td>
                         <td>{item.price}</td>
+                        <td>{item.price*item.amount}</td>
                     </tr>
                 ))}
                 </tbody>
