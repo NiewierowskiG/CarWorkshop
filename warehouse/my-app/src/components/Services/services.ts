@@ -63,3 +63,12 @@ export const fetchItems = async () => {
         console.log(error);
     }
 }
+export const getItemFromId = async (id: number) => {
+    try {
+        const response = await axios.get("http://localhost:8000/items/" + id);
+        console.log("hejo " + response.data)
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+}

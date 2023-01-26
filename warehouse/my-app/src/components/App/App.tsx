@@ -2,7 +2,7 @@ import * as React from 'react';
 import "./App.module.css"
 import { OrderProps } from '../Order/OrderProps';
 import Navbar from '../Navbar/Navbar';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 import OrderCreate from "../OrderCreate/OrderCreate";
 import { ItemProps } from "../Item/ItemProps";
 import ItemList from "../ItemList/ItemList";
@@ -84,7 +84,7 @@ class App extends React.Component<Props, State> {
                     <ItemList items={this.state.items} />;
                 </Route>
                 <Route path='/Item/:id'>
-                    {this.state.items !== undefined && <ItemEdit EditItem={this.state.items[0]} />}
+                    <ItemEdit items={this.state.items}/>
                 </Route>
             </Router>
         )

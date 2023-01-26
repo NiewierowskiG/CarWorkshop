@@ -1,25 +1,28 @@
 import React, {useState} from 'react';
-import { useParams } from 'react-router-dom';
-import {ItemProps} from '../Item/ItemProps';
-import {putItem} from "../Services/services";
+import {ItemListProps, ItemProps} from '../Item/ItemProps';
+import {getItemFromId, putItem} from "../Services/services";
+import {Link, useHistory, useParams} from 'react-router-dom';
 
 interface ItemEditProps {
     EditItem: ItemProps;
+    ItemId: number;
     // onSave: (item: ItemProps) => void;
 }
-
-const ItemEdit: React.FC<ItemEditProps> = ({EditItem}) => {
-    const [editedItem, setEditedItem] = useState<ItemProps>({...EditItem});
-   
-
+type TParams = { id: string };
+const ItemEdit: React.FC<ItemListProps> = ({items: initialItems}) => {
+    let { id } = useParams<TParams>();
+    let editItem = initialItems.filter(item => item.id === Number(id))[0]
+    let [editedItem, setEditedItem] = useState<ItemProps>({...editItem});
+    //console.log("IDPARAM: " + id + " IDITEM: " + editItem.id + " EDITEDITEMID: " + editedItem.id)
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEditedItem({...editedItem, [e.target.name]: e.target.value});
     };
-
+    const history = useHistory();
     const handleSave = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const response = putItem(editedItem)
-        console.log("eooo" + editedItem)
+        history.push('/Item');
+        //console.log("eooo" + editedItem.id)
     };
     return (
         <form onSubmit={handleSave}>
