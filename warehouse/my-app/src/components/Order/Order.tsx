@@ -43,7 +43,7 @@ const Order: React.FC<OrderListProps> = ({orders: initialOrders}) => {
                         <td>{order.date}</td>
                         <td>{order.title}</td>
                         <td>{order.status !== "" ? order.status : 'in progress'}</td>
-                        <td>{order.itemNames}sdsdasdadsa</td>
+                        <td>{order.itemNames}</td>
                         <td>{order.sum}</td>
                         <td>
                             <button onClick={() => handleStatusChange(order.id)}>Done</button>
