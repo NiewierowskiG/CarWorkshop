@@ -1,10 +1,10 @@
 
+
 export interface OrderProps {
-  name: number;
-  date : Date;
-  content: string;
-  cost: string;
-}
-export interface OrderListProps {
-  orders: OrderProps[];
+  id: number;
+  date: string;
+  title: string;
+  status: string;
+  itemNames: string;
+  sum: number;
 }
