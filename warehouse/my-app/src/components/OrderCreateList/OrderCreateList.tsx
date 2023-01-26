@@ -1,5 +1,5 @@
 import PartItem from "../PartItem/PartItem";
-import React from "react";
+import React, {useState} from "react";
 import { ItemType } from "../types/ItemTypes";
 import "./OrderCreateList.css"
 import {postWithPayload} from "../Services/services";
@@ -12,10 +12,18 @@ type OrderCreateListProps = {
 
 const OrderCreateList: React.FC<OrderCreateListProps> = ({ order }) => {
     //console.log(order)
+    const [name, setName] = useState('');
+    const [status, setStatus] = useState('in progress');
     const handleButtonClick = () => {
+      if(!name){
+        alert('Musisz dodać nazwę zamówienia!')
+        return;
+      }
+      setStatus('in progress');
         const postOrder: OrderPost = {
             order: order,
-            name: 'eo'
+            name: name,
+            status: status,
         }
         postWithPayload(postOrder, 'orders')
     };
@@ -42,7 +50,8 @@ const OrderCreateList: React.FC<OrderCreateListProps> = ({ order }) => {
           </tbody>
         </table>
       </div>
-      <button onClick={handleButtonClick}>add</button>
+      <input style={{ width: "500px", marginTop: '30px', height: '40px'}}type="text" placeholder="Dodaj nazwę (np. ZAM26012023)" value={name} onChange={(e) => setName(e.target.value)} />
+      <button style={{display: 'inline', marginLeft:'20px', height: '40px', width:'50px'}}onClick={handleButtonClick}>add</button>
     </div>
   );
 };

@@ -1,18 +1,16 @@
 import * as React from 'react';
-import OrderList from '../OrderList/OrderList';
+// import OrdersList from '../OrderList/OrderList';
 import "./App.module.css"
 import {OrderProps} from '../Order/OrderProps';
 import Navbar from '../Navbar/Navbar';
-import {BrowserRouter as Router, Route, useParams} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import OrderCreate from "../OrderCreate/OrderCreate";
+import axios from 'axios';
 import {ItemProps} from "../Item/ItemProps";
 import ItemList from "../ItemList/ItemList";
 import {AUTH_TOKEN} from "../Config/Config";
-import axios, {AxiosError} from 'axios';
-import {fetchItems, fetchOrders} from "../Services/services";
-import Order from "../Order/Order";
-import ItemEdit from "../ItemAdd/ItemEdit";
-
+import Order from '../Order/Order';
+import ItemEdit from '../ItemAdd/ItemEdit';
 interface Props {
 
 }
@@ -37,28 +35,41 @@ class App extends React.Component<Props, State> {
     }
 
     componentDidMount() {
-        fetchOrders().then((data) => {
-            this.setState({
-                orders: data
-            });
-        });
-        fetchItems().then((data) => {
-            this.setState({
-                items: data
-            });
-        });
-        this.intervalId = setInterval(() => fetchOrders().then((data) => {
-            this.setState({
-                orders: data
-            });
-        }), 5000);
-        this.intervalId = setInterval(() => fetchItems().then((data) => {
-            this.setState({
-                items: data
-            });
-        }), 5000);
+        this.fetchOrders();
+        this.fetchItems()
+        this.intervalId = setInterval(() => this.fetchOrders(), 5000);
+        this.intervalId = setInterval(() => this.fetchItems(), 5000);
     }
 
+
+    fetchOrders() {
+        axios.get("http://localhost:8000/orders/")
+            .then(response => {
+                return this.setState({
+                    orders: response.data
+                });
+
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        //console.log(this.state.orders)
+    }
+
+
+    fetchItems() {
+        axios.get("http://localhost:8000/items/")
+            .then(response => {
+                return this.setState({
+                    items: response.data
+                });
+
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        //console.log(this.state.items)
+    }
 
     handleOrderFromList = (data: OrderProps) => {
         this.setState((state) => {
@@ -75,19 +86,19 @@ class App extends React.Component<Props, State> {
     render() {
         return (
             <Router>
-                <Navbar/>
-                <Route path='/Orders'>
-                    <Order orders={this.state.orders}/>
-                </Route>
-                <Route path='/AddOrders'>
-                    <OrderCreate items={this.state.items}/>
-                </Route>
-                <Route path='/Item'>
-                    <ItemList items={this.state.items}/>;
-                </Route>
-                <Route path='/Item/:id'>
-                    <ItemEdit EditItem={this.state.items[0]}/>
-                </Route>
+                    <Navbar/>
+                        <Route path='/Orders'>
+                            <Order orders={this.state.orders}/>
+                        </Route>
+                        <Route path='/AddOrders'>
+                            <OrderCreate items={this.state.items}/>
+                        </Route>
+                        <Route path='/Item'>
+                            <ItemList items={this.state.items}/>;
+                        </Route>
+                        <Route path='/Item/:id'>
+                            <ItemEdit EditItem={this.state.items[0]}/>
+                        </Route>
             </Router>
         )
     }
