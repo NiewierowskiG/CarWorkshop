@@ -259,6 +259,15 @@ def order_list(request, format=None):
     if request.method == 'GET':
         queryset = Order.objects.all()
         serializer = OrderSerializer(queryset, many=True)
+        for e in serializer.data:
+            e['itemNames'] = ''
+            e['sum'] = 0
+            orderxitem = OrderxItem.objects.filter(order_id=e['id'])
+            for oxi in orderxitem:
+                item = Item.objects.get(id=oxi.item_id)
+                e['itemNames'] = e['itemNames'] + ', ' + item.name
+                e['sum'] = e['sum'] + item.amount * item.price
+
         return Response(serializer.data)
     if request.method == 'POST':
         print(request.data)

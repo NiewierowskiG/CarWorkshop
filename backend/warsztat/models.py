@@ -161,7 +161,7 @@ class RentCar(models.Model):
 
 
 class Order(models.Model):
-    date = models.DateField(blank=True, null=True, default=None)
+    date = models.DateField(blank=True, null=True, default=now)
     title = models.CharField(max_length=150)
     status = models.CharField(max_length=50)
     #TODO iteams czesci
