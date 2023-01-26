@@ -35,12 +35,12 @@ const ItemList: React.FC<ItemListProps> = ({items: initialItems}) => {
                 <tbody>
                 {items.map(item => (
                     <tr key={item.id}>
-                        <td><Link to={`/Item/${item.id}`}>{item.name}</Link></td>
+                        <td ><Link className='link'  style={{textDecoration: ' none', color:'black'}} to={`/Item/${item.id}`}>{item.name}</Link></td>
                         <td>{item.amount}</td>
                         <td>{item.price}</td>
                         <td>{item.price * item.amount}</td>
                         <td>
-                            <button onClick = {()=>{handleDeleteItem(item)}}>Usuń</button>
+                            <button style={{marginLeft:'auto',marginRight:'auto', padding: '2px'}} onClick = {()=>{handleDeleteItem(item)}}>Usuń</button>
                         </td>
                     </tr>
                 ))}

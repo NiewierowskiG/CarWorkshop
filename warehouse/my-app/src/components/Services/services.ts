@@ -36,7 +36,7 @@ export const putOrder = async (prop: OrderProps) => {
     try {
         axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
         // eslint-disable-next-line no-useless-concat
-        prop.status = "done";
+        prop.status = "Zrobione!";
         console.log("url: " + 'http://localhost:8000/orders/' + prop.id)
         await axios.put('http://localhost:8000/orders/' + prop.id, prop);
     } catch (error) {
