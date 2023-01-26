@@ -28,7 +28,7 @@ const ItemAdd: React.FC<{ addItem: (item: ItemProps) => void }> = ({addItem}) =>
     }
     const [showAdd, setShowAdd] = useState(true)
     return (
-        <form style={{}} onSubmit={handleSubmit}>
+        <form className='add' style={{}} onSubmit={handleSubmit}>
 
             <label>
                 <span> Nazwa części:</span>

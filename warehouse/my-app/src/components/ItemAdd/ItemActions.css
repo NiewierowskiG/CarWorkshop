@@ -1,6 +1,15 @@
-form{
+.add{
     position: absolute;
     left: 75%;
+    width: 400px;
+    background-color: lightgray;
+    box-shadow: 7px 7px 7px gray;
+    border: 2px solid black;
+    transition: linear 1s;
+}
+.edit{
+    position: absolute;
+    left: 30%;
     width: 400px;
     background-color: lightgray;
     box-shadow: 7px 7px 7px gray;

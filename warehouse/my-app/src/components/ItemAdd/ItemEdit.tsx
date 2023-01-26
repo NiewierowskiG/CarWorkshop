@@ -25,20 +25,26 @@ const ItemEdit: React.FC<ItemListProps> = ({items: initialItems}) => {
         //console.log("eooo" + editedItem.id)
     };
     return (
-        <form onSubmit={handleSave}>
+        <form className='edit' onSubmit={handleSave}>
             <label>
-                Name:
+                <span>Name:</span>
                 <input type="text" name="name" value={editedItem.name} onChange={handleInputChange}/>
             </label>
             <label>
-                Amount:
+            <span>Amount:</span>
                 <input type="number" name="amount" value={editedItem.amount} onChange={handleInputChange}/>
             </label>
             <label>
-                Price:
+                <span>Price:</span>
                 <input type="number" name="price" value={editedItem.price} onChange={handleInputChange}/>
             </label>
-            <button type="submit">Save</button>
+            <button style={{
+                marginLeft: "auto",
+                marginRight: "auto",
+                marginBottom: '10px',
+                marginTop: '20px',
+                padding: '8px'
+            }} type="submit">Save</button>
         </form>
 
     );
