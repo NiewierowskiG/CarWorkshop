@@ -1,31 +1,40 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {OrderListProps, OrderProps} from "../Order/OrderProps";
+import {fetchItems, fetchOrders, putOrder} from "../Services/services";
 
 
 const Order: React.FC<OrderListProps> = ({orders: initialOrders}) => {
-    const [orders, setOrders] = useState<OrderProps[]>(initialOrders);
+    const [orders, setOrders] = useState<OrderProps[]>([]);
     const handleStatusChange = (id: number) => {
         const updatedOrders = orders.map(order => {
             if (order.id === id) {
+
+                const response = putOrder(order)
                 return {...order, status: "done"}
+
             }
             return order
         });
         setOrders(updatedOrders)
     };
+    useEffect(() => {
+        fetchOrders().then((data) => {
+            setOrders(data);
+        });
+    }, [])
     return (
         <div style={{display: 'flex', marginLeft: '5%', marginRight: '5%', marginTop: '50px'}}>
             <table style={{width: "70%"}}>
                 <thead>
-                    <tr>
-                        <th>ID:</th>
-                        <th>Data:</th>
-                        <th>Tytuł:</th>
-                        <th>Status:</th>
-                        <th>Przedmioty:</th>
-                        <th>Suma:</th>
-                        <th>sdadsd</th>
-                    </tr>
+                <tr>
+                    <th>ID:</th>
+                    <th>Data:</th>
+                    <th>Tytuł:</th>
+                    <th>Status:</th>
+                    <th>Przedmioty:</th>
+                    <th>Suma:</th>
+                    <th>Zmień status:</th>
+                </tr>
                 </thead>
                 <tbody>
                 {orders.map(order => (
@@ -36,57 +45,18 @@ const Order: React.FC<OrderListProps> = ({orders: initialOrders}) => {
                         <td>{order.status !== "" ? order.status : 'in progress'}</td>
                         <td>{order.itemNames}sdsdasdadsa</td>
                         <td>{order.sum}</td>
-                        <td><button onClick={() => handleStatusChange(order.id)}>Done</button></td>
+                        <td>
+                            <button onClick={() => handleStatusChange(order.id)}>Done</button>
+                        </td>
                     </tr>
                 ))}
                 </tbody>
             </table>
-                    </div>
+        </div>
     )
 };
 
 export default Order;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // import * as React from 'react';
@@ -106,7 +76,6 @@ export default Order;
 // interface State {
 //   // State type definition goes here
 // }
-
 
 
 // class OrdersList extends React.Component<Props, State> {

@@ -1,15 +1,28 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ItemListProps, ItemProps} from "../Item/ItemProps";
 import ItemAdd from "../ItemAdd/ItemAdd";
 import ItemEdit from "../ItemAdd/ItemEdit";
 import './ItemList.css'
 import {Link, Route} from 'react-router-dom';
 import Order from "../Order/Order";
-import { deleteItem } from '../Services/services';
+import {deleteItem, fetchItems} from '../Services/services';
+import {ItemType} from "../types/ItemTypes";
 
 const ItemList: React.FC<ItemListProps> = ({items: initialItems}) => {
-    const [items, setItems] = useState<ItemProps[]>(initialItems);
-    const [showAdd, setShowAdd] = useState(false)
+    const [items, setItems] = useState<ItemProps[]>([]);
+    const [showAdd, setShowAdd] = useState(false);
+    useEffect(()=>{
+             fetchItems().then((data) => {
+                 setItems(data);
+           });
+    },[])
+    const handleDeleteItem = (itemToDelete: ItemProps) => {
+        const response = deleteItem(itemToDelete);
+        const newItems = items.filter(item => item.id !== itemToDelete.id);
+        setItems(newItems);
+    }
+
+
     return (
 
         <div style={{display: 'flex', marginLeft: '5%', marginRight: '5%', marginTop: '50px'}}>
@@ -31,7 +44,7 @@ const ItemList: React.FC<ItemListProps> = ({items: initialItems}) => {
                         <td>{item.price}</td>
                         <td>{item.price * item.amount}</td>
                         <td>
-                            <button onClick = {(props)=> deleteItem(item)}>Usuń</button>
+                            <button onClick = {()=>{handleDeleteItem(item)}}>Usuń</button>
                         </td>
                     </tr>
                 ))}

@@ -2,6 +2,7 @@ import {ItemProps} from "../Item/ItemProps";
 import {AUTH_TOKEN} from "../Config/Config";
 import {OrderPost} from "../types/OrderPost";
 import axios from "axios";
+import {OrderProps} from "../Order/OrderProps";
 
 export const postWithPayload = async (prop: OrderPost | ItemProps, propType: string,) => {
     try {
@@ -27,6 +28,17 @@ export const putItem = async (prop: ItemProps) => {
         // eslint-disable-next-line no-useless-concat
         console.log("url: " + 'http://localhost:8000/items/' + prop.id)
         await axios.put('http://localhost:8000/items/' + prop.id, prop);
+    } catch (error) {
+        console.error(error)
+    }
+}
+export const putOrder = async (prop: OrderProps) => {
+    try {
+        axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+        // eslint-disable-next-line no-useless-concat
+        prop.status = "done";
+        console.log("url: " + 'http://localhost:8000/orders/' + prop.id)
+        await axios.put('http://localhost:8000/orders/' + prop.id, prop);
     } catch (error) {
         console.error(error)
     }
