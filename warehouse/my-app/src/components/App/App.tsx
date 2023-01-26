@@ -7,7 +7,7 @@ import OrderCreate from "../OrderCreate/OrderCreate";
 import {ItemProps} from "../Item/ItemProps";
 import ItemList from "../ItemList/ItemList";
 import {AUTH_TOKEN} from "../Config/Config";
-import { AxiosError } from 'axios';
+import axios,{ AxiosError } from 'axios';
 
 
 
@@ -22,11 +22,10 @@ interface State {
 }
 
 class App extends React.Component<Props, State> {
-    axios = require('axios');
     intervalId: NodeJS.Timer | undefined;
     constructor(props: Props) {
         super(props);
-        this.axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+        axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
         this.state = {
             items: [],
             orders: [],
@@ -43,7 +42,7 @@ class App extends React.Component<Props, State> {
 
 
     fetchOrders() {
-        this.axios.get("http://localhost:8000/orders/")
+        axios.get("http://localhost:8000/orders/")
             .then((response: { data: OrderProps[]; }) => {
                 return this.setState({
                     orders: response.data
@@ -58,7 +57,7 @@ class App extends React.Component<Props, State> {
 
 
     fetchItems() {
-        this.axios.get("http://localhost:8000/items/")
+        axios.get("http://localhost:8000/items/")
             .then((response: { data: ItemProps[]; }) => {
                 return this.setState({
                     items: response.data

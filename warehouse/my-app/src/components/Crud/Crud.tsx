@@ -4,6 +4,7 @@ import {OrderProps} from '../Order/OrderProps';
 
 import {ItemProps} from "../Item/ItemProps";
 import { AUTH_TOKEN } from '../Config/Config';
+import axios from 'axios';
 
 
 
@@ -14,7 +15,6 @@ interface CrudProps {
 
 
 const Crud: React.FunctionComponent<CrudProps> = ({propType, prop}) => {
-    const axios = require('axios');
     const handleSubmit = async () => {
         try {
             //console.log(propType + "   " + prop);
