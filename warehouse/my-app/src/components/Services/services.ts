@@ -21,3 +21,23 @@ export const postWithPayload = async (prop: OrderPost | ItemProps, propType: str
         console.error(error);
     }
 };
+export const fetchOrders = async () => {
+    try {
+        const response = await axios.get("http://localhost:8000/orders/");
+        //console.log("hejo " + response.data)
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+export const fetchItems = async () => {
+    try {
+        const response = await axios.get("http://localhost:8000/items/");
+        //console.log("hejo " + response.data)
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+}

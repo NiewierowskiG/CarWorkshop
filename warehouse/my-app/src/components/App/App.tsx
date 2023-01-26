@@ -1,4 +1,5 @@
 import * as React from 'react';
+import OrderList from '../OrderList/OrderList';
 import "./App.module.css"
 import {OrderProps} from '../Order/OrderProps';
 import Navbar from '../Navbar/Navbar';
@@ -8,8 +9,7 @@ import {ItemProps} from "../Item/ItemProps";
 import ItemList from "../ItemList/ItemList";
 import {AUTH_TOKEN} from "../Config/Config";
 import axios,{ AxiosError } from 'axios';
-
-
+import {fetchItems, fetchOrders} from "../Services/services";
 
 interface Props {
 
@@ -34,41 +34,28 @@ class App extends React.Component<Props, State> {
     }
 
     componentDidMount() {
-        this.fetchOrders();
-        this.fetchItems()
-        this.intervalId = setInterval(() => this.fetchOrders(), 5000);
-        this.intervalId = setInterval(() => this.fetchItems(), 5000);
-    }
-
-
-    fetchOrders() {
-        axios.get("http://localhost:8000/orders/")
-            .then((response: { data: OrderProps[]; }) => {
-                return this.setState({
-                    orders: response.data
-                });
-
-            })
-            .catch((error: AxiosError) => {
-                console.log(error);
+        fetchOrders().then((data) => {
+            this.setState({
+                orders: data
             });
-        //console.log(this.state.orders)
-    }
-
-
-    fetchItems() {
-        axios.get("http://localhost:8000/items/")
-            .then((response: { data: ItemProps[]; }) => {
-                return this.setState({
-                    items: response.data
-                });
-
-            })
-            .catch((error: AxiosError) => {
-                console.log(error);
+        });
+        fetchItems().then((data) => {
+            this.setState({
+                items: data
             });
-        //console.log(this.state.items)
+        });
+        this.intervalId = setInterval(() => fetchOrders().then((data) => {
+            this.setState({
+                orders: data
+            });
+        }), 5000);
+        this.intervalId = setInterval(() => fetchItems().then((data) => {
+            this.setState({
+                items: data
+            });
+        }), 5000);
     }
+
 
     handleOrderFromList = (data: OrderProps) => {
         this.setState((state) => {
@@ -85,16 +72,16 @@ class App extends React.Component<Props, State> {
     render() {
         return (
             <Router>
-                    <Navbar/>
-                        <Route path='/Orders'>
-
-                        </Route>
-                        <Route path='/AddOrders'>
-                            <OrderCreate items={this.state.items} />
-                        </Route>
-                        <Route path='/Item'>
-                            <ItemList items={this.state.items} />;
-                        </Route>
+                <Navbar/>
+                <Route path='/Orders'>
+                    <OrderList orders={this.state.orders}/>
+                </Route>
+                <Route path='/AddOrders'>
+                    <OrderCreate items={this.state.items}/>
+                </Route>
+                <Route path='/Item'>
+                    <ItemList items={this.state.items}/>;
+                </Route>
             </Router>
         )
     }

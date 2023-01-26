@@ -1,5 +1,3 @@
-
-
 export interface OrderProps {
   id: number;
   date: string;
