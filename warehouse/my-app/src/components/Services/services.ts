@@ -24,6 +24,7 @@ export const postWithPayload = async (prop: OrderPost | ItemProps, propType: str
 export const putItem = async (prop: ItemProps) => {
     try {
         axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+        // eslint-disable-next-line no-useless-concat
         console.log("url: " + 'http://localhost:8000/items/' + prop.id)
         await axios.put('http://localhost:8000/items/' + prop.id, prop);
     } catch (error) {
@@ -33,6 +34,7 @@ export const putItem = async (prop: ItemProps) => {
 export const deleteItem = async(prop: ItemProps) => {
     try{
         axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+        // eslint-disable-next-line no-useless-concat
         console.log("url: " + 'http://localhost:8000/items/' + prop.id)
         await axios.delete('http://localhost:8000/items/' + prop.id);
     }catch(error){
@@ -41,6 +43,7 @@ export const deleteItem = async(prop: ItemProps) => {
 }
 export const fetchOrders = async () => {
     try {
+        axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
         const response = await axios.get("http://localhost:8000/orders/");
         //console.log("hejo " + response.data)
         return response.data;
@@ -52,8 +55,18 @@ export const fetchOrders = async () => {
 
 export const fetchItems = async () => {
     try {
+        axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
         const response = await axios.get("http://localhost:8000/items/");
         //console.log("hejo " + response.data)
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+}
+export const getItemFromId = async (id: number) => {
+    try {
+        const response = await axios.get("http://localhost:8000/items/" + id);
+        console.log("hejo " + response.data)
         return response.data;
     } catch (error) {
         console.log(error);
