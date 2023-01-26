@@ -265,7 +265,10 @@ def order_list(request, format=None):
             orderxitem = OrderxItem.objects.filter(order_id=e['id'])
             for oxi in orderxitem:
                 item = Item.objects.get(id=oxi.item_id)
-                e['itemNames'] = e['itemNames'] + ', ' + item.name
+                if len(e['itemNames']) == 0:
+                    e['itemNames'] = item.name
+                else:
+                    e['itemNames'] = e['itemNames'] + ', ' + item.name
                 e['sum'] = e['sum'] + item.amount * item.price
 
         return Response(serializer.data)
