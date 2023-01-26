@@ -1,11 +1,9 @@
 import {ItemProps} from "../Item/ItemProps";
-import {OrderProps} from "../Order/OrderProps";
 import {AUTH_TOKEN} from "../Config/Config";
+import {OrderPost} from "../types/OrderPost";
 
-
-
-export const postWithPayload = async (prop: OrderProps | ItemProps, propType: string,) => {
-    const axios = require('axios');
+export const postWithPayload = async (prop: OrderPost | ItemProps, propType: string,) => {
+    const axios = require('axios')
     try {
         //console.log(propType + "   " + prop);
         axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;

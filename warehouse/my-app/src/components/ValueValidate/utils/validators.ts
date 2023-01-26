@@ -1,23 +1,34 @@
 export const isValidId = (id: string | number): boolean => {
     if (id < 0) {
-        return true;
+        return false;
     }
-    return false;
+    return true;
 };
-export const isValidNumber = (number: string | number): boolean => {
-    if (number < 0) {
-        return true;
+function checkDecimalPlaces(number: number) {
+    const [integer, decimal] = number.toString().split('.');
+    if (!decimal) {
+        return 0;
     }
-    return false;
+    return decimal.length;
+}
+export const isValidPrice = (number: string | number): boolean => {
+    if (number < 0) {
+        return false;
+    }
+    if (checkDecimalPlaces(Number(number)) > 2){
+        return false;
+    }
+    return true;
 };
 export const isValidInteger = (number: string | number): boolean => {
     if (number < 0) {
-        return true;
+        return false;
     }
-    if (!Number.isInteger(number)) {
-        return true;
+    if (!Number.isInteger(Number(number))){
+        return false;
     }
-    return false;
+    return true;
+
 };
 export const isValidDateFormat = (dateString: string | number): boolean => {
     if (typeof dateString !== 'string') {

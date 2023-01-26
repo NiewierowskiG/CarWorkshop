@@ -11,7 +11,7 @@ interface ValueValidatorProps {
 class ValueValidator extends React.Component<ValueValidatorProps> {
     render() {
         const {value, validationFunction, errorMessage} = this.props;
-        if (validationFunction(value)) {
+        if (!validationFunction(value)) {
             return <ErrorValidate error={[errorMessage]}/>
         }
         return null;
