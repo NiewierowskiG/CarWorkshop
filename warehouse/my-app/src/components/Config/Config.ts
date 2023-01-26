@@ -1,1 +1,1 @@
-export const AUTH_TOKEN = "Token b570a848252266feb5e37d0a7b6ff6ef866cc577"
+export const AUTH_TOKEN = "Token 6fa6fb661af122bdab9747bf37c785ce40d024a3"

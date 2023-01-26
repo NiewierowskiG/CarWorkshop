@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import {ItemListProps, ItemProps} from '../Item/ItemProps';
 import {getItemFromId, putItem} from "../Services/services";
 import {Link, useHistory, useParams} from 'react-router-dom';
+import {isValidInteger, isValidPrice} from "../ValueValidate/utils/validators";
+import ValueValidate from "../ValueValidate/ValueValidate";
 
 interface ItemEditProps {
     EditItem: ItemProps;
@@ -24,6 +26,13 @@ const ItemEdit: React.FC<ItemListProps> = ({items: initialItems}) => {
         history.push('/Item');
         //console.log("eooo" + editedItem.id)
     };
+    const validateForm = () => {
+        if (!isValidInteger(editedItem.amount) || !isValidPrice(editedItem.price) || editedItem.amount === 0 || editedItem.price === 0 || editedItem.name === null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
     return (
         <form className='edit' onSubmit={handleSave}>
             <label>
@@ -33,10 +42,16 @@ const ItemEdit: React.FC<ItemListProps> = ({items: initialItems}) => {
             <label>
             <span>Amount:</span>
                 <input type="number" name="amount" value={editedItem.amount} onChange={handleInputChange}/>
+                <ValueValidate value={editedItem.amount} validationFunction={isValidInteger}
+                               errorMessage={"Nieprawidłowa ilość"}/>
             </label>
             <label>
                 <span>Price:</span>
                 <input type="number" name="price" value={editedItem.price} onChange={handleInputChange}/>
+                Price:
+                <input type="number" name="price" step={0.01} value={editedItem.price} onChange={handleInputChange}/>
+                <ValueValidate value={editedItem.price} validationFunction={isValidPrice}
+                               errorMessage={"Nieprawidłowa cena"}/>
             </label>
             <button style={{
                 marginLeft: "auto",
