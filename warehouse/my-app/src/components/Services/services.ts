@@ -30,6 +30,15 @@ export const putItem = async (prop: ItemProps) => {
         console.error(error)
     }
 }
+export const deleteItem = async(prop: ItemProps) => {
+    try{
+        axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+        console.log("url: " + 'http://localhost:8000/items/' + prop.id)
+        await axios.delete('http://localhost:8000/items/' + prop.id);
+    }catch(error){
+        console.log(error)
+    }
+}
 export const fetchOrders = async () => {
     try {
         const response = await axios.get("http://localhost:8000/orders/");
