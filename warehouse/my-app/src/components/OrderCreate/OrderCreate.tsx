@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import OrderCreateList from "../OrderCreateList/OrderCreateList";
 import OrderPartsList from "../OrderPartsList/OrderPartsList";
 import { ItemType } from "../types/ItemTypes";
 import {ItemListProps, ItemProps} from "../Item/ItemProps";
+import {fetchItems, fetchOrders} from "../Services/services";
 
 const OrderCreate: React.FC<ItemListProps> = ({items: initialItems}) => {
   const [items, setItems] = useState<ItemProps[]>(initialItems);
   const [order, setOrder] = useState<ItemType[]>([]);
+  useEffect(()=>{
+             fetchItems().then((data) => {
+                 setItems(data);
+           });
+    },[])
   return (
     <div>
       <div style={{

@@ -4,6 +4,7 @@ import { ItemType } from "../types/ItemTypes";
 import "./OrderCreateList.css"
 import {postWithPayload} from "../Services/services";
 import {OrderPost} from "../types/OrderPost";
+import {useHistory} from "react-router-dom";
 type OrderCreateListProps = {
   order: ItemType[];
 };
@@ -14,6 +15,7 @@ const OrderCreateList: React.FC<OrderCreateListProps> = ({ order }) => {
     //console.log(order)
     const [name, setName] = useState('');
     const [status, setStatus] = useState('in progress');
+    const history = useHistory();
     const handleButtonClick = () => {
       if(!name){
         alert('Musisz dodać nazwę zamówienia!')
@@ -26,6 +28,7 @@ const OrderCreateList: React.FC<OrderCreateListProps> = ({ order }) => {
             status: status,
         }
         postWithPayload(postOrder, 'orders')
+        history.push('/Orders');
     };
   return (
     <div className="table-wrapper">
