@@ -8,3 +8,6 @@ export interface OrderProps {
   itemNames: string;
   sum: number;
 }
+export interface OrderListProps {
+  orders: OrderProps[];
+}

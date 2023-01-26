@@ -4,6 +4,6 @@ import Crud from './Crud';
 
 it('should mount', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Crud prop={{id:0, worker : { person :{id:0, name:"", surname:'', telNr:0, email:''}, position:{name:"",canCreateClients:false,canCreateWorkers:false}, salary:0}, date:'', title:'', status:''}} propType={'order'}/>, div);
+  ReactDOM.render(<Crud prop={{id:0, date:'', title:'', status:'', itemNames: '', sum:0}} propType={'order'}/>, div);
   ReactDOM.unmountComponentAtNode(div);
 });

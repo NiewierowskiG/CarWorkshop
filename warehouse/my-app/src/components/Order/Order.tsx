@@ -1,17 +1,35 @@
-import React from 'react';
+import React, {useState} from 'react';
+// import OrdersList from '../OrderList/OrderList';
 import './Order.module.css';
-import { OrderProps } from './OrderProps';
+import { OrderListProps, OrderProps } from './OrderProps';
 
-const Order: React.FunctionComponent<OrderProps> = ({ id, date, title, status, itemNames, sum }) => {
+const Order: React.FunctionComponent<OrderListProps> = ({orders: initialItems}) => {
+    const [orders, setOrders] = useState<OrderProps[]>(initialItems);
+    console.log(orders);
   return (
-    <tr>
-      <td>{id}</td>
-      <td>{date}</td>
-      <td>{title}</td>
-      <td>{status}</td>
-      <td>{itemNames}</td>
-      <td>{sum}</td>
-    </tr>
+   <table style={{width: "80%"}}>
+   <thead>
+       <tr>
+           <th>Nazwa</th>
+           <th>Data:</th>
+           <th>Status:</th>
+           <th>Zawartość:</th>
+           <th>Suma:</th>
+       </tr>
+   </thead>
+   <tbody>
+   {orders.map(order=>(
+        <tr key={order.id}>
+            <td>Data: {order.date}</td>
+            <td>Nazwa: {order.title}</td>
+            <td>Status: {order.status}</td>
+            <td>Zawartość: {order.itemNames}</td>
+            <td>Suma: {order.sum}</td>
+        </tr>
+    ))}
+   </tbody>
+</table>
+
   );
 };
 
