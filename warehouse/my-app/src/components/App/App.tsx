@@ -1,15 +1,13 @@
 import * as React from 'react';
-import OrderList from '../OrderList/OrderList';
 import "./App.module.css"
-import {OrderProps} from '../Order/OrderProps';
+import { OrderProps } from '../Order/OrderProps';
 import Navbar from '../Navbar/Navbar';
-import {BrowserRouter as Router, Route, useParams} from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import OrderCreate from "../OrderCreate/OrderCreate";
-import {ItemProps} from "../Item/ItemProps";
+import { ItemProps } from "../Item/ItemProps";
 import ItemList from "../ItemList/ItemList";
-import {AUTH_TOKEN} from "../Config/Config";
-import axios, {AxiosError} from 'axios';
-import {fetchItems, fetchOrders} from "../Services/services";
+
+import { fetchItems, fetchOrders } from "../Services/services";
 import Order from "../Order/Order";
 import ItemEdit from "../ItemAdd/ItemEdit";
 
@@ -28,7 +26,7 @@ class App extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
-        axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+
         this.state = {
             items: [],
             orders: [],
@@ -75,18 +73,18 @@ class App extends React.Component<Props, State> {
     render() {
         return (
             <Router>
-                <Navbar/>
+                <Navbar />
                 <Route path='/Orders'>
-                    <Order orders={this.state.orders}/>
+                    <Order orders={this.state.orders} />
                 </Route>
                 <Route path='/AddOrders'>
-                    <OrderCreate items={this.state.items}/>
+                    <OrderCreate items={this.state.items} />
                 </Route>
                 <Route path='/Item'>
-                    <ItemList items={this.state.items}/>;
+                    <ItemList items={this.state.items} />;
                 </Route>
                 <Route path='/Item/:id'>
-                    <ItemEdit EditItem={this.state.items[0]}/>
+                    {this.state.items !== undefined && <ItemEdit EditItem={this.state.items[0]} />}
                 </Route>
             </Router>
         )
