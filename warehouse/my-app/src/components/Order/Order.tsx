@@ -9,7 +9,7 @@ const Order: React.FC<OrderListProps> = ({orders: initialOrders}) => {
         const updatedOrders = orders.map(order => {
             if (order.id === id) {
 
-                const response = putOrder(order)
+                putOrder(order)
                 return {...order, status: "done"}
 
             }
