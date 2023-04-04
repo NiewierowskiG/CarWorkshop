@@ -21,7 +21,7 @@ def repairs_main_screen(request):
 def get_workers_money(request, worker_id):
     worker = Worker.objects.get(id=worker_id)
     time_sum = float(0.0)
-    hours_worked_list = HoursWorked.objects.filter(date__gte='2022-12-01', date__lte='2022-12-31')
+    hours_worked_list = HoursWorked.objects.filter(date__gte='2022-12-01', date__lte='2025-12-31')
     for hour_worked in hours_worked_list:
         time_sum = time_sum + \
                    float((hour_worked.end_time.hour + hour_worked.end_time.minute/60) -
