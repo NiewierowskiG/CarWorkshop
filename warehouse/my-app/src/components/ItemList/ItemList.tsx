@@ -8,6 +8,7 @@ import {fetchItems} from '../Services/services';
 const ItemList: React.FC<ItemListProps> = ({items: initialItems}) => {
     const [items, setItems] = useState<ItemProps[]>([]);
     const [showAdd, setShowAdd] = useState(false);
+    const [searchTerm, setSearchTerm] = useState("");
     useEffect(()=>{
              fetchItems().then((data) => {
                  setItems(data);
@@ -17,11 +18,20 @@ const ItemList: React.FC<ItemListProps> = ({items: initialItems}) => {
         const newItems = items.filter(item => item.id !== itemToDelete.id);
         setItems(newItems);
     }
-
+    const filteredItems = items.filter((item) =>
+        item.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     return (
 
         <div style={{display: 'flex', marginLeft: '5%', marginRight: '5%', marginTop: '50px'}}>
+
+            <input
+                type="text"
+                placeholder="Search items"
+                value={searchTerm}
+                onChange={(event) => setSearchTerm(event.target.value)}
+            />
             <table style={{width: "70%"}}>
                 <thead>
                 <tr>
@@ -32,10 +42,10 @@ const ItemList: React.FC<ItemListProps> = ({items: initialItems}) => {
                     <th>Akcje:</th>
                 </tr>
                 </thead>
-                <tbody>
-                {items.map(item => (
+                 <tbody>
+                {filteredItems.map(item => (
                     <tr key={item.id}>
-                        <td ><Link className='link'  style={{textDecoration: ' none', color:'black'}} to={`/Item/${item.id}`}>{item.name}</Link></td>
+                        <td><Link className='link' style={{textDecoration: ' none', color:'black'}} to={`/Item/${item.id}`}>{item.name}</Link></td>
                         <td>{item.amount}</td>
                         <td>{item.price}</td>
                         <td>{item.price * item.amount}</td>
