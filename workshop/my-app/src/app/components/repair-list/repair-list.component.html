@@ -30,7 +30,7 @@
     <td class="action">
      <!--- <button>Edytuj</button>--->
       <button class="add" (click)="delRepair(repair.id)">Usuń</button>
-      <button class="show" [routerLink]="[getLink(repair.id, 0)]">Wyświetl naprawę</button> <!-- 0 is worker id -->
+      <button class="show" [routerLink]="[getLink(repair.id, repair.worker.id)]">Wyświetl naprawę</button> <!-- 0 is worker id -->
     </td>
   </tr>
 </table>
